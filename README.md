@@ -1,59 +1,85 @@
-# AmazonRedesign
+# Amaze Property Management Solutions
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.27.
+A modern, highly responsive web application built for Amaze Property Management Solutions. The project aims to provide an engaging user experience with dynamic animations, sleek design, and comprehensive service details.
 
-## Development server
+## ✨ Features
 
-To start a local development server, run:
+- **Modern UI/UX**: Designed with rich aesthetics, vibrant colors, glassmorphism, and dynamic animations.
+- **Fully Responsive**: Optimized for desktop, tablet, and mobile viewing.
+- **Tailwind CSS Integration**: Fully customized styling utility classes for maintainable and scalable UI development.
+- **Dynamic Scroll Animations**: Smooth transitions and scroll-triggered animations to improve user engagement.
+- **Modular Architecture**: Built with Angular components for easy scalability and maintenance.
 
-```bash
-ng serve
-```
+## 🛠️ Technology Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Framework**: [Angular](https://angular.dev/) (v19)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Language**: TypeScript, HTML5
+- **Node Environment**: Node.js
 
-## Code scaffolding
+## 🚀 Getting Started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
-ng generate component component-name
-```
+### Prerequisites
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+You need to have Node.js and npm installed on your machine.
 
-```bash
-ng generate --help
-```
+### Installation
 
-## Building
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nvnpalani/amazepms.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd amazepms
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
 
-To build the project run:
+### Development Server
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Run the following command to start the development server:
 
 ```bash
-ng e2e
+npm start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Additional Resources
+## 📂 Project Structure
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```
+src/
+├── app/
+│   ├── pages/
+│   │   ├── about/          # About Us page
+│   │   ├── careers/        # Careers page
+│   │   ├── clients/        # Our Clients page
+│   │   ├── contact/        # Contact Us page
+│   │   ├── footer/         # Global Footer component
+│   │   ├── gallery/        # Gallery page
+│   │   ├── header/         # Global Header component
+│   │   ├── home/           # Landing page
+│   │   ├── recruitments/   # Recruitments page
+│   │   ├── services/       # Services page
+│   │   └── strength/       # Our Strength page
+│   ├── app.component.*     # Root component
+│   └── app.routes.ts       # Application routing configuration
+├── assets/                 # Images, icons, and static assets
+├── index.html              # Main HTML file
+└── styles.css              # Global styles & Tailwind directives
+```
+
+## 📝 Build & Deployment
+
+To build the project for production, run:
+
+```bash
+npm run build
+```
+
+The build artifacts will be stored in the `dist/` directory. Use the `--configuration production` flag for an optimized production build.
