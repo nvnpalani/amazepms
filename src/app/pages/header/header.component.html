@@ -1,0 +1,104 @@
+<header class="w-full sticky top-0 z-[1000] bg-[var(--header-bg)] shadow-[0_4px_20px_rgba(0,0,0,0.05)] font-sans">
+  <div class="flex items-center justify-between max-w-[1300px] mx-auto px-5 py-4">
+    <a routerLink="/" class="flex flex-col leading-[1.1] no-underline transition-all duration-300 dark:bg-white dark:px-2.5 dark:py-1 dark:rounded-lg dark:-ml-2.5">
+      <img src="logo (1).png" alt="Amaze Property Management Solutions" class="h-10 w-auto object-contain">
+    </a>
+
+    <nav [ngClass]="isMobileMenuOpen ? 'max-lg:translate-y-0 max-lg:opacity-100' : 'max-lg:-translate-y-[150%] max-lg:opacity-0'"
+      class="flex items-center gap-6 max-lg:fixed max-lg:top-[70px] max-lg:left-0 max-lg:right-0 max-lg:bg-[var(--header-bg)] max-lg:flex-col max-lg:p-5 max-lg:gap-[15px] max-lg:shadow-[0_10px_20px_rgba(0,0,0,0.05)] max-lg:transition-all max-lg:duration-300 max-lg:border-t max-lg:border-[var(--border-color)]">
+      
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" 
+        class="relative py-1 text-[14px] font-semibold text-[var(--text-main)] no-underline transition-all duration-300 hover:text-[var(--primary-color)] [&.active]:text-[var(--primary-color)] [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:bottom-0 [&.active]:after:left-0 [&.active]:after:w-full [&.active]:after:h-[2.5px] [&.active]:after:bg-[var(--primary-color)] [&.active]:after:rounded-sm" 
+        (click)="closeMobileMenu()">Home</a>
+      
+      <a routerLink="/about" routerLinkActive="active" 
+        class="relative py-1 text-[14px] font-semibold text-[var(--text-main)] no-underline transition-all duration-300 hover:text-[var(--primary-color)] [&.active]:text-[var(--primary-color)] [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:bottom-0 [&.active]:after:left-0 [&.active]:after:w-full [&.active]:after:h-[2.5px] [&.active]:after:bg-[var(--primary-color)] [&.active]:after:rounded-sm" 
+        (click)="closeMobileMenu()">About Us</a>
+      
+      <a routerLink="/services" routerLinkActive="active" 
+        class="relative py-1 text-[14px] font-semibold text-[var(--text-main)] no-underline transition-all duration-300 hover:text-[var(--primary-color)] [&.active]:text-[var(--primary-color)] [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:bottom-0 [&.active]:after:left-0 [&.active]:after:w-full [&.active]:after:h-[2.5px] [&.active]:after:bg-[var(--primary-color)] [&.active]:after:rounded-sm" 
+        (click)="closeMobileMenu()">Services</a>
+      
+      <a routerLink="/recruitments" routerLinkActive="active" 
+        class="relative py-1 text-[14px] font-semibold text-[var(--text-main)] no-underline transition-all duration-300 hover:text-[var(--primary-color)] [&.active]:text-[var(--primary-color)] [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:bottom-0 [&.active]:after:left-0 [&.active]:after:w-full [&.active]:after:h-[2.5px] [&.active]:after:bg-[var(--primary-color)] [&.active]:after:rounded-sm" 
+        (click)="closeMobileMenu()">Recruitments</a>
+      
+      <a routerLink="/strength" routerLinkActive="active" 
+        class="relative py-1 text-[14px] font-semibold text-[var(--text-main)] no-underline transition-all duration-300 hover:text-[var(--primary-color)] [&.active]:text-[var(--primary-color)] [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:bottom-0 [&.active]:after:left-0 [&.active]:after:w-full [&.active]:after:h-[2.5px] [&.active]:after:bg-[var(--primary-color)] [&.active]:after:rounded-sm" 
+        (click)="closeMobileMenu()">Our Strength</a>
+      
+      <a routerLink="/clients" routerLinkActive="active" 
+        class="relative py-1 text-[14px] font-semibold text-[var(--text-main)] no-underline transition-all duration-300 hover:text-[var(--primary-color)] [&.active]:text-[var(--primary-color)] [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:bottom-0 [&.active]:after:left-0 [&.active]:after:w-full [&.active]:after:h-[2.5px] [&.active]:after:bg-[var(--primary-color)] [&.active]:after:rounded-sm" 
+        (click)="closeMobileMenu()">Our Clients</a>
+      
+      <a routerLink="/gallery" routerLinkActive="active" 
+        class="relative py-1 text-[14px] font-semibold text-[var(--text-main)] no-underline transition-all duration-300 hover:text-[var(--primary-color)] [&.active]:text-[var(--primary-color)] [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:bottom-0 [&.active]:after:left-0 [&.active]:after:w-full [&.active]:after:h-[2.5px] [&.active]:after:bg-[var(--primary-color)] [&.active]:after:rounded-sm" 
+        (click)="closeMobileMenu()">Gallery</a>
+      
+      <a routerLink="/careers" routerLinkActive="active" 
+        class="relative py-1 text-[14px] font-semibold text-[var(--text-main)] no-underline transition-all duration-300 hover:text-[var(--primary-color)] [&.active]:text-[var(--primary-color)] [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:bottom-0 [&.active]:after:left-0 [&.active]:after:w-full [&.active]:after:h-[2.5px] [&.active]:after:bg-[var(--primary-color)] [&.active]:after:rounded-sm" 
+        (click)="closeMobileMenu()">Careers</a>
+      
+      <a routerLink="/contact" routerLinkActive="active" 
+        class="relative py-1 text-[14px] font-semibold text-[var(--text-main)] no-underline transition-all duration-300 hover:text-[var(--primary-color)] [&.active]:text-[var(--primary-color)] [&.active]:after:content-[''] [&.active]:after:absolute [&.active]:after:bottom-0 [&.active]:after:left-0 [&.active]:after:w-full [&.active]:after:h-[2.5px] [&.active]:after:bg-[var(--primary-color)] [&.active]:after:rounded-sm" 
+        (click)="closeMobileMenu()">Contact Us</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <!-- Dark Mode Toggle -->
+      <button class="flex items-center justify-center w-10 h-10 bg-transparent border border-[var(--border-color)] text-[var(--text-main)] rounded-lg cursor-pointer transition-all duration-300 hover:bg-black/5 hover:text-[var(--primary-color)]" (click)="toggleDarkMode()" aria-label="Toggle Dark Mode">
+        <svg *ngIf="!isDarkMode" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg *ngIf="isDarkMode" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+
+      <!-- Theme Switcher -->
+      <div class="relative theme-switcher-container">
+        <button class="flex items-center justify-center w-10 h-10 bg-transparent border border-[var(--border-color)] text-[var(--text-main)] rounded-lg cursor-pointer transition-all duration-300 hover:bg-black/5 hover:text-[var(--primary-color)]" (click)="toggleThemeDropdown()" aria-label="Change Theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+          </svg>
+        </button>
+
+        <div class="absolute top-full right-0 mt-3 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.1)] p-4 w-max z-[1001] animate-[slideDown_0.2s_ease-out]" *ngIf="isThemeDropdownOpen">
+          <div class="text-[13px] font-semibold text-[var(--text-muted)] mb-3 uppercase tracking-[0.5px]">Choose Theme Color</div>
+          <div class="flex gap-2.5 items-center">
+            <button *ngFor="let color of defaultColors" 
+                    class="w-8 h-8 rounded-full border-none cursor-pointer transition-all duration-200 hover:scale-115 hover:shadow-[0_4px_8px_rgba(0,0,0,0.15)]" 
+                    [style.backgroundColor]="color" 
+                    (click)="changePrimaryColor(color)"
+                    aria-label="Select color">
+            </button>
+            <div class="w-8 h-8 rounded-full overflow-hidden border border-[var(--border-color)] flex justify-center items-center cursor-pointer">
+              <input type="color" class="w-[150%] h-[150%] cursor-pointer border-none p-0 bg-transparent" (change)="onCustomColorChange($event)" title="Choose custom color">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="hidden max-lg:flex items-center justify-center w-10 h-10 bg-transparent border border-[var(--border-color)] text-[var(--text-main)] rounded-lg cursor-pointer transition-all duration-300 hover:bg-black/5 hover:text-[var(--primary-color)]" (click)="toggleMobileMenu()" aria-label="Toggle Mobile Menu">
+        <svg *ngIf="!isMobileMenuOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg *ngIf="isMobileMenuOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>

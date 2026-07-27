@@ -1,0 +1,30 @@
+<main class="font-['Inter',-apple-system,sans-serif] overflow-x-hidden bg-[var(--bg-card)]">
+  
+  <section class="relative bg-cover bg-center py-[80px] px-5 text-white group animateOnScroll" style="background-image: url('assets/home/hero-bg.jpg');" #animateOnScroll>
+    <div class="absolute inset-0 bg-gradient-to-r from-[rgba(13,31,66,0.95)] to-[rgba(13,31,66,0.7)]"></div>
+    <div class="relative max-w-[1300px] mx-auto z-10">
+      
+      <div class="flex-1">
+        <h1 class="text-[48px] font-extrabold mb-[10px] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">Our Gallery</h1>
+        <div class="text-[14px] text-gray-300 mb-[30px] flex items-center opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-150 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">
+          <a routerLink="/" class="text-white no-underline font-medium hover:text-[var(--primary-color)] transition-colors">Home</a> <span class="mx-2">&gt;</span> <span class="text-blue-300 font-semibold">Our Gallery</span>
+        </div>
+      </div>
+      
+    </div>
+
+   
+  </section>
+
+
+  <!-- GALLERY MAIN SECTION -->
+  <section class="py-[60px] pb-[80px] px-5 max-w-[1300px] mx-auto group animateOnScroll" #animateOnScroll>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+      <div class="relative rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.05)] aspect-[4/3] cursor-pointer group/card opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-300 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0" *ngFor="let item of galleryItems">
+        <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover/card:scale-105" [style.background-image]="'url(\'' + item.img + '\')'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 transition-opacity duration-300 group-hover/card:opacity-100"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,90 @@
+<main class="font-['Inter',-apple-system,sans-serif] overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)] pb-[60px] transition-colors duration-300 ease-out">
+
+  <!-- HERO BANNER SECTION -->
+  <section class="relative bg-cover bg-center py-[80px] px-5 text-white" style="background-image: url('assets/home/hero-bg.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-r from-[rgba(13,31,66,0.95)] to-[rgba(13,31,66,0.7)]"></div>
+    <div class="relative max-w-[1300px] mx-auto z-10">
+      <div class="flex-1">
+        <h1 class="text-[48px] font-extrabold mb-[10px]">Careers</h1>
+        <div class="text-[14px] text-gray-300 mb-[30px] flex items-center">
+          <a routerLink="/" class="text-white no-underline font-medium hover:text-[var(--primary-color)] transition-colors">Home</a> <span class="mx-2">&gt;</span> <span class="text-blue-300 font-semibold">Careers</span>
+        </div>
+        <p class="text-[16px] text-[#cbd5e1] leading-[1.6] max-w-[600px]">
+          We are hiring passionate professionals working in the field of property management services.<br>
+          Apply with your CV to <a href="mailto:careers@amazepms.com" class="text-[#60a5fa] font-semibold no-underline hover:underline">careers&#64;amazepms.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREERS GRID SECTION -->
+  <section class="max-w-[1300px] mx-auto px-5 pb-[60px]">
+    <h1 class="text-center mb-[40px] font-extrabold text-[42px] text-[var(--primary-color)]">Current Openings</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px] mb-[50px]">
+
+      <div class="relative rounded-xl overflow-hidden shadow-[0_10px_25px_rgba(0,0,0,0.06)] bg-[var(--bg-card)] cursor-pointer transition-all duration-300 py-[40px] px-5 flex flex-col justify-center items-center text-center min-h-[250px] group hover:-translate-y-[5px] hover:shadow-[0_15px_35px_rgba(0,0,0,0.1)]" *ngFor="let job of openings; let i = index">
+
+        <!-- Content -->
+        <div class="relative z-10 transition-all duration-300 w-full group-hover:opacity-0 group-hover:-translate-y-[20px]">
+          <div class="w-[60px] h-[60px] rounded-full bg-[var(--bg-main)] flex items-center justify-center text-[var(--primary-color)] mx-auto mb-5 shadow-[0_4px_15px_rgba(0,0,0,0.05)]">
+            <svg *ngIf="job.icon === 'building'" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24"
+              height="24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+              </path>
+            </svg>
+            <svg *ngIf="job.icon === 'users'" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24"
+              height="24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+              </path>
+            </svg>
+            <svg *ngIf="job.icon === 'settings'" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24"
+              height="24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+              </path>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <svg *ngIf="job.icon === 'shield'" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24"
+              height="24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+              </path>
+            </svg>
+            <svg *ngIf="job.icon === 'lightning'" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24"
+              height="24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <svg *ngIf="job.icon === 'clipboard'" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24"
+              height="24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+              </path>
+            </svg>
+          </div>
+          <h3 class="text-[var(--text-main)] text-[20px] font-bold m-0 mb-[15px]">{{ job.title }}</h3>
+          <div class="flex flex-col gap-2 items-center">
+            <span class="flex items-center gap-2 text-[14px] text-[var(--text-muted)] font-medium">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              {{ job.experience }}
+            </span>
+            <span class="flex items-center gap-2 text-[14px] text-[var(--text-muted)] font-medium">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              {{ job.location }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Apply Box / Hover Overlay -->
+        <div class="absolute inset-0 flex items-center justify-center bg-[var(--primary-color)] opacity-0 translate-y-[20px] transition-all duration-400 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] z-20 group-hover:opacity-100 group-hover:translate-y-0">
+          <a href="mailto:careers@amazepms.com?subject=Application for {{ job.title }}" class="bg-white text-[var(--primary-color)] py-3 px-[30px] rounded-full font-bold text-[15px] no-underline shadow-[0_10px_20px_rgba(0,0,0,0.15)] transition-transform duration-300 hover:scale-105">Apply Now</a>
+        </div>
+      </div>
+
+    </div>
+
+
+  </section>
+
+</main>

@@ -1,0 +1,12 @@
+/* Tailwind CSS is used for styling this component. See HTML for styles. */
+
+/* Floating Icons Decoration Animation */
+.icon-1 { animation-delay: 0s; }
+.icon-2 { animation-delay: 2s; }
+.icon-3 { animation-delay: 4s; }
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
