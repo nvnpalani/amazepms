@@ -1,181 +1,143 @@
-<main class="font-['Inter',-apple-system,sans-serif] overflow-x-hidden bg-[#fafbfc] dark:bg-[var(--bg-main)] text-[var(--text-main)]">
-  
-  <!-- HERO BANNER SECTION -->
-  <section class="relative bg-cover bg-center pt-[80px] px-5 pb-[100px] text-white group" style="background-image: url('assets/home/hero-bg.jpg');" #animateOnScroll>
-    <div class="absolute inset-0 bg-gradient-to-r from-[rgba(6,14,29,0.95)] to-[rgba(13,31,66,0.7)] z-0"></div>
+<main class="overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)]">
+
+  <!-- Hero Banner -->
+  <section class="relative pt-24 pb-32 px-5 text-white overflow-hidden bg-[var(--primary)]">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(0,151,178,0.2)_0%,transparent_60%)]"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--teal)] to-transparent"></div>
     <div class="relative max-w-[1300px] mx-auto z-10">
-      <h1 class="text-[48px] font-extrabold mb-2.5 opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">About Us</h1>
-      <div class="text-[14px] text-gray-300 mb-[30px] flex items-center opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-150 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">
-        <a routerLink="/" class="text-white no-underline font-medium hover:text-blue-200">Home</a> <span class="mx-2">&gt;</span> <span class="text-blue-300 font-semibold">About Us</span>
+      <div class="text-[var(--teal-light)] text-[13px] font-semibold mb-3 flex items-center gap-2">
+        <a routerLink="/" class="text-[var(--teal-light)] no-underline hover:text-white transition-colors">Home</a>
+        <span class="text-white/40">/</span>
+        <span class="text-white">About Us</span>
+      </div>
+      <h1 class="text-[clamp(36px, 5vw, 56px)] font-black leading-[1.1] mb-4" style="font-family:'Outfit',sans-serif;">Your Local Partner for<br>Printing & Advertising.</h1>
+      <p class="text-gray-300 text-[17px] leading-[1.7] max-w-[540px]">
+        AK CREATION is a Trichy-based printing and advertising company dedicated to helping businesses present themselves professionally.
+      </p>
+    </div>
+  </section>
+
+  <!-- About Content -->
+  <section class="py-24 px-5 bg-[var(--bg-secondary)]">
+    <div class="max-w-[1300px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Image -->
+        <div class="reveal reveal-left relative" #reveal>
+          <div class="rounded-3xl overflow-hidden h-[420px] relative shadow-xl border border-[var(--border-color)]">
+            <img src="assets/home/ak_placeholder.png" alt="AK CREATION printing shop" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/20 to-transparent"></div>
+          </div>
+          <div class="absolute -bottom-5 -right-5 bg-[var(--teal)] text-white rounded-2xl p-5 shadow-xl hidden md:block">
+            <div class="text-[28px] font-black" style="font-family:'Outfit',sans-serif;">Trichy</div>
+            <div class="text-[13px] font-semibold">Edamalaipatti Pudur</div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="reveal reveal-right" #reveal>
+          <div class="section-tag mb-4">About Us</div>
+          <h2 class="section-heading mb-6">Who We Are</h2>
+          <p class="text-[var(--text-muted)] leading-[1.8] mb-5">
+            AK CREATION provides practical printing, advertising and promotional solutions for businesses, shops, events, institutions and individuals.
+          </p>
+          <p class="text-[var(--text-muted)] leading-[1.8] mb-8">
+            From design-ready print materials to outdoor advertising, our goal is to help businesses present themselves professionally and get noticed in the market. We believe every business ΓÇö big or small ΓÇö deserves high-quality printed materials.
+          </p>
+
+          <div class="grid grid-cols-2 gap-3 mb-8">
+            <div *ngFor="let feat of features"
+                 class="flex items-center gap-2 text-[14px] font-semibold text-[var(--text-muted)]">
+              <lucide-icon [img]="icons.CheckCircle2" class="w-4 h-4 text-[var(--teal)]"></lucide-icon>
+              {{ feat }}
+            </div>
+          </div>
+
+          <a routerLink="/contact" class="btn-primary inline-flex items-center gap-2">
+            Get in Touch
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT SECTION --> 
-  <section class="relative z-10 -mt-[60px] px-5 pb-20">
-    <div class="max-w-[1300px] mx-auto group flex items-center gap-[60px] max-lg:flex-col" #animateOnScroll>
-
-      <div class="flex-1 bg-[var(--bg-card)] p-10 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] opacity-0 max-md:opacity-100 -translate-x-[50px] max-md:translate-x-0 transition-all duration-800 ease-out group-[.is-visible]:opacity-100 group-[.is-visible]:translate-x-0">
-        <div class="text-[var(--primary-color)] font-bold text-[14px] uppercase tracking-[1px] mb-3 flex items-center gap-1.5">ABOUT US</div>
-
-        <p class="text-[var(--text-muted)] leading-[1.7] mb-4">Amaze PMS Pvt Ltd (AMAZE) is a Property Management division of ACTION GROUP of Companies founded in the year 2001 by Mr. Subhani Abdul a veteran from the Indian Navy, a Certified Security Practitioner, and a renowned name in the Service Industry. Amaze has its Head Quarters in Cyberabad, Telangana - INDIA, providing Property Management Solutions PAN INDIA, partnering with leading clientele with 15000 + strong strength of professionals. We specialize in offering comprehensive integrated Property Management Services such as Housekeeping, MEP (Mechanical, Electrical, Plumbing), Security, Pest Control, Gardening, STP & WTP, Parking, Swimming Pool Maintenance, office support services, deep cleaning services etc all these services are inhouse.</p>
-        
-        <div class="flex flex-wrap gap-5 mt-6">
-          <div class="flex items-center gap-2 w-[45%] max-md:w-[100%]">
-            <svg class="text-[var(--primary-color)] shrink-0" fill="currentColor" viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12"/><path fill="#fff" fill-rule="evenodd" d="M17.3 8.3a1 1 0 00-1.4 0l-5.6 5.6-2.6-2.6a1 1 0 10-1.4 1.4l3.3 3.3c.4.4 1 .4 1.4 0l6.3-6.3a1 1 0 000-1.4z" clip-rule="evenodd"></path></svg>
-            <span class="font-semibold text-[var(--text-main)] text-[14px]">Strong 15000+ Work Force</span>
+  <!-- Mission / Vision / Values -->
+  <section class="py-24 px-5 bg-[var(--bg-card)]">
+    <div class="max-w-[1100px] mx-auto">
+      <div class="text-center mb-14 reveal" #reveal>
+        <div class="section-tag mx-auto mb-4">Our Foundation</div>
+        <h2 class="section-heading mb-4">Mission ┬╖ Vision ┬╖ Values</h2>
+      </div>
+      <div class="flex flex-col gap-8">
+        <div *ngFor="let v of values; let i = index"
+             class="reveal grid grid-cols-1 lg:grid-cols-5 gap-8 items-center bg-[var(--bg-secondary)] rounded-2xl p-8 border border-[var(--border-color)] card-hover group" #reveal
+             [ngClass]="i % 2 === 1 ? 'reveal-right' : 'reveal-left'">
+          <div class="lg:col-span-1 flex justify-center lg:justify-start">
+            <div class="w-20 h-20 rounded-2xl flex items-center justify-center transition-colors duration-300"
+                 [ngClass]="{
+                   'bg-[var(--teal)]/10 group-hover:bg-[var(--teal)]/20': v.color === 'teal',
+                   'bg-[var(--primary)]/10 group-hover:bg-[var(--primary)]/20': v.color === 'navy',
+                   'bg-[var(--accent-red)]/10 group-hover:bg-[var(--accent-red)]/20': v.color === 'red'
+                 }">
+              <lucide-icon [img]="v.icon" class="w-9 h-9"
+                           [ngClass]="{
+                             'text-[var(--teal)]': v.color === 'teal',
+                             'text-[var(--primary)]': v.color === 'navy',
+                             'text-[var(--accent-red)]': v.color === 'red'
+                           }"></lucide-icon>
+            </div>
           </div>
-          <div class="flex items-center gap-2 w-[45%] max-md:w-[100%]">
-            <svg class="text-[var(--primary-color)] shrink-0" fill="currentColor" viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12"/><path fill="#fff" fill-rule="evenodd" d="M17.3 8.3a1 1 0 00-1.4 0l-5.6 5.6-2.6-2.6a1 1 0 10-1.4 1.4l3.3 3.3c.4.4 1 .4 1.4 0l6.3-6.3a1 1 0 000-1.4z" clip-rule="evenodd"></path></svg>
-            <span class="font-semibold text-[var(--text-main)] text-[14px]">200+ Clients</span>
-          </div>
-          <div class="flex items-center gap-2 w-[45%] max-md:w-[100%]">
-            <svg class="text-[var(--primary-color)] shrink-0" fill="currentColor" viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="12"/><path fill="#fff" fill-rule="evenodd" d="M17.3 8.3a1 1 0 00-1.4 0l-5.6 5.6-2.6-2.6a1 1 0 10-1.4 1.4l3.3 3.3c.4.4 1 .4 1.4 0l6.3-6.3a1 1 0 000-1.4z" clip-rule="evenodd"></path></svg>
-            <span class="font-semibold text-[var(--text-main)] text-[14px]">Presence PAN INDIA</span>
+          <div class="lg:col-span-4">
+            <h3 class="text-[21px] font-bold mb-3" style="font-family:'Outfit',sans-serif;"
+                [ngClass]="{
+                  'text-[var(--teal)]': v.color === 'teal',
+                  'text-[var(--primary)]': v.color === 'navy',
+                  'text-[var(--accent-red)]': v.color === 'red'
+                }">
+              {{ v.title }}
+            </h3>
+            <p class="text-[var(--text-muted)] text-[16px] leading-[1.75]">{{ v.desc }}</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <a href="#" class="group/btn inline-flex items-center border-2 border-[var(--primary-color)] text-[var(--primary-color)] bg-transparent py-2.5 px-6 rounded-full font-bold no-underline mt-[30px] relative overflow-hidden transition-colors duration-400 z-10 hover:text-white">
-          <div class="absolute inset-0 bg-[var(--primary-color)] -z-10 translate-x-[100%] transition-transform duration-400 ease-out group-hover/btn:translate-x-0"></div>
-          GET STARTED WITH US 
-          <span class="bg-[var(--primary-color)] text-white rounded-full w-[26px] h-[26px] inline-flex items-center justify-center ml-2.5 transition-colors duration-400 group-hover/btn:bg-[var(--bg-card)] group-hover/btn:text-[var(--primary-color)]">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
-          </span>
+  <!-- Who We Serve -->
+  <section class="py-24 px-5 bg-[var(--primary)]">
+    <div class="max-w-[1300px] mx-auto">
+      <div class="text-center mb-14 reveal" #reveal>
+        <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-[var(--teal-light)] text-[12px] font-bold uppercase tracking-[1.5px] px-4 py-2 rounded-full mb-4 backdrop-blur-sm">Who We Serve</div>
+        <h2 class="text-[clamp(28px, 4vw, 42px)] font-black text-white mb-4" style="font-family:'Outfit',sans-serif;">Built for Businesses of Every Size.</h2>
+        <p class="text-gray-300 max-w-[500px] mx-auto text-[16px] leading-[1.7]">We serve every type of business in Trichy and beyond.</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
+        <div *ngFor="let ind of industries; let i = index"
+             class="reveal bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/15 hover:border-white/30 hover:-translate-y-2 transition-all duration-300 group cursor-default" #reveal
+             [style.transitionDelay]="(i * 0.08) + 's'">
+          <div class="w-12 h-12 mx-auto rounded-full bg-white/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <lucide-icon [img]="ind.icon" class="w-6 h-6 text-[var(--teal-light)] group-hover:text-white transition-colors"></lucide-icon>
+          </div>
+          <div class="text-white font-semibold text-[13px] leading-tight">{{ ind.label }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="py-20 px-5 bg-[var(--bg-secondary)]">
+    <div class="max-w-[700px] mx-auto text-center reveal" #reveal>
+      <h2 class="section-heading mb-5">Ready to Work With Us?</h2>
+      <p class="section-subheading mx-auto mb-8">Contact AK CREATION today for all your printing and advertising needs.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a routerLink="/contact" class="btn-primary inline-flex items-center gap-2">Get a Free Quote</a>
+        <a href="tel:+916369562986" class="btn-outline inline-flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call 63695 62986
         </a>
       </div>
-
-      <div class="flex-1 opacity-0 max-md:opacity-100 translate-x-[50px] max-md:translate-x-0 transition-all duration-800 ease-out group-[.is-visible]:opacity-100 group-[.is-visible]:translate-x-0 relative w-full aspect-[1/1.1] max-lg:max-w-[500px] max-lg:mx-auto max-lg:aspect-square">
-        <img src="assets/home/home_about1.png" alt="Amaze Property Management" class="absolute w-[65%] h-auto top-2.5 right-[15px] rounded-xl border-[10px] border-white shadow-[0_10px_30px_rgba(0,0,0,0.1)] animate-[slideLeftRight1_4s_ease-in-out_infinite] z-10 dark:border-[var(--bg-card)]">
-        <img src="assets/home/home_about2.png" alt="Amaze Services" class="absolute w-[60%] h-auto bottom-2.5 left-[15px] rounded-xl border-[10px] border-white shadow-[0_15px_40px_rgba(0,0,0,0.15)] animate-[slideLeftRight2_4s_ease-in-out_infinite] z-20 dark:border-[var(--bg-card)]">
-      </div>
     </div>
   </section>
 
-  <!-- MISSION | VISION | VALUES SECTION -->
-  <section class="py-20 px-5 bg-[var(--bg-secondary)] overflow-hidden group" #animateOnScroll>
-    <div class="text-center mb-[50px] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">
-      <h2 class="text-[36px] font-extrabold text-[var(--primary-color)] relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-[50%] after:-translate-x-1/2 after:w-[60px] after:h-[3px] after:bg-[var(--secondary-color)]">Mission | Vision | Values</h2>
-    </div>
-
-    <div class="max-w-[1100px] mx-auto flex flex-col gap-[50px]">
-      <!-- Mission Card -->
-      <div class="flex items-stretch gap-10 bg-[var(--bg-card)] rounded-2xl p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-[var(--border-color)] opacity-0 max-md:opacity-100 -translate-x-[50px] max-md:translate-x-0 transition-all duration-800 ease-out delay-150 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-x-0 max-lg:flex-col max-lg:p-[30px] max-lg:text-center">
-        <div class="flex-[1.5] flex flex-col justify-center">
-          <h3 class="text-[28px] font-bold text-[var(--primary-color)] mb-4 flex items-center gap-3 relative max-lg:justify-center">
-            <span class="w-[3px] h-[28px] bg-[var(--primary-color)] max-lg:hidden"></span>
-            Our Mission
-          </h3>
-          <p class="text-[var(--text-muted)] text-[16px] leading-[1.7]">
-            Our Mission is to be a leading provider of comprehensive property management solutions in the PAN INDIA. We are committed to delivering exceptional services that exceed our clients expectations, while prioritizing technology, sustainability, and the well being of our employees.
-          </p>
-        </div>
-        <div class="flex-1 flex justify-center items-center">
-          <img src="assets/abouts/mission.png" alt="Mission" class="w-[250px] h-[250px] rounded-full object-cover shadow-[0_15px_35px_rgba(26,76,210,0.15)] border-4 border-white max-lg:w-[200px] max-lg:h-[200px]">
-        </div>
-      </div>
-
-      <!-- Vision Card -->
-      <div class="flex items-stretch gap-10 bg-[var(--bg-card)] rounded-2xl p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-[var(--border-color)] opacity-0 max-md:opacity-100 translate-x-[50px] max-md:translate-x-0 transition-all duration-800 ease-out delay-300 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-x-0 max-lg:flex-col-reverse max-lg:p-[30px] max-lg:text-center">
-        <div class="flex-1 flex justify-center items-center">
-          <img src="assets/abouts/vision.png" alt="Vision" class="w-[250px] h-[250px] rounded-full object-cover shadow-[0_15px_35px_rgba(245,158,11,0.2)] border-4 border-white max-lg:w-[200px] max-lg:h-[200px]">
-        </div>
-        <div class="flex-[1.5] flex flex-col justify-center">
-          <h3 class="text-[28px] font-bold text-[var(--primary-color)] mb-4 flex items-center gap-3 relative max-lg:justify-center">
-            Our Vision
-            <span class="w-[3px] h-[28px] bg-[var(--primary-color)] max-lg:hidden"></span>
-          </h3>
-          <p class="text-[var(--text-muted)] text-[16px] leading-[1.7]">
-            Our Vision is to transform the property management industry by setting new standards of excellence and innovation. We strive to be recognised for reliable, cost effective, and sustainable property management services. Through continuous enhancement and a client entric approach, we aim to enhance the value we bring to our clients business <strong class="text-[var(--text-main)]">(ATHMA NIRBHAR BHARATH)</strong>.
-          </p>
-        </div>
-      </div>
-
-      <!-- Values Card -->
-      <div class="flex items-stretch gap-10 bg-[var(--bg-card)] rounded-2xl p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-[var(--border-color)] opacity-0 max-md:opacity-100 -translate-x-[50px] max-md:translate-x-0 transition-all duration-800 ease-out delay-[450ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-x-0 max-lg:flex-col max-lg:p-[30px] max-lg:text-center">
-        <div class="flex-[1.5] flex flex-col justify-center">
-          <h3 class="text-[28px] font-bold text-[#10b981] mb-4 flex items-center gap-3 relative max-lg:justify-center">
-            <span class="w-[3px] h-[28px] bg-[#10b981] max-lg:hidden"></span>
-            Our Values
-          </h3>
-          <p class="text-[var(--text-muted)] text-[16px] leading-[1.7]">
-            Our Core Values include respect, integrity, excellence, sustainability, and customer focus. We are committed to conducting business with the highest ethical standards, delivering excellence in all aspects of our work, promoting sustainability in our operations, and always prioritizing the needs and satisfaction of our clients.
-          </p>
-        </div>
-        <div class="flex-1 flex justify-center items-center">
-          <img src="assets/abouts/values.png" alt="Values" class="w-[250px] h-[250px] rounded-full object-cover shadow-[0_15px_35px_rgba(16,185,129,0.15)] border-4 border-white max-lg:w-[200px] max-lg:h-[200px]">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEGMENTS WE CATER TO -->
-  <section class="py-20 px-5 bg-[var(--bg-card)] group" #animateOnScroll>
-    <div class="max-w-[1300px] mx-auto flex items-stretch bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.04)] opacity-0 max-md:opacity-100 translate-y-[40px] transition-all duration-800 ease-out group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 max-lg:flex-col-reverse max-lg:text-center">
-      
-      <div class="flex-[1.2] p-[60px] max-lg:p-10 max-md:p-6 flex flex-col justify-center">
-        <h3 class="text-[32px] font-extrabold text-[var(--text-main)] mb-[30px] flex items-center gap-3 relative max-lg:justify-center">
-          <span class="w-[3px] h-[30px] bg-[var(--primary-color)] max-lg:hidden"></span>
-          Segments We Cater To
-        </h3>
-        
-        <div class="grid grid-cols-2 gap-x-[30px] gap-y-[15px] max-md:grid-cols-1">
-          <ul class="list-none p-0 m-0 space-y-4">
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Commercial and IT Parks
-            </li>
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Corporate Offices
-            </li>
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Educational Institutions
-            </li>
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Residential Communities
-            </li>
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Hotels and Hospitals
-            </li>
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Industries
-            </li>
-          </ul>
-          <ul class="list-none p-0 m-0 space-y-4">
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Infrastructure and Construction Sites
-            </li>
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Malls, Multiplex's and Retail Stores
-            </li>
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Manufacturing Units
-            </li>
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Special Events
-            </li>
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Ware Houses
-            </li>
-            <li class="flex items-start gap-3 text-[15px] text-[var(--text-muted)] font-medium leading-[1.5]">
-              <svg class="text-[var(--primary-color)] w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              Pharma
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="flex-1 flex justify-center items-center bg-[var(--bg-main)] max-lg:w-full">
-        <img src="assets/abouts/segments.png" alt="Segments" class="w-full h-full object-cover min-h-[300px]">
-      </div>
-    </div>
-  </section>
 </main>

@@ -1,4 +1,24 @@
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Header nav active state */
+.nav-link.nav-active {
+  color: var(--primary) !important;
+  background-color: var(--bg-secondary);
+  font-weight: 700;
+}
+
+.nav-link.nav-active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 4px;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background: var(--teal);
+  border-radius: 2px;
+}
+
+/* Mobile nav active */
+.nav-active-mobile {
+  color: var(--primary) !important;
+  background-color: var(--bg-secondary);
 }

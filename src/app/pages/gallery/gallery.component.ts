@@ -1,67 +1,57 @@
-import { Component, OnInit, ElementRef, ViewChildren, QueryList, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { LucideAngularModule, Search } from 'lucide-angular';
+
+interface GalleryItem {
+  img: string;
+  title: string;
+  category: string;
+}
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, LucideAngularModule],
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements AfterViewInit, OnDestroy {
-  @ViewChildren('animateOnScroll') animatedElements!: QueryList<ElementRef>;
+  @ViewChildren('reveal') revealElements!: QueryList<ElementRef>;
   private observer: IntersectionObserver | null = null;
+  readonly icons = { Search };
 
-  galleryItems = [
-    { title: 'Client 1', img: '/assets/gallery/client (1).png' },
-    { title: 'Client 2', img: '/assets/gallery/client (2).png' },
-    { title: 'Client 3', img: '/assets/gallery/client (3).png' },
-    { title: 'Client 4', img: '/assets/gallery/client (4).png' },
-    { title: 'Client 5', img: '/assets/gallery/client (5).png' },
-    { title: 'Client 6', img: '/assets/gallery/client (6).png' }
+  activeFilter = 'All';
+  filters = ['All', 'Flex', 'Banners', 'Advertisement', 'ID Cards', 'Brochures', 'Store Boards', 'Social Media'];
+
+  galleryItems: GalleryItem[] = [
+    { img: 'assets/home/ak_placeholder.png',    title: 'Flex Printing ΓÇö Shop Opening', category: 'Flex' },
+    { img: 'assets/home/ak_placeholder.png',  title: 'Event Banner Design',           category: 'Banners' },
+    { img: 'assets/home/ak_placeholder.png', title: 'Advertisement Board',           category: 'Advertisement' },
+    { img: 'assets/home/ak_placeholder.png',    title: 'Promotional Banner',            category: 'Banners' },
+    { img: 'assets/home/ak_placeholder.png',title: 'Business Store Board',          category: 'Store Boards' },
+    { img: 'assets/home/ak_placeholder.png',   title: 'Corporate Brochure',            category: 'Brochures' },
+    { img: 'assets/home/ak_placeholder.png',title: 'ID Card ΓÇö Staff Batch',         category: 'ID Cards' },
+    { img: 'assets/home/ak_placeholder.png', title: 'Social Media Poster Design',    category: 'Social Media' },
+    { img: 'assets/home/ak_placeholder.png', title: 'Street Advertisement Banner',   category: 'Advertisement' },
+    { img: 'assets/home/ak_placeholder.png',    title: 'Function Event Flex',           category: 'Flex' },
+    { img: 'assets/home/ak_placeholder.png',title: 'Product Brochure',              category: 'Brochures' },
+    { img: 'assets/home/ak_placeholder.png',   title: 'Store Name Board',              category: 'Store Boards' },
   ];
 
+  get filtered(): GalleryItem[] {
+    if (this.activeFilter === 'All') return this.galleryItems;
+    return this.galleryItems.filter(i => i.category === this.activeFilter);
+  }
+
+  setFilter(f: string) { this.activeFilter = f; }
+
   ngAfterViewInit() {
-    this.setupIntersectionObserver();
-  }
-
-  ngOnDestroy() {
-    if (this.observer) {
-      this.observer.disconnect();
-    }
-  }
-
-  // Filtering logic removed as requested by UI changes
-
-  private setupIntersectionObserver() {
-    if (this.observer) {
-      this.observer.disconnect();
-    }
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.15
-    };
-
     this.observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        } else {
-          entry.target.classList.remove('is-visible');
-        }
-      });
-    }, options);
-
-    // Wait a tick for angular to render DOM elements if filtered
-    setTimeout(() => {
-      const elements = document.querySelectorAll('.animateOnScroll, .gallery-card');
-      elements.forEach(el => {
-        if (this.observer) {
-          this.observer.observe(el);
-        }
-      });
-    }, 50);
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+    }, { threshold: 0.1 });
+    this.revealElements.forEach(el => this.observer?.observe(el.nativeElement));
   }
+
+  ngOnDestroy() { this.observer?.disconnect(); }
 }

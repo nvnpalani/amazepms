@@ -1,220 +1,114 @@
-<main class="font-['Inter',-apple-system,sans-serif] overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)]">
-  
-  <!-- HERO BANNER SECTION -->
-  <section class="relative bg-cover bg-center pt-[80px] px-5 pb-[100px] text-white group" style="background-image: url('assets/abouts/about-main.jpg');" #animateOnScroll>
-    <div class="absolute inset-0 bg-gradient-to-r from-[rgba(6,14,29,0.95)] to-[rgba(13,31,66,0.7)] z-0"></div>
+<main class="overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)]">
+
+  <!-- Hero Banner -->
+  <section class="relative pt-24 pb-32 px-5 text-white overflow-hidden bg-[var(--bg-dark)]">
+    <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('assets/home/ak_cat_print.png');"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[var(--bg-dark)]/95 via-[var(--bg-dark)]/80 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--teal)] via-[var(--primary)] to-transparent"></div>
+    
     <div class="relative max-w-[1300px] mx-auto z-10">
-      <h1 class="text-[48px] font-extrabold mb-2.5 opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 max-md:text-[36px]">Our Services</h1>
-      <div class="text-[14px] text-gray-300 mb-[30px] flex items-center opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-150 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">
-        <a routerLink="/" class="text-white no-underline font-medium hover:text-blue-200">Home</a> <span class="mx-2">&gt;</span> <span class="text-blue-300 font-semibold">Services</span>
+      <div class="text-[var(--teal-light)] text-[13px] font-semibold mb-4 flex items-center gap-2">
+        <a routerLink="/" class="text-[var(--teal-light)] no-underline hover:text-white transition-colors">Home</a>
+        <span class="text-white/40">/</span>
+        <span class="text-white">Our Services</span>
       </div>
+      <h1 class="text-[clamp(40px, 5vw, 60px)] font-black leading-[1.1] mb-5" style="font-family:'Outfit',sans-serif;">
+        Everything You Need to<br><span class="text-[var(--teal)]">Promote Your Business.</span>
+      </h1>
+      <p class="text-gray-300 text-[17px] leading-[1.7] max-w-[540px]">
+        Creative printing and advertising solutions designed for businesses, events, shops and institutions. Browse our comprehensive list of services below.
+      </p>
     </div>
   </section>
 
-  <!-- PROPERTY AND ASSET MANAGEMENT SECTION -->
-  <section class="py-20 px-5 bg-[var(--bg-secondary)] group" #animateOnScroll>
-    <div class="text-center mb-[50px] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">
-      <h2 class="text-[36px] font-extrabold text-[var(--primary-color)] relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-[50%] after:-translate-x-1/2 after:w-[60px] after:h-[3px] after:bg-[var(--primary-color)] max-md:text-[28px]">Property and Asset Management</h2>
-    </div>
-    
-    <div class="max-w-[1300px] mx-auto grid grid-cols-4 gap-[30px] max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
-      <!-- 1 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-100 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/s2.png" alt="Security Services" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Security Services</div>
-        </div>
-      </div>
-      <!-- 2 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-[150ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/house keep.jpg" alt="House Keeping Services" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">House Keeping Services</div>
-        </div>
-      </div>
-      <!-- 3 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-200 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/technical.jpg" alt="Technical Services" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Technical Services</div>
-        </div>
-      </div>
-      <!-- 4 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-[250ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/pest.jpg" alt="Pest Control" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Pest Control</div>
-        </div>
-      </div>
-      <!-- 5 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-100 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/help.jpg" alt="Help Desk Management" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Help Desk Management</div>
-        </div>
-      </div>
-      <!-- 6 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-[150ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/gardening.jpg" alt="Gardening" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Gardening</div>
-        </div>
-      </div>
-      <!-- 7 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-200 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/cleaning_pool.png" alt="Swimming Pool Maintenance" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Swimming Pool Maintenance</div>
-        </div>
-      </div>
-      <!-- 8 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-[250ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/clubhouse.png" alt="Club House Management" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Club House Management</div>
-        </div>
-      </div>
-      <!-- 9 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-100 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/fc.png" alt="Facade Cleaning" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Facade Cleaning</div>
-        </div>
-      </div>
-      <!-- 10 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-[150ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/tm1.png" alt="Tenant Management" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Tenant Management</div>
-        </div>
-      </div>
-      <!-- 11 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-200 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/hr.png" alt="Home Repairs" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Home Repairs</div>
-        </div>
-      </div>
-      <!-- 12 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-[250ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/event.png" alt="Events and Promotions" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Events and Promotions Management</div>
-        </div>
-      </div>
-      <!-- 13 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-100 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/help_desk.png" alt="Office Support Staff" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Office Support Staff</div>
-        </div>
-      </div>
-      <!-- 14 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-[150ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/payrole.png" alt="Payroll Management" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Payroll Management</div>
-        </div>
-      </div>
-      <!-- 15 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-200 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/tool.png" alt="Repair and Maintenance" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Repair and Maintenance</div>
-        </div>
-      </div>
-      <!-- 16 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-[250ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/cleaning.png" alt="Home Cleaning" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Home Cleaning</div>
-        </div>
-      </div>
-      <!-- 17 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-100 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/maid.jpg" alt="Maid Services" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Maid Services</div>
-        </div>
-      </div>
-      <!-- 18 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-[150ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/parking.jpg" alt="Parking Management" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">Parking Management</div>
-        </div>
-      </div>
-      <!-- 19 -->
-      <div class="relative rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-[var(--border-color)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-200 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0 h-[220px] group/card">
-        <img src="assets/services/revenue.png" alt="New Revenue Opportunities" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover/card:opacity-90 z-0"></div>
-        <div class="absolute inset-0 p-5 flex items-end justify-center z-10">
-          <div class="text-center font-bold text-[18px] text-white leading-tight drop-shadow-md">New revenue opportunities</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Services by Category -->
+  <ng-container *ngFor="let cat of categories; let catIndex = index">
+    <section class="py-24 px-5 border-b border-[var(--border-color)]"
+             [ngClass]="catIndex % 2 === 0 ? 'bg-[var(--bg-secondary)]' : 'bg-[var(--bg-card)]'">
+      <div class="max-w-[1300px] mx-auto">
 
-  <!-- OUR SERVICE PARTNERS SECTION -->
-  <section class="py-20 px-5 bg-[var(--bg-main)] group" #animateOnScroll>
-    <div class="text-center mb-[50px] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">
-      <h2 class="text-[36px] font-extrabold text-[var(--text-main)] relative inline-block pb-3 after:content-[''] after:absolute after:bottom-0 after:left-[50%] after:-translate-x-1/2 after:w-[60px] after:h-[3px] after:bg-[var(--primary-color)] max-md:text-[28px]">Our Service Partners</h2>
+        <!-- Category Header -->
+        <div class="flex items-start gap-5 mb-12 reveal" #reveal>
+          <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shrink-0 border shadow-sm bg-white"
+               [ngClass]="{
+                 'text-[var(--primary)] border-[var(--primary)]/20': cat.color === 'navy',
+                 'text-[var(--teal)] border-[var(--teal)]/20': cat.color === 'teal',
+                 'text-[var(--accent-red)] border-[var(--accent-red)]/20': cat.color === 'red',
+                 'text-[#b7791f] border-[#b7791f]/20': cat.color === 'yellow'
+               }">
+            <lucide-icon [img]="cat.icon" class="w-8 h-8"></lucide-icon>
+          </div>
+          <div>
+            <span class="badge mb-3 block w-max"
+                  [ngClass]="{
+                    'badge-navy': cat.color === 'navy',
+                    'badge-teal': cat.color === 'teal',
+                    'badge-red':  cat.color === 'red',
+                    'badge-yellow': cat.color === 'yellow'
+                  }">Category {{ catIndex + 1 }}</span>
+            <h2 class="text-[clamp(28px, 3vw, 38px)] font-black text-[var(--text-main)] mb-2" style="font-family:'Outfit',sans-serif;">{{ cat.title }}</h2>
+            <p class="text-[var(--text-muted)] text-[16px] font-medium">{{ cat.subtitle }}</p>
+          </div>
+        </div>
+
+        <!-- Standardized Premium Grid for all categories -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div *ngFor="let svc of cat.services; let i = index"
+               class="reveal bg-[var(--bg-card)] rounded-2xl border border-[var(--border-color)] card-hover group overflow-hidden flex flex-col shadow-sm hover:shadow-xl" #reveal
+               [style.transitionDelay]="(i * 0.1) + 's'">
+            
+            <div class="relative h-[180px] overflow-hidden bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+              <img [src]="svc.image" [alt]="svc.name" class="w-full h-full object-cover service-card-img mix-blend-multiply opacity-90 group-hover:opacity-100 transition-opacity">
+              <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] via-transparent to-transparent service-card-overlay opacity-90"></div>
+              
+              <div class="absolute bottom-4 left-5 bg-white/95 backdrop-blur-sm border border-black/5 rounded-xl p-2.5 shadow-lg service-icon-wrapper"
+                   [ngClass]="{
+                     'text-[var(--primary)]': cat.color === 'navy',
+                     'text-[var(--teal)]': cat.color === 'teal',
+                     'text-[var(--accent-red)]': cat.color === 'red',
+                     'text-[#b7791f]': cat.color === 'yellow'
+                   }">
+                <lucide-icon [img]="svc.icon" class="w-6 h-6"></lucide-icon>
+              </div>
+            </div>
+
+            <div class="p-6 pt-5 flex-1 flex flex-col">
+              <h3 class="text-[19px] font-bold text-[var(--text-main)] mb-2 group-hover:text-[var(--primary)] transition-colors" style="font-family:'Outfit',sans-serif;">{{ svc.name }}</h3>
+              <p class="text-[14px] text-[var(--text-muted)] mb-6 leading-[1.6]">{{ svc.desc }}</p>
+
+              <a routerLink="/contact"
+                 class="mt-auto inline-flex items-center gap-1.5 text-[13px] font-bold no-underline service-cta transition-colors duration-300"
+                 [ngClass]="{
+                   'text-[var(--primary)] hover:text-[var(--teal)]': cat.color === 'navy',
+                   'text-[var(--teal)] hover:text-[var(--primary)]': cat.color === 'teal',
+                   'text-[var(--accent-red)] hover:text-[#b01020]': cat.color === 'red',
+                   'text-[#b7791f] hover:text-[#8a5b17]': cat.color === 'yellow'
+                 }">
+                Get Quote
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </ng-container>
+
+  <!-- CTA -->
+  <section class="py-24 px-5 bg-[var(--primary)] relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,151,178,0.2)_0%,transparent_60%)]"></div>
+    <div class="max-w-[700px] mx-auto text-center reveal relative z-10" #reveal>
+      <h2 class="text-[clamp(32px, 4vw, 46px)] font-black text-white mb-5" style="font-family:'Outfit',sans-serif;">Need a Custom Service?</h2>
+      <p class="text-gray-300 text-[17px] leading-[1.7] mb-10 max-w-[500px] mx-auto">Contact us and we'll provide a personalized quote tailored exactly to your business requirements.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a routerLink="/contact" class="inline-flex items-center gap-2 bg-[var(--teal)] text-white px-5 py-4 rounded-xl font-bold text-[15px] no-underline hover:bg-[#007a96] transition-all duration-200 hover:-translate-y-1 shadow-[0_8px_24px_rgba(0,151,178,0.3)]">Get a Free Quote</a>
+        <a href="https://wa.me/916369562986" target="_blank"
+           class="inline-flex items-center gap-2 bg-[#25d366] text-white px-5 py-4 rounded-xl font-bold text-[15px] no-underline hover:bg-[#1ebe5d] transition-all duration-200 hover:-translate-y-1 shadow-[0_8px_24px_rgba(37,211,102,0.3)]">
+           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Us
+        </a>
+     </div>
     </div>
-    
-    <div class="max-w-[1300px] mx-auto grid grid-cols-3 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1">
-      <!-- Partner 1 -->
-      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[var(--border-color)] flex flex-col transition-transform duration-300 hover:-translate-y-2.5 opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-100 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">
-        <div class="h-[250px] relative bg-white border-b border-[var(--border-color)] flex items-center justify-center p-5 dark:bg-[var(--bg-card)]">
-          <span class="absolute top-5 right-5 bg-[var(--primary-color)] text-white text-[12px] font-bold py-1 px-3 rounded-full shadow-[0_4px_10px_rgba(26,76,210,0.3)] z-10">MEP Services</span>
-          <img src="assets/services/s3.png" alt="Amaze PMSPL" class="max-w-[80%] max-h-[80%] object-contain transition-transform duration-500 hover:scale-110">
-        </div>
-        <div class="p-[30px] flex-1 flex flex-col text-center">
-          <h3 class="text-[20px] font-extrabold text-[var(--primary-color)] mb-3 leading-[1.3]">Amaze Property Management Solutions Pvt Ltd</h3>
-          <p class="text-[15px] text-[var(--text-muted)] leading-[1.6] m-0">PMS Services, Housekeeping, MEP, Gardening, Pest Control Services</p>
-        </div>
-      </div>
-      
-      <!-- Partner 2 -->
-      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[var(--border-color)] flex flex-col transition-transform duration-300 hover:-translate-y-2.5 opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-[150ms] group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">
-        <div class="h-[250px] relative bg-white border-b border-[var(--border-color)] flex items-center justify-center p-5 dark:bg-[var(--bg-card)]">
-          <span class="absolute top-5 right-5 bg-[var(--primary-color)] text-white text-[12px] font-bold py-1 px-3 rounded-full shadow-[0_4px_10px_rgba(245,158,11,0.3)] z-10">Security Services</span>
-          <img src="assets/services/s2.png" alt="Action Force" class="max-w-[80%] max-h-[80%] object-contain transition-transform duration-500 hover:scale-110">
-        </div>
-        <div class="p-[30px] flex-1 flex flex-col text-center">
-          <h3 class="text-[20px] font-extrabold text-[var(--primary-color)] mb-3 leading-[1.3]">Action & Protection Security Force</h3>
-          <p class="text-[15px] text-[var(--text-muted)] leading-[1.6] m-0">Security Services, Fire Training, Escort Services, Event Security, Help Desk Services</p>
-        </div>
-      </div>
-      
-      <!-- Partner 3 -->
-      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[var(--border-color)] flex flex-col transition-transform duration-300 hover:-translate-y-2.5 opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-200 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">
-        <div class="h-[250px] relative bg-white border-b border-[var(--border-color)] flex items-center justify-center p-5 dark:bg-[var(--bg-card)]">
-          <span class="absolute top-5 right-5 bg-[#10b981] text-white text-[12px] font-bold py-1 px-3 rounded-full shadow-[0_4px_10px_rgba(16,185,129,0.3)] z-10">Support Staff</span>
-          <img src="assets/services/s1.png" alt="AFS" class="max-w-[80%] max-h-[80%] object-contain transition-transform duration-500 hover:scale-110">
-        </div>
-        <div class="p-[30px] flex-1 flex flex-col text-center">
-          <h3 class="text-[20px] font-extrabold text-[var(--primary-color)] mb-3 leading-[1.3]">Action Facility Services Pvt Ltd</h3>
-          <p class="text-[15px] text-[var(--text-muted)] leading-[1.6] m-0">Home Services, Deep Cleaning Services, Support Staff, Project Cleaning, Sofa, Carpet Cleaning Services</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+   </section>
+ </main>

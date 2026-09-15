@@ -1,30 +1,73 @@
-<main class="font-['Inter',-apple-system,sans-serif] overflow-x-hidden bg-[var(--bg-card)]">
-  
-  <section class="relative bg-cover bg-center py-[80px] px-5 text-white group animateOnScroll" style="background-image: url('assets/home/hero-bg.jpg');" #animateOnScroll>
-    <div class="absolute inset-0 bg-gradient-to-r from-[rgba(13,31,66,0.95)] to-[rgba(13,31,66,0.7)]"></div>
+<main class="overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)]">
+
+  <!-- Hero -->
+  <section class="relative pt-24 pb-32 px-5 text-white overflow-hidden bg-[var(--primary)]">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(0,151,178,0.25)_0%,transparent_60%)]"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--teal)] to-transparent"></div>
     <div class="relative max-w-[1300px] mx-auto z-10">
-      
-      <div class="flex-1">
-        <h1 class="text-[48px] font-extrabold mb-[10px] opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">Our Gallery</h1>
-        <div class="text-[14px] text-gray-300 mb-[30px] flex items-center opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-150 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0">
-          <a routerLink="/" class="text-white no-underline font-medium hover:text-[var(--primary-color)] transition-colors">Home</a> <span class="mx-2">&gt;</span> <span class="text-blue-300 font-semibold">Our Gallery</span>
-        </div>
+      <div class="text-[var(--teal-light)] text-[13px] font-semibold mb-3 flex items-center gap-2">
+        <a routerLink="/" class="text-[var(--teal-light)] no-underline hover:text-white transition-colors">Home</a>
+        <span class="text-white/40">/</span>
+        <span class="text-white">Our Work</span>
       </div>
-      
-    </div>
-
-   
-  </section>
-
-
-  <!-- GALLERY MAIN SECTION -->
-  <section class="py-[60px] pb-[80px] px-5 max-w-[1300px] mx-auto group animateOnScroll" #animateOnScroll>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[25px]">
-      <div class="relative rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.05)] aspect-[4/3] cursor-pointer group/card opacity-0 max-md:opacity-100 translate-y-[30px] max-md:translate-y-0 transition-all duration-800 ease-out delay-300 group-[.is-visible]:opacity-100 group-[.is-visible]:translate-y-0" *ngFor="let item of galleryItems">
-        <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover/card:scale-105" [style.background-image]="'url(\'' + item.img + '\')'">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 transition-opacity duration-300 group-hover/card:opacity-100"></div>
-        </div>
-      </div>
+      <h1 class="text-[clamp(36px, 5vw, 56px)] font-black leading-[1.1] mb-4" style="font-family:'Outfit',sans-serif;">Our Work</h1>
+      <p class="text-gray-300 text-[17px] leading-[1.7] max-w-[480px]">Creative work designed to get your business noticed. From flex to brochures ΓÇö quality in every print.</p>
     </div>
   </section>
+
+  <!-- Gallery -->
+  <section class="py-20 px-5 bg-[var(--bg-secondary)]">
+    <div class="max-w-[1300px] mx-auto">
+
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-2 justify-center mb-12 reveal" #reveal>
+        <button *ngFor="let f of filters"
+                class="filter-btn"
+                [class.active]="activeFilter === f"
+                (click)="setFilter(f)">
+          {{ f }}
+        </button>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div *ngFor="let item of filtered; let i = index"
+             class="reveal relative rounded-2xl overflow-hidden cursor-pointer group card-hover border border-[var(--border-color)]" #reveal
+             [ngClass]="i === 0 ? 'sm:col-span-2 sm:row-span-1 h-[300px]' : 'h-[220px]'"
+             [style.transitionDelay]="(i * 0.06) + 's'">
+          <img [src]="item.img" [alt]="item.title"
+               class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/90 via-[var(--primary)]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-0 left-0 p-5 translate-y-3 group-hover:translate-y-0 transition-transform duration-300 w-full">
+            <span class="badge badge-teal mb-2 inline-block">{{ item.category }}</span>
+            <h3 class="text-white font-bold text-[15px] leading-tight">{{ item.title }}</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty state -->
+      <div *ngIf="filtered.length === 0" class="text-center py-20 text-[var(--text-muted)] flex flex-col items-center justify-center">
+        <lucide-icon [img]="icons.Search" class="w-12 h-12 text-gray-300 mb-4"></lucide-icon>
+        <p class="text-[16px]">No items in this category yet.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-5 bg-[var(--bg-dark)]">
+    <div class="max-w-[700px] mx-auto text-center reveal" #reveal>
+      <div class="text-[var(--teal)] text-[12px] font-bold uppercase tracking-[2px] mb-4">Get Started</div>
+      <h2 class="text-[clamp(28px, 4vw, 42px)] font-black text-white mb-5" style="font-family:'Outfit',sans-serif;">Let's Create Something Great.</h2>
+      <p class="text-gray-400 text-[16px] leading-[1.7] mb-8">Contact us today and we'll design and print something that truly represents your business.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a routerLink="/contact" class="btn-teal inline-flex items-center gap-2">Get a Free Quote</a>
+        <a href="https://wa.me/916369562986" target="_blank"
+           class="inline-flex items-center gap-2 bg-[#25d366] text-white px-6 py-3 rounded-xl font-bold text-[14px] no-underline hover:bg-[#1ebe5d] transition-all duration-200 hover:-translate-y-1">
+          WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </section>
+
 </main>

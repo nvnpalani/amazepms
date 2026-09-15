@@ -1,1 +1,5 @@
-/* Component specific styles */
+/* Hero highlight text */
+.hero-highlight {
+  color: var(--teal);
+  display: inline;
+}

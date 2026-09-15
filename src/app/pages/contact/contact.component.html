@@ -1,138 +1,157 @@
-<main class="font-['Inter',-apple-system,sans-serif] overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)] transition-colors duration-300 ease-out">
+<main class="overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)]">
 
-  <!-- HERO BANNER SECTION -->
-  <section class="relative bg-gradient-to-br from-[#091a38] via-[#1e3a75] to-[#0d265a] py-[80px] px-5 text-white overflow-hidden max-lg:pb-[40px]">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_10%_90%,rgba(255,255,255,0.05)_0%,transparent_40%)]"></div>
-    <div class="relative max-w-[1300px] mx-auto z-10 flex items-center justify-between max-md:flex-col max-md:text-center">
-      
-      <div class="flex-1">
-        <h1 class="text-[48px] font-extrabold mb-[10px]">Contact Us</h1>
-        <div class="text-[14px] text-[#93c5fd] font-medium mb-[30px]">
-          <a routerLink="/" class="text-[#93c5fd] no-underline">Home</a> <span class="mx-2">&gt;</span> <span class="text-white font-semibold">Contact</span>
-        </div>
-        <p class="text-[18px] text-[#d1d5db] leading-[1.6]">
-          We're here to help and answer any questions<br>you might have.
-        </p>
+  <!-- Hero -->
+  <section class="relative pt-24 pb-32 px-5 text-white overflow-hidden bg-[var(--bg-dark)]">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,151,178,0.15)_0%,transparent_60%)]"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--teal)] to-transparent"></div>
+    <div class="relative max-w-[1300px] mx-auto z-10">
+      <div class="text-[var(--teal-light)] text-[13px] font-semibold mb-3 flex items-center gap-2">
+        <a routerLink="/" class="text-[var(--teal-light)] no-underline hover:text-white transition-colors">Home</a>
+        <span class="text-white/40">/</span>
+        <span class="text-white">Contact</span>
       </div>
-      
-      <!-- Right side floating icons decoration -->
-      <div class="flex-1 flex justify-end relative h-[200px] max-md:hidden">
-        <div class="relative w-full h-full">
-          <!-- Envelope -->
-          <div class="absolute flex items-center justify-center border-2 border-white/20 text-white/30 rounded-[20px] animate-[float_6s_ease-in-out_infinite] icon-1">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-          </div>
+      <h1 class="text-[clamp(36px, 5vw, 56px)] font-black leading-[1.1] mb-4" style="font-family:'Outfit',sans-serif;">Contact Us</h1>
+      <p class="text-gray-300 text-[17px] leading-[1.7] max-w-[480px]">We're here to help. Reach out for quotes, enquiries or any information about our printing and advertising services.</p>
+    </div>
+  </section>
+
+  <!-- Contact Cards + Form -->
+  <section class="py-20 px-5 bg-[var(--bg-secondary)] -mt-10 relative z-10">
+    <div class="max-w-[1300px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
+
+        <!-- Left: Contact Details -->
+        <div class="lg:col-span-2 flex flex-col gap-5">
+
           <!-- Phone -->
-          <div class="absolute flex items-center justify-center border-2 border-white/20 text-white/30 rounded-[35px] animate-[float_6s_ease-in-out_infinite] icon-2" style="animation-delay: 2s;">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+          <div class="reveal reveal-left bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-color)] card-hover" #reveal>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-[var(--primary)]/10 rounded-xl flex items-center justify-center text-[var(--primary)]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="text-[12px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1">Call / WhatsApp</div>
+                <a href="tel:+916369562986" class="text-[21px] font-black text-[var(--primary)] no-underline hover:text-[var(--teal)] transition-colors" style="font-family:'Outfit',sans-serif;">63695 62986</a>
+              </div>
+            </div>
           </div>
-          <!-- At symbol -->
-          <div class="absolute flex items-center justify-center border-2 border-white/20 text-white/30 rounded-full animate-[float_6s_ease-in-out_infinite] icon-3" style="animation-delay: 4s;">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
+
+          <!-- WhatsApp -->
+          <div class="reveal reveal-left bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-color)] card-hover" #reveal>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-[#25d366]/15 rounded-xl flex items-center justify-center">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <div>
+                <div class="text-[12px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1">WhatsApp</div>
+                <a href="https://wa.me/916369562986" target="_blank" class="text-[20px] font-black text-[#25d366] no-underline hover:opacity-80 transition-opacity" style="font-family:'Outfit',sans-serif;">Chat Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="reveal reveal-left bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-color)] card-hover" #reveal>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-[var(--accent-red)]/10 rounded-xl flex items-center justify-center text-[var(--accent-red)] shrink-0">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="text-[12px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-2">Our Address</div>
+                <address class="not-italic text-[14px] text-[var(--text-main)] leading-[1.8] font-medium">
+                  No.23, State Bank (opp.),<br>
+                  Madurai Main Road,<br>
+                  Edamalaipatti Pudur,<br>
+                  <strong class="text-[var(--primary)]">Trichy - 620 012.</strong>
+                </address>
+              </div>
+            </div>
+          </div>
+
+          <!-- Services summary -->
+          <div class="reveal reveal-left bg-[var(--primary)] rounded-2xl p-6 text-white" #reveal>
+            <h3 class="font-bold text-[16px] mb-4" style="font-family:'Outfit',sans-serif;">We Offer</h3>
+            <div class="flex flex-wrap gap-2">
+              <span *ngFor="let svc of ['Flex Printing','Banner Printing','Advertisement Boards','ID Cards','Brochures','Flyers','Store Boards','Social Media']"
+                    class="text-[12px] font-semibold bg-white/15 rounded-lg px-3 py-1.5">
+                {{ svc }}
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Form -->
+        <div class="lg:col-span-3 reveal reveal-right" #reveal>
+          <div class="bg-[var(--bg-card)] rounded-2xl p-8 border border-[var(--border-color)] shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+            <h2 class="text-[23px] font-black text-[var(--text-main)] mb-2" style="font-family:'Outfit',sans-serif;">Send Enquiry</h2>
+            <p class="text-[14px] text-[var(--text-muted)] mb-7">Fill out the form below and we'll contact you via WhatsApp right away.</p>
+
+            <!-- Success -->
+            <div *ngIf="submitted" class="bg-[var(--teal)]/10 border border-[var(--teal)]/30 rounded-xl p-6 mb-6 text-center">
+              <div class="text-3xl mb-2">Γ£à</div>
+              <div class="font-bold text-[var(--teal)] text-[18px]">Message Sent!</div>
+              <div class="text-[14px] text-[var(--text-muted)] mt-1">We've received your enquiry and will reach out soon.</div>
+            </div>
+
+            <!-- Error -->
+            <div *ngIf="hasError" class="bg-[var(--accent-red)]/10 border border-[var(--accent-red)]/30 rounded-xl p-4 mb-6 text-[14px] font-semibold text-[var(--accent-red)] flex items-center gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Please fill in all required fields (Name, Phone, Service).
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+              <div>
+                <label class="block text-[12px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2" for="c-name">Your Name *</label>
+                <input id="c-name" type="text" [(ngModel)]="form.name" placeholder="e.g. Ravi Kumar"
+                       class="w-full px-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-main)] text-[14px] outline-none focus:border-[var(--teal)] focus:ring-2 focus:ring-[var(--teal)]/10 transition-all">
+              </div>
+              <div>
+                <label class="block text-[12px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2" for="c-phone">Phone Number *</label>
+                <input id="c-phone" type="tel" [(ngModel)]="form.phone" placeholder="e.g. 98765 43210"
+                       class="w-full px-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-main)] text-[14px] outline-none focus:border-[var(--teal)] focus:ring-2 focus:ring-[var(--teal)]/10 transition-all">
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <label class="block text-[12px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2" for="c-service">Service Required *</label>
+              <select id="c-service" [(ngModel)]="form.service"
+                      class="w-full px-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-main)] text-[14px] outline-none focus:border-[var(--teal)] focus:ring-2 focus:ring-[var(--teal)]/10 transition-all">
+                <option value="">Select a service...</option>
+                <option *ngFor="let svc of services" [value]="svc">{{ svc }}</option>
+              </select>
+            </div>
+
+            <div class="mb-7">
+              <label class="block text-[12px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2" for="c-msg">Message (Optional)</label>
+              <textarea id="c-msg" [(ngModel)]="form.message" rows="5" placeholder="Tell us more about your project, size, quantity, deadline..."
+                        class="w-full px-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-main)] text-[14px] outline-none focus:border-[var(--teal)] focus:ring-2 focus:ring-[var(--teal)]/10 transition-all resize-none"></textarea>
+            </div>
+
+            <button (click)="submit()" class="btn-primary w-full justify-center text-[15px] py-4 mb-4">
+              Send Enquiry
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+
+            <div class="flex items-center gap-3 text-[13px] text-[var(--text-muted)] justify-center">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Message will open on WhatsApp to <strong class="text-[var(--text-main)]">63695 62986</strong>
+            </div>
           </div>
         </div>
       </div>
-      
     </div>
   </section>
 
-  <!-- CARDS SECTION -->
-  <section class="max-w-[1300px] mx-auto -mt-[60px] mb-[40px] px-5 relative z-10 max-lg:mt-[40px]">
-    <div class="grid grid-cols-[1.5fr_1fr] gap-[30px] max-lg:grid-cols-1">
-      
-      <!-- LEFT CARD: Contact For Our Services -->
-      <div class="bg-[var(--bg-card)] rounded-2xl p-[40px] shadow-[0_10px_30px_rgba(0,0,0,0.08)] max-sm:p-[25px]">
-        <div class="flex items-center gap-[20px] mb-[30px]">
-          <div class="w-[60px] h-[60px] bg-white border border-[var(--border-color)] rounded-xl flex items-center justify-center">
-            <img src="logo (1).png" alt="Amaze Property Management Solutions" class="logo-image" style="height: 30px; width: auto; object-fit: contain;">
-          </div>
-          <h2 class="text-[22px] font-extrabold text-[var(--text-main)] border-b-[3px] border-[var(--primary-color)] pb-[5px]">Contact For Our Services</h2>
-        </div>
-        
-        <div class="grid grid-cols-2 gap-[20px] mb-[40px] max-md:grid-cols-1 max-md:gap-0">
-          <ul class="list-none p-0 m-0">
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> PMS Services</li>
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> MEP Services</li>
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> House Keeping Services</li>
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> Security Services</li>
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> Gardening Services</li>
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> Deep Cleaning Services</li>
-          </ul>
-          <ul class="list-none p-0 m-0">
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> Maid Cleaning Services</li>
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> Facade Services</li>
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> Project Cleaning Services</li>
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> Pest Control Services</li>
-            <li class="flex items-center gap-[10px] text-[14px] text-[var(--text-muted)] mb-[15px] font-medium"><svg class="text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> Office Support Services</li>
-          </ul>
-        </div>
-        
-        <div class="bg-[var(--bg-secondary)] rounded-xl py-5 px-[30px] flex items-center justify-between max-md:flex-col max-md:text-center max-md:gap-5">
-          <div class="flex items-center gap-[15px] max-md:flex-col">
-            <div class="w-[45px] h-[45px] bg-[var(--bg-main)] text-[var(--primary-color)] rounded-full flex items-center justify-center">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243-2.829a4.978 4.978 0 01-1.415-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414"></path></svg>
-            </div>
-            <div>
-              <h4 class="text-[15px] font-extrabold text-[var(--text-main)] m-0 mb-[5px]">Need Immediate Assistance?</h4>
-              <p class="text-[13px] text-[var(--text-muted)] m-0">Call us directly for any support.</p>
-            </div>
-          </div>
-          <a href="tel:9100694137" class="border border-[var(--primary-color)] text-[var(--primary-color)] py-2.5 px-5 rounded-[30px] font-bold text-[14px] flex items-center gap-2 no-underline bg-transparent transition-all duration-300 hover:bg-[var(--primary-color)] hover:text-white">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-            9100694137
-          </a>
-        </div>
+  <!-- Map (Trichy) -->
+  <section class="px-5 pb-16 bg-[var(--bg-secondary)]">
+    <div class="max-w-[1300px] mx-auto">
+      <div class="w-full h-[380px] rounded-2xl overflow-hidden border border-[var(--border-color)] shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.876!2d78.6926!3d10.8052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf50ff943f12b%3A0x5d7cf58b15c83b57!2sTrichy%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="AK CREATION location - Trichy">
+        </iframe>
       </div>
-
-      <!-- RIGHT CARD: Our Office Address -->
-      <div class="bg-[#091a38] rounded-2xl p-[40px] text-white relative overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] max-sm:p-[25px]">
-        <!-- Dotted world map background overlay -->
-        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#1e3a75_2px,transparent_2px)] bg-[size:20px_20px]"></div>
-        
-        <h2 class="relative z-10 text-[24px] font-extrabold mb-[30px]">Our Office Address</h2>
-        <h3 class="relative z-10 text-[16px] font-semibold text-[#93c5fd] mb-[25px]">Stay Connected</h3>
-        
-        <div class="relative z-10 flex flex-col gap-[30px]">
-          
-          <div class="flex items-start gap-[15px]">
-            <div class="w-[40px] h-[40px] border border-white/20 rounded-full flex items-center justify-center text-white shrink-0">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-            </div>
-            <div>
-              <p class="m-0 text-[14px] text-[#e2e8f0] leading-[1.6]">4th floor, High Mark Chambers,<br>Khajaguda X road,<br>Cyberabad, Hyderabad-500008</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-[15px]">
-            <div class="w-[40px] h-[40px] border border-white/20 rounded-full flex items-center justify-center text-white shrink-0">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-            </div>
-            <div>
-              <p class="m-0 text-[14px] text-[#e2e8f0] leading-[1.6]">9100694137</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-[15px]">
-            <div class="w-[40px] h-[40px] border border-white/20 rounded-full flex items-center justify-center text-white shrink-0">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            </div>
-            <div>
-              <p class="m-0 text-[14px] text-[#e2e8f0] leading-[1.6]">info&#64;amazepms.com</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- MAP SECTION -->
-  <section class="max-w-[1300px] mx-auto px-5 pb-[80px]">
-    <div class="w-full h-[400px] max-sm:h-[300px] rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] bg-[var(--bg-secondary)]">
-      <!-- Embedded Google Map targeting High Mark Chambers -->
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.7797741362624!2d78.3615177!3d17.4223392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93fb548c7839%3A0xc3b8ec8095b6c33c!2sHigh%20Mark%20Chambers!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-      width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>
 
