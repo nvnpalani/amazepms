@@ -2,6 +2,7 @@ import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChildren, QueryLis
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -17,6 +18,34 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
   form = { name: '', phone: '', service: '', message: '' };
   submitted = false;
   hasError = false;
+  isSaving = false;
+  saveError = false;
+  saveSuccess = false;
+
+  get isFormValid(): boolean {
+    return !!(
+      this.form.name && 
+      this.form.name.trim() !== '' && 
+      this.form.phone && 
+      this.form.phone.length === 10 && 
+      this.form.service
+    );
+  }
+
+  onPhoneInput(event: any) {
+    let value = event.target.value;
+    value = value.replace(/[^0-9]/g, '');
+    if (value.length > 10) {
+      value = value.substring(0, 10);
+    }
+    this.form.phone = value;
+    event.target.value = value;
+    
+    // Reset submitted state if user starts typing again
+    if (this.submitted) {
+      this.submitted = false;
+    }
+  }
 
   services = [
     'Flex Printing', 'Banner Printing', 'Advertisement Boards',
@@ -26,17 +55,41 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
     'Social Media Posters', 'Event & Function Advertising', 'Promotional Printing'
   ];
 
+  constructor(private contactService: ContactService) {}
+
   submit() {
-    if (!this.form.name || !this.form.phone || !this.form.service) {
-      this.hasError = true;
+    if (!this.isFormValid) {
       return;
     }
     this.hasError = false;
-    this.submitted = true;
-    const msg = encodeURIComponent(
-      `Hello AK CREATION!\n\nName: ${this.form.name}\nPhone: ${this.form.phone}\nService: ${this.form.service}\nMessage: ${this.form.message || 'N/A'}`
-    );
-    window.open(`https://wa.me/916369562986?text=${msg}`, '_blank');
+    this.isSaving = true;
+    this.saveError = false;
+    
+    // Save to MongoDB using Backend API
+    this.contactService.submitContact(this.form).subscribe({
+      next: (response) => {
+        this.isSaving = false;
+        this.saveSuccess = true;
+        this.submitted = true;
+        
+        // Reset form
+        this.form = { name: '', phone: '', service: '', message: '' };
+        
+        // Reset button state to normal after 5 seconds
+        setTimeout(() => {
+          this.submitted = false;
+        }, 5000);
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+        this.isSaving = false;
+        this.saveError = true;
+      }
+    });
+  }
+
+  closePopup() {
+    this.saveSuccess = false;
   }
 
   ngAfterViewInit() {

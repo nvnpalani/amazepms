@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     { icon: this.icons.IndianRupee, label: 'Affordable Pricing', desc: 'Practical solutions without unnecessary costs.' },
   ];
 
-  // ΓöÇΓöÇΓöÇ Services Categories ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
   serviceCategories = [
     { title: 'Print & Display', desc: 'High-impact visual printing for events and promotions.', icon: this.icons.Printer, color: 'navy', image: 'assets/home/ak_placeholder.png', services: ['Flex Printing', 'Banner Printing', 'Store Boards'] },
     { title: 'Outdoor Advertising', desc: 'Reach customers where they travel every day.', icon: this.icons.Bus, color: 'teal', image: 'assets/home/ak_placeholder.png', services: ['Bus Advertisement', 'Auto Advertisement', 'Sunpack Sheets'] },
@@ -53,7 +52,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     { title: 'Digital & Promotional', desc: 'Modern promotional designs for online and offline.', icon: this.icons.Smartphone, color: 'yellow', image: 'assets/home/ak_placeholder.png', services: ['Social Media Posters', 'Event Advertising'] }
   ];
 
-  // ΓöÇΓöÇΓöÇ Why Choose Us ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
   whyChooseItems = [
     { title: 'Quality Printing', desc: 'Sharp, clean and professional print output for every project.', icon: this.icons.Trophy },
     { title: 'Fast Turnaround', desc: 'Efficient service designed for your deadlines and schedules.', icon: this.icons.Zap },
@@ -63,7 +61,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     { title: 'Reliable Delivery', desc: 'Focused on completing every job exactly as promised.', icon: this.icons.CheckCircle2 },
   ];
 
-  // ΓöÇΓöÇΓöÇ Who We Serve ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
   industries = [
     { icon: this.icons.Building2, label: 'Shops & Showrooms' },
     { icon: this.icons.Briefcase, label: 'Businesses & Companies' },
@@ -73,7 +70,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     { icon: this.icons.Star, label: 'Local Brands' },
   ];
 
-  // ΓöÇΓöÇΓöÇ Portfolio ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  
   portfolioItems: PortfolioItem[] = [
     { img: 'assets/home/ak_placeholder.png', title: 'Corporate Brochure Design', category: 'Brochures', tags: ['Print', 'Business'] },
     { img: 'assets/home/ak_placeholder.png', title: 'Shop Opening Flex Banner', category: 'Flex Printing', tags: ['Events', 'Outdoor'] },
@@ -91,7 +88,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.portfolioItems.filter(item => item.tags.includes(this.activeFilter));
   }
 
-  // ΓöÇΓöÇΓöÇ Contact Form ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
   contactForm = {
     name: '',
     phone: '',
@@ -109,7 +105,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     'Social Media Posters', 'Event & Function Advertising', 'Promotional Printing'
   ];
 
-  // ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  
   ngOnInit() {
     this.startCarousel();
   }
@@ -154,11 +150,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.formError = false;
     this.formSubmitted = true;
     const msg = `Hello AK CREATION,%0A%0AName: ${this.contactForm.name}%0APhone: ${this.contactForm.phone}%0AService: ${this.contactForm.service}%0AMessage: ${this.contactForm.message}`;
-    window.open(`https://wa.me/916369562986?text=${msg}`, '_blank');
+    window.open(`https://wa.me/919597440361?text=${msg}`, '_blank');
   }
 
   openWhatsApp() {
-    window.open('https://wa.me/916369562986', '_blank');
+    window.open('https://wa.me/919597440361', '_blank');
   }
 
   // Scroll reveal
