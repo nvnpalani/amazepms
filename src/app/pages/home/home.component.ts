@@ -27,15 +27,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // Icons used in template
   readonly icons = { Trophy, Zap, Palette, Briefcase, Truck, IndianRupee, Printer, Bus, BadgeCheck, Smartphone, CheckCircle2, Building2, GraduationCap, PartyPopper, Users, User, Star, MapPin };
 
-  // ΓöÇΓöÇΓöÇ Hero Slides ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  
   slides = [
     { title: 'Printing & Advertising<br>Solutions for Everyone', desc: 'From business cards to large flex banners, we deliver high-quality printing tailored to your brand identity.', image: 'assets/home/ak_placeholder.png', badge: 'Welcome to AK CREATION' },
-    { title: 'Make Your Brand<br><span class="text-[var(--teal)]">Impossible to Miss</span>', desc: 'Stand out with our custom outdoor advertising and promotional materials designed to capture attention.', image: 'assets/home/ak_placeholder.png', badge: 'Outdoor Advertising' },
-    { title: 'Professional Quality,<br><span class="text-[var(--primary-light)]">Every Single Print</span>', desc: 'We combine state-of-the-art printing technology with creative design to bring your vision to life.', image: 'assets/home/ak_placeholder.png', badge: 'Premium Quality' },
+    { title: 'Make Your Brand<br><span class="text-[var(--teal)]">Impossible to Miss</span>', desc: 'Stand out with our custom outdoor advertising and promotional materials designed to capture attention.', image: 'assets/home/ak_cat_business_1789362524376.png', badge: 'Outdoor Advertising' },
+    { title: 'Professional Quality,<br><span class="text-[var(--primary-light)]">Every Single Print</span>', desc: 'We combine state-of-the-art printing technology with creative design to bring your vision to life.', image: 'assets/home/ak_cat_outdoor_1789362504808.png', badge: 'Premium Quality' },
   ];
   currentSlide = 0;
 
-  // ΓöÇΓöÇΓöÇ Trust Features ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
   trustItems = [
     { icon: this.icons.Trophy, label: 'Quality Focused', desc: 'Sharp, clean and professional results every time.' },
     { icon: this.icons.Zap, label: 'Fast Turnaround', desc: 'Efficient service for time-sensitive requirements.' },
