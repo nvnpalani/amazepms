@@ -96,19 +96,51 @@
   <!-- ============================================================
        TRUST BAR
   ============================================================ -->
-  <section class="bg-[var(--primary)] py-5 overflow-hidden">
-    <div
-      class="flex gap-14 items-center whitespace-nowrap animate-[marquee-right-to-left_35s_linear_infinite] hover:[animation-play-state:paused]">
-      <ng-container *ngFor="let i of [1,2]">
-        <span *ngFor="let item of trustItems"
-          class="inline-flex items-center gap-3 text-white/95 text-[15px] font-semibold shrink-0 px-5">
-          <lucide-icon [img]="item.icon" class="w-5 h-5 text-[var(--teal-light)]"></lucide-icon>
-          {{ item.label }}
-          <span class="w-1.5 h-1.5 rounded-full bg-white/30 ml-8"></span>
+ <section class="bg-[var(--primary)] py-4 overflow-hidden">
+  <div
+    class="flex w-max items-center gap-8 whitespace-nowrap
+           animate-[marquee-right-to-left_45s_linear_infinite]
+           [will-change:transform]">
+
+    <ng-container *ngFor="let item of trustItems">
+      <span
+        class="inline-flex shrink-0 items-center gap-2
+               px-3 text-sm font-semibold text-white/95">
+
+        <lucide-icon
+          [img]="item.icon"
+          class="h-4 w-4 shrink-0 text-[var(--teal-light)]">
+        </lucide-icon>
+
+        {{ item.label }}
+
+        <span
+          class="ml-5 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30">
         </span>
-      </ng-container>
-    </div>
-  </section>
+      </span>
+    </ng-container>
+
+    <!-- Duplicate -->
+    <ng-container *ngFor="let item of trustItems">
+      <span
+        class="inline-flex shrink-0 items-center gap-2
+               px-3 text-sm font-semibold text-white/95">
+
+        <lucide-icon
+          [img]="item.icon"
+          class="h-4 w-4 shrink-0 text-[var(--teal-light)]">
+        </lucide-icon>
+
+        {{ item.label }}
+
+        <span
+          class="ml-5 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30">
+        </span>
+      </span>
+    </ng-container>
+
+  </div>
+</section>
 
   <!-- ============================================================
        SERVICES OVERVIEW ΓÇö Categorized Bento Grid

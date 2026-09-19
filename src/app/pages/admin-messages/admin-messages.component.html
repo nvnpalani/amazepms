@@ -1,0 +1,45 @@
+<div class="messages-header">
+  <h2>Recent Contact Messages</h2>
+  <div class="search-box">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" placeholder="Search by name, email or subject...">
+  </div>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Service</th>
+        <th>Message</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (msg of messages; track msg._id; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td class="font-medium">{{ msg.name }}</td>
+          <td>{{ msg.email || msg.phone }}</td>
+          <td>{{ msg.service }}</td>
+          <td class="truncate">{{ msg.message }}</td>
+          <td>Sep 19, 2026</td>
+          <td>
+            <button class="view-btn">
+              <i class="fa-regular fa-eye"></i> View
+            </button>
+          </td>
+        </tr>
+      }
+      @empty {
+        <tr>
+          <td colspan="7" class="text-center">No messages found.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,77 @@
+<div class="admin-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <h2><span class="text-primary">AK</span> Creations</h2>
+      <p class="brand-subtitle">Design &bull; Develop &bull; Inspire</p>
+    </div>
+
+    <ul class="nav-links">
+      <li>
+        <a routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <i class="fa-solid fa-house"></i> Dashboard
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/messages" routerLinkActive="active">
+          <i class="fa-regular fa-envelope"></i> Contact Messages
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/notifications" routerLinkActive="active" (click)="onNotificationClick()">
+          <i class="fa-regular fa-bell"></i> Notifications
+          <span class="sidebar-badge" *ngIf="newMessagesCount > 0">{{ newMessagesCount }}</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="quote">
+        "Good design builds trust."<br>
+        <small>&mdash; AK Creations</small>
+      </div>
+      <a href="#" (click)="onLogout($event)" class="logout-btn">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Navbar -->
+    <header class="top-navbar">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search messages...">
+      </div>
+      <div class="nav-right">
+        <div class="notification" routerLink="/admin/notifications" (click)="onNotificationClick()" style="cursor: pointer;">
+          <i class="fa-regular fa-bell"></i>
+          <span class="badge" *ngIf="newMessagesCount > 0">{{ newMessagesCount }}</span>
+        </div>
+        
+        <div class="user-profile-container" (click)="toggleDropdown()" style="position: relative; cursor: pointer;">
+          <div class="user-profile">
+            <div class="avatar">A</div>
+            <span>Admin <i class="fa-solid fa-chevron-down"></i></span>
+          </div>
+          
+          <div class="dropdown-menu" *ngIf="isDropdownOpen">
+            <div class="dropdown-header">
+              <strong>Admin User</strong>
+             
+            </div>
+            <a href="#" (click)="onLogout($event)" class="dropdown-item text-danger">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

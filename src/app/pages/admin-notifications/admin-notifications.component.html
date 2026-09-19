@@ -1,0 +1,22 @@
+<div class="notifications-header">
+  <h2><i class="fa-regular fa-bell"></i> System Notifications</h2>
+  <p>Alerts and updates from the last 24 hours.</p>
+</div>
+
+<div class="notifications-list">
+  <div class="notification-item" *ngFor="let notif of notifications">
+    <div class="icon">
+      <i class="fa-solid fa-inbox"></i>
+    </div>
+    <div class="details">
+      <h4>New Message from {{ notif.name }}</h4>
+      <p>Service Request: {{ notif.service }}</p>
+      <span class="time">{{ notif.createdAt | date:'medium' }}</span>
+    </div>
+  </div>
+
+  <div class="no-notifications" *ngIf="notifications.length === 0">
+    <i class="fa-regular fa-face-smile"></i>
+    <p>You're all caught up! No new notifications.</p>
+  </div>
+</div>

@@ -21,4 +21,9 @@ export class ContactService {
   submitContact(data: ContactData): Observable<any> {
     return this.http.post(this.apiUrl, data);
   }
+
+  getMessages(): Observable<any> {
+    const adminUrl = this.apiUrl.replace('/contact', '/admin/messages');
+    return this.http.get(adminUrl);
+  }
 }
