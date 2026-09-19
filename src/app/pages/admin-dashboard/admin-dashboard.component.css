@@ -99,3 +99,9 @@
   color: #9ca3af;
   font-weight: 400;
 }
+
+@media (max-width: 576px) {
+  .stats-cards {
+    grid-template-columns: 1fr;
+  }
+}

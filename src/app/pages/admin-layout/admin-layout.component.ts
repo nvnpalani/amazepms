@@ -12,6 +12,7 @@ import { ContactService } from '../../services/contact.service';
 })
 export class AdminLayoutComponent implements OnInit {
   isDropdownOpen = false;
+  isSidebarOpen = false;
   newMessagesCount = 0;
 
   constructor(
@@ -39,6 +40,14 @@ export class AdminLayoutComponent implements OnInit {
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen = false;
   }
 
   onLogout(event: Event) {

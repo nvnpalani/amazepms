@@ -1,6 +1,9 @@
 <div class="admin-container">
+  <!-- Sidebar Overlay for Mobile -->
+  <div class="sidebar-overlay" *ngIf="isSidebarOpen" (click)="closeSidebar()"></div>
+
   <!-- Sidebar -->
-  <aside class="sidebar">
+  <aside class="sidebar" [class.sidebar-open]="isSidebarOpen">
     <div class="sidebar-brand">
       <h2><span class="text-primary">AK</span> Creations</h2>
       <p class="brand-subtitle">Design &bull; Develop &bull; Inspire</p>
@@ -8,17 +11,17 @@
 
     <ul class="nav-links">
       <li>
-        <a routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeSidebar()">
           <i class="fa-solid fa-house"></i> Dashboard
         </a>
       </li>
       <li>
-        <a routerLink="/admin/messages" routerLinkActive="active">
+        <a routerLink="/admin/messages" routerLinkActive="active" (click)="closeSidebar()">
           <i class="fa-regular fa-envelope"></i> Contact Messages
         </a>
       </li>
       <li>
-        <a routerLink="/admin/notifications" routerLinkActive="active" (click)="onNotificationClick()">
+        <a routerLink="/admin/notifications" routerLinkActive="active" (click)="onNotificationClick(); closeSidebar()">
           <i class="fa-regular fa-bell"></i> Notifications
           <span class="sidebar-badge" *ngIf="newMessagesCount > 0">{{ newMessagesCount }}</span>
         </a>
@@ -40,6 +43,9 @@
   <div class="main-content">
     <!-- Navbar -->
     <header class="top-navbar">
+      <button class="mobile-toggle" (click)="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
       <div class="search-bar">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" placeholder="Search messages...">

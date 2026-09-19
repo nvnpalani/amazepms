@@ -108,3 +108,19 @@ tr:hover {
   background-color: #eff6ff;
   border-color: #3b82f6;
 }
+
+@media (max-width: 576px) {
+  .messages-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  
+  .search-box {
+    width: 100%;
+  }
+
+  :host {
+    padding: 15px;
+  }
+}
