@@ -64,7 +64,7 @@
 
           <!-- Headline -->
           <div
-            class="min-h-0 sm:min-h-[50px] md:min-h-[60px] lg:min-h-[76px] xl:min-h-[92px] flex items-center mb-2.5 sm:mb-2 md:mb-3">
+            class="min-h-[88px] sm:min-h-[50px] md:min-h-[60px] lg:min-h-[76px] xl:min-h-[92px] flex items-center mb-2.5 sm:mb-2 md:mb-3">
             <h1
               class="text-[25px] sm:text-[20px] md:text-[24px] lg:text-[32px] xl:text-[38px] 2xl:text-[42px] font-black leading-[1.22] sm:leading-[1.18] tracking-tight text-white sm:text-[var(--primary)]"
               style="font-family:'Outfit',sans-serif;" [innerHTML]="slides[currentSlide].title">
@@ -73,7 +73,7 @@
 
           <!-- Description -->
           <div
-            class="min-h-0 sm:min-h-[40px] md:min-h-[46px] lg:min-h-[52px] mb-3 sm:mb-2.5 md:mb-3 flex items-center">
+            class="min-h-[78px] sm:min-h-[40px] md:min-h-[46px] lg:min-h-[52px] mb-3 sm:mb-2.5 md:mb-3 flex items-center">
             <p
               class="text-[13px] sm:text-[12px] md:text-[13px] lg:text-[14.5px] xl:text-[15.5px] text-slate-300 sm:text-gray-600 leading-[1.6] sm:leading-[1.55] max-w-[490px]">
               {{ slides[currentSlide].desc }}
@@ -89,7 +89,7 @@
 
           <!-- Slide Quote Callout -->
           <div *ngIf="slides[currentSlide].quote"
-            class="my-2 sm:my-2 p-3 sm:p-3 rounded-xl bg-white/5 sm:bg-gradient-to-r sm:from-[var(--teal)]/10 sm:via-[var(--teal)]/5 sm:to-transparent border-l-[3px] border-[var(--teal)] flex items-start gap-2.5 transition-all duration-300">
+            class="min-h-[72px] my-2 sm:my-2 p-3 sm:p-3 rounded-xl bg-white/5 sm:bg-gradient-to-r sm:from-[var(--teal)]/10 sm:via-[var(--teal)]/5 sm:to-transparent border-l-[3px] border-[var(--teal)] flex items-center gap-2.5 transition-all duration-300">
             <lucide-icon [img]="icons.Quote"
               class="w-3.5 h-3.5 text-[var(--teal)] shrink-0 mt-0.5 rotate-180"></lucide-icon>
             <p
