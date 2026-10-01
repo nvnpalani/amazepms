@@ -13,7 +13,9 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  background-color: #0b1f33;
+  background: radial-gradient(circle at 85% 15%, rgba(0, 151, 178, 0.16) 0%, transparent 55%),
+              radial-gradient(circle at 15% 85%, rgba(0, 92, 143, 0.14) 0%, transparent 50%),
+              #0b1f33;
 }
 
 /* Responsive background image alignment */
@@ -21,13 +23,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 30% center;
-}
-
-@media (min-width: 640px) {
-  .hero-bg-img {
-    object-position: right center;
-  }
+  object-position: right center;
 }
 
 @media (min-width: 1024px) {
@@ -44,21 +40,28 @@
 
 /* ============================================================
    HERO CONTENT CARD
-   Ultra-premium frosted glass card matching design across all devices:
-   - Mobile: Floating centered/lower-middle frosted card
-   - Tablet: Floating left-aligned frosted card
-   - Laptop: Floating left-aligned compact frosted card
-   - Desktop: Floating spacious frosted card
+   - Mobile: Seamless open layout without box/border/shadow
+   - Tablet, Laptop, Desktop: Ultra-premium frosted glass card
    ============================================================ */
 .hero-content-card {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow:
-    0 20px 45px -10px rgba(10, 61, 98, 0.18),
-    0 10px 20px -5px rgba(0, 0, 0, 0.06),
-    0 0 0 1px rgba(255, 255, 255, 0.6);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+}
+
+@media (min-width: 640px) {
+  .hero-content-card {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow:
+      0 20px 45px -10px rgba(10, 61, 98, 0.18),
+      0 10px 20px -5px rgba(0, 0, 0, 0.06),
+      0 0 0 1px rgba(255, 255, 255, 0.6);
+  }
 }
 
 @media (min-width: 1024px) {
