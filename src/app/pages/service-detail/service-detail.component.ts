@@ -84,6 +84,12 @@ export class ServiceDetailComponent implements OnInit, AfterViewInit, OnDestroy 
   isLightboxOpen: boolean = false;
   copiedUrl: boolean = false;
 
+  // Touch swipe support for mobile & tablet
+  private touchStartX: number = 0;
+  private touchStartY: number = 0;
+  private touchEndX: number = 0;
+  private touchEndY: number = 0;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router
@@ -127,6 +133,37 @@ export class ServiceDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     if (event) event.stopPropagation();
     if (this.service && this.service.images.length > 0) {
       this.activeImageIndex = (this.activeImageIndex - 1 + this.service.images.length) % this.service.images.length;
+    }
+  }
+
+  onTouchStart(event: TouchEvent) {
+    if (event.touches && event.touches.length > 0) {
+      this.touchStartX = event.touches[0].clientX;
+      this.touchStartY = event.touches[0].clientY;
+    }
+  }
+
+  onTouchEnd(event: TouchEvent) {
+    if (event.changedTouches && event.changedTouches.length > 0) {
+      this.touchEndX = event.changedTouches[0].clientX;
+      this.touchEndY = event.changedTouches[0].clientY;
+      this.handleSwipe();
+    }
+  }
+
+  private handleSwipe() {
+    const deltaX = this.touchEndX - this.touchStartX;
+    const deltaY = this.touchEndY - this.touchStartY;
+
+    // Must be predominantly horizontal gesture and exceed 40px threshold
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+      if (deltaX < 0) {
+        // Swiped Left -> Next Image
+        this.nextImage();
+      } else {
+        // Swiped Right -> Previous Image
+        this.prevImage();
+      }
     }
   }
 

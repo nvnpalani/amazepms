@@ -45,7 +45,7 @@ export const SERVICES_CATEGORIES: ServiceCategory[] = [
         desc: 'High-impact 3D LED letter signboards and architectural ACP exterior elevation works designed to transform your business front into an eye-catching, premium landmark.',
         image: 'assets/service/led-sign-board.png',
         images: [
-          'assets/our_work/led-sign-board/led-singage (1).jpg',
+       
           'assets/our_work/led-sign-board/led-singage (2).jpg',
           'assets/our_work/led-sign-board/led-singage (3).jpg',
           'assets/our_work/led-sign-board/led-singage (4).jpg',
