@@ -6,8 +6,8 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api/admin'; // For local testing
-  // private apiUrl = 'https://ak-backend-tqdj.onrender.com/api/admin'; // Live server
+  // private apiUrl = 'http://localhost:5000/api/admin'; // For local testing
+  private apiUrl = 'https://ak-backend-tqdj.onrender.com/api/admin'; // Live server
 
   constructor(private http: HttpClient) { }
 

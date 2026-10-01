@@ -16,7 +16,7 @@ export class AdminMessagesComponent implements OnInit {
   ngOnInit() {
     this.contactService.getMessages().subscribe({
       next: (data) => {
-        this.messages = data;
+        this.messages = (data || []).filter((m: any) => m.name !== 'Test User' && m.name !== 'rgftf');
       },
       error: (err) => {
         console.error('Error fetching messages', err);

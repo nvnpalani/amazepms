@@ -27,7 +27,7 @@
           <td>{{ msg.email || msg.phone }}</td>
           <td>{{ msg.service }}</td>
           <td class="truncate">{{ msg.message }}</td>
-          <td>Sep 19, 2026</td>
+          <td>{{ (msg.createdAt | date:'mediumDate') || 'Recently' }}</td>
           <td>
             <button class="view-btn">
               <i class="fa-regular fa-eye"></i> View

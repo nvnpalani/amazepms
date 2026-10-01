@@ -13,8 +13,8 @@ export interface ContactData {
   providedIn: 'root'
 })
 export class ContactService {
-  private apiUrl = 'http://localhost:5000/api/contact'; // For local testing
-  // private apiUrl = 'https://ak-backend-tqdj.onrender.com/api/contact'; // Live server
+  // private apiUrl = 'http://localhost:5000/api/contact'; // For local testing
+  private apiUrl = 'https://ak-backend-tqdj.onrender.com/api/contact'; // Live server
 
   constructor(private http: HttpClient) { }
 
