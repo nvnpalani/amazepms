@@ -1,64 +1,319 @@
 <main class="overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)]">
 
-  <!-- Hero -->
-  <section class="relative pt-24 pb-32 px-5 text-white overflow-hidden bg-[var(--primary)]">
+  <!-- Hero Header -->
+  <section class="relative pt-24 pb-28 px-5 text-white overflow-hidden bg-[var(--primary)]">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(0,151,178,0.25)_0%,transparent_60%)]"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--teal)] to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--teal)] via-[var(--primary)] to-transparent"></div>
+    
     <div class="relative max-w-[1300px] mx-auto z-10">
-      <div class="text-[var(--teal-light)] text-[13px] font-semibold mb-3 flex items-center gap-2">
+      <!-- Dynamic Breadcrumb -->
+      <div class="text-[var(--teal-light)] text-[13px] font-semibold mb-3 flex flex-wrap items-center gap-2">
         <a routerLink="/" class="text-[var(--teal-light)] no-underline hover:text-white transition-colors">Home</a>
         <span class="text-white/40">/</span>
-        <span class="text-white">Our Work</span>
+        <button *ngIf="selectedAlbum" (click)="backToCategories()" class="text-[var(--teal-light)] hover:text-white transition-colors bg-transparent border-none p-0 cursor-pointer text-[13px] font-semibold">
+          Our Work
+        </button>
+        <span *ngIf="!selectedAlbum" class="text-white">Our Work</span>
+        
+        <ng-container *ngIf="selectedAlbum">
+          <span class="text-white/40">/</span>
+          <span class="text-white/70">{{ selectedAlbum.category }}</span>
+          <span class="text-white/40">/</span>
+          <span class="text-white">{{ selectedAlbum.title }}</span>
+        </ng-container>
       </div>
-      <h1 class="text-[clamp(38px,5vw,68px)] font-black leading-[1.05] tracking-tight mb-4" style="font-family:'Outfit',sans-serif;">Our <span class="text-[var(--teal)]">Work</span></h1>
-      <p class="text-gray-300 text-[15px] md:text-[16px] leading-[1.7] max-w-[480px]">Creative work designed to get your business noticed. From flex to brochures ΓÇö quality in every print.</p>
+
+      <!-- Title & Subtitle -->
+      <div *ngIf="!selectedAlbum">
+        <h1 class="text-[clamp(36px,5vw,64px)] font-black leading-[1.05] tracking-tight mb-4 font-display">
+          Our <span class="text-[var(--teal)]">Work</span>
+        </h1>
+        <p class="text-gray-300 text-[15px] md:text-[16px] leading-[1.7] max-w-[560px]">
+          Creative work designed to get your business noticed. Choose a category below to explore our detailed project albums.
+        </p>
+      </div>
+
+      <div *ngIf="selectedAlbum">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[var(--teal-light)] mb-3">
+          <lucide-icon [img]="icons.Layers" class="w-3.5 h-3.5"></lucide-icon>
+          {{ selectedAlbum.category }}
+        </div>
+        <h1 class="text-[clamp(32px,4vw,56px)] font-black leading-[1.1] tracking-tight mb-3 font-display">
+          {{ selectedAlbum.title }}
+        </h1>
+        <p class="text-gray-300 text-[15px] md:text-[16px] leading-[1.7] max-w-[620px]">
+          {{ selectedAlbum.description }}
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Gallery -->
-  <section class="py-20 px-5 bg-[var(--bg-secondary)]">
+  <!-- Gallery Main Section -->
+  <section class="py-16 md:py-20 px-5 bg-[var(--bg-secondary)]">
     <div class="max-w-[1300px] mx-auto">
 
-      <!-- Filters -->
-      <div class="flex flex-wrap gap-2 justify-center mb-12 reveal" #reveal>
-        <button *ngFor="let f of filters"
-                class="filter-btn"
-                [class.active]="activeFilter === f"
-                (click)="setFilter(f)">
-          {{ f }}
-        </button>
-      </div>
+      <!-- ========================================== -->
+      <!-- VIEW 1: ALBUM CATEGORIES (When no album is selected) -->
+      <!-- ========================================== -->
+      <div *ngIf="!selectedAlbum">
+        
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2.5 justify-center mb-12 reveal" #reveal>
+          <button *ngFor="let f of filters"
+                  class="filter-btn text-[14px]"
+                  [class.active]="activeFilter === f"
+                  (click)="setFilter(f)">
+            {{ f }}
+          </button>
+        </div>
 
-      <!-- Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        <div *ngFor="let item of filtered; let i = index"
-             class="reveal relative rounded-2xl overflow-hidden cursor-pointer group card-hover border border-[var(--border-color)]" #reveal
-             [ngClass]="i === 0 ? 'sm:col-span-2 sm:row-span-1 h-[300px]' : 'h-[220px]'"
-             [style.transitionDelay]="(i * 0.06) + 's'">
-          <img [src]="item.img" [alt]="item.title"
-               class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/90 via-[var(--primary)]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <div class="absolute bottom-0 left-0 p-5 translate-y-3 group-hover:translate-y-0 transition-transform duration-300 w-full">
-            <span class="badge badge-teal mb-2 inline-block">{{ item.category }}</span>
-            <h3 class="text-white font-bold text-[15px] leading-tight">{{ item.title }}</h3>
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-[var(--border-color)]">
+          <div>
+            <h2 class="text-xl md:text-2xl font-bold font-display text-[var(--text-main)]">
+              {{ activeFilter === 'All' ? 'All Works & Categories' : activeFilter }}
+            </h2>
+            <p class="text-[13px] md:text-[14px] text-[var(--text-muted)] mt-1">
+              Click any category card to view its complete photo collection
+            </p>
+          </div>
+          <span class="text-xs md:text-sm font-semibold text-[var(--teal)] bg-[var(--teal)]/10 px-3 py-1.5 rounded-lg">
+            {{ filteredAlbums.length }} Categories
+          </span>
+        </div>
+
+        <!-- Album Cards Grid (Category-wise 1 cover image per item) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div *ngFor="let album of filteredAlbums; let i = index"
+               (click)="selectAlbum(album)"
+               class="reveal group bg-[var(--bg-card)] rounded-2xl border border-[var(--border-color)] overflow-hidden cursor-pointer card-hover shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col" #reveal
+               [style.transitionDelay]="(i * 0.05) + 's'">
+            
+            <!-- Image with badges & overlay -->
+            <div class="relative h-[220px] overflow-hidden bg-slate-900">
+              <img [src]="album.coverImg" [alt]="album.title"
+                   class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" loading="lazy">
+              
+              <!-- Gradient overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/90 via-[var(--primary)]/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+              
+              <!-- Top Category Badge -->
+              <div class="absolute top-4 left-4 z-10">
+                <span class="badge badge-teal backdrop-blur-sm shadow-md">
+                  {{ album.category }}
+                </span>
+              </div>
+
+              <!-- Photo Count Pill -->
+              <div class="absolute top-4 right-4 z-10 bg-black/70 backdrop-blur-md text-white text-[12px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-md">
+                <lucide-icon [img]="icons.Images" class="w-3.5 h-3.5 text-[var(--teal-light)]"></lucide-icon>
+                <span>{{ album.images.length }} {{ album.images.length > 1 ? 'Photos' : 'Photo' }}</span>
+              </div>
+
+              <!-- Hover View Prompt -->
+              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                <span class="bg-[var(--teal)] text-white px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                  <lucide-icon [img]="icons.Eye" class="w-4 h-4"></lucide-icon>
+                  Explore All ({{ album.images.length }})
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-[17px] text-[var(--text-main)] group-hover:text-[var(--teal)] transition-colors leading-snug mb-2 font-display">
+                  {{ album.title }}
+                </h3>
+                <p class="text-[13px] text-[var(--text-muted)] line-clamp-2 leading-relaxed">
+                  {{ album.description }}
+                </p>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-[var(--border-color)]/60 flex items-center justify-between text-[13px] font-bold text-[var(--teal)]">
+                <span>View Collection</span>
+                <span class="transform group-hover:translate-x-1.5 transition-transform">→</span>
+              </div>
+            </div>
+
           </div>
         </div>
+
+        <!-- Empty state -->
+        <div *ngIf="filteredAlbums.length === 0" class="text-center py-20 text-[var(--text-muted)] flex flex-col items-center justify-center">
+          <lucide-icon [img]="icons.Search" class="w-12 h-12 text-gray-300 mb-4"></lucide-icon>
+          <p class="text-[16px]">No albums found in this category.</p>
+        </div>
+
       </div>
 
-      <!-- Empty state -->
-      <div *ngIf="filtered.length === 0" class="text-center py-20 text-[var(--text-muted)] flex flex-col items-center justify-center">
-        <lucide-icon [img]="icons.Search" class="w-12 h-12 text-gray-300 mb-4"></lucide-icon>
-        <p class="text-[16px]">No items in this category yet.</p>
+
+      <!-- ========================================== -->
+      <!-- VIEW 2: SINGLE SERVICE / ALBUM ALL IMAGES VIEW -->
+      <!-- ========================================== -->
+      <div *ngIf="selectedAlbum" class="animate-fadeIn">
+        
+        <!-- Action bar with Back button & Sub-category switcher -->
+        <div class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[var(--bg-card)] p-4 md:p-6 rounded-2xl border border-[var(--border-color)] shadow-sm">
+          
+          <div class="flex items-center gap-3">
+            <button (click)="backToCategories()"
+                    class="inline-flex items-center gap-2 bg-[var(--primary)] hover:bg-[var(--primary-light)] text-white px-5 py-2.5 rounded-xl font-bold text-[14px] transition-all duration-200 hover:-translate-x-1 shadow-sm cursor-pointer border-none">
+              <lucide-icon [img]="icons.ArrowLeft" class="w-4 h-4"></lucide-icon>
+              Back to {{ selectedAlbum.category }}
+            </button>
+            
+            <div class="hidden sm:block text-[14px] text-[var(--text-muted)] font-medium">
+              Showing all <strong class="text-[var(--text-main)]">{{ selectedAlbum.images.length }}</strong> works
+            </div>
+          </div>
+
+          <!-- Quick switcher to other services in same category -->
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mr-1">Other in {{ selectedAlbum.category }}:</span>
+            <button *ngFor="let sib of siblingAlbums"
+                    (click)="selectAlbum(sib)"
+                    class="text-xs px-3 py-1.5 rounded-lg border font-semibold transition-all cursor-pointer"
+                    [ngClass]="sib.id === selectedAlbum.id ? 'bg-[var(--teal)] text-white border-[var(--teal)]' : 'bg-transparent text-[var(--text-muted)] border-[var(--border-color)] hover:border-[var(--teal)] hover:text-[var(--teal)]'">
+              {{ sib.title }}
+            </button>
+          </div>
+
+        </div>
+
+        <!-- All Images Grid for Selected Service (e.g. 6 Sunpack images) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          <div *ngFor="let imgPath of selectedAlbum.images; let i = index"
+               (click)="openLightbox(i)"
+               class="group relative h-[320px] rounded-2xl overflow-hidden cursor-pointer border border-[var(--border-color)] bg-[var(--bg-card)] shadow-sm hover:shadow-xl transition-all duration-300">
+            
+            <img [src]="imgPath" [alt]="selectedAlbum.title + ' ' + (i + 1)"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            
+            <!-- Hover Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/90 via-[var(--primary)]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6">
+              
+              <div class="flex justify-between items-start">
+                <span class="bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full">
+                  Image {{ i + 1 }} of {{ selectedAlbum.images.length }}
+                </span>
+                <span class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
+                  <lucide-icon [img]="icons.Eye" class="w-4 h-4"></lucide-icon>
+                </span>
+              </div>
+
+              <div>
+                <h4 class="text-white font-bold text-lg font-display mb-1">{{ selectedAlbum.title }}</h4>
+                <p class="text-teal-200 text-xs font-semibold">Click to enlarge preview</p>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <!-- Action / Quote Banner for this specific service -->
+        <div class="mt-14 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-xl">
+          <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(circle_at_center,rgba(0,151,178,0.3)_0%,transparent_70%)] pointer-events-none"></div>
+          <div class="relative z-10 max-w-[700px]">
+            <span class="text-[var(--teal-light)] text-xs font-bold uppercase tracking-widest mb-2 block">Direct Manufacturing & Printing</span>
+            <h3 class="text-2xl md:text-3xl font-black font-display mb-3">
+              Need {{ selectedAlbum.title }} for your business?
+            </h3>
+            <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6">
+              We provide high-quality manufacturing, high-precision printing, and bulk delivery across all locations.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a routerLink="/contact" class="btn-teal inline-flex items-center gap-2 text-sm">
+                Get a Quote for {{ selectedAlbum.title }}
+              </a>
+              <a href="https://wa.me/919597440361?text=Hello,%20I%20am%20interested%20in%20{{ selectedAlbum.title }}" target="_blank"
+                 class="inline-flex items-center gap-2 bg-[#25d366] text-white px-5 py-3 rounded-xl font-bold text-sm no-underline hover:bg-[#1ebe5d] transition-all">
+                WhatsApp Us
+              </a>
+              <button (click)="backToCategories()" class="bg-white/10 hover:bg-white/20 text-white px-5 py-3 rounded-xl font-bold text-sm transition-all border border-white/20 cursor-pointer">
+                View Other Categories
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ========================================== -->
+  <!-- LIGHTBOX MODAL (Image Preview - Evenly Centered) -->
+  <!-- ========================================== -->
+  <div *ngIf="selectedAlbum && activeLightboxIndex !== null" 
+       class="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-md animate-fadeIn overflow-hidden select-none"
+       (click)="closeLightbox()">
+    
+    <!-- Top Bar Overlay -->
+    <div class="absolute top-0 left-0 right-0 z-40 px-5 py-4 md:px-8 md:py-6 flex items-center justify-between text-white bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-auto">
+      <div>
+        <h4 class="font-bold text-base md:text-lg text-white m-0 drop-shadow">{{ selectedAlbum.title }}</h4>
+        <p class="text-gray-300 text-xs m-0">
+          Image {{ activeLightboxIndex + 1 }} of {{ selectedAlbum.images.length }}
+        </p>
+      </div>
+
+      <button (click)="closeLightbox()" aria-label="Close Lightbox"
+              class="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-red-600 text-white flex items-center justify-center transition-all duration-200 cursor-pointer border-2 border-white/40 hover:border-red-600 hover:scale-110 shadow-2xl shrink-0">
+        <lucide-icon [img]="icons.X" class="w-6 h-6 text-white"></lucide-icon>
+      </button>
+    </div>
+
+    <!-- Centered Image Viewport (Even Spacing on Top, Bottom, Left, and Right) -->
+    <div class="absolute inset-0 flex items-center justify-center p-4 pt-20 pb-24 md:p-8 md:pt-22 md:pb-24 lg:px-24"
+         (click)="closeLightbox()">
+      
+      <!-- The Active Image in Exact Center -->
+      <div class="relative flex items-center justify-center" (click)="$event.stopPropagation()">
+        <img [src]="selectedAlbum.images[activeLightboxIndex]" 
+             [alt]="selectedAlbum.title"
+             class="max-h-[72vh] md:max-h-[76vh] max-w-[88vw] md:max-w-[78vw] object-contain rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] border border-white/10 transition-all duration-300">
+      </div>
+
+    </div>
+
+    <!-- Prev Button (Vertically Centered on Left) -->
+    <button *ngIf="selectedAlbum.images.length > 1"
+            (click)="$event.stopPropagation(); prevImage()"
+            aria-label="Previous Image"
+            class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-[var(--teal)] text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 hover:scale-110 shadow-2xl">
+      <lucide-icon [img]="icons.ChevronLeft" class="w-6 h-6"></lucide-icon>
+    </button>
+
+    <!-- Next Button (Vertically Centered on Right) -->
+    <button *ngIf="selectedAlbum.images.length > 1"
+            (click)="$event.stopPropagation(); nextImage()"
+            aria-label="Next Image"
+            class="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-[var(--teal)] text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 hover:scale-110 shadow-2xl">
+      <lucide-icon [img]="icons.ChevronRight" class="w-6 h-6"></lucide-icon>
+    </button>
+
+    <!-- Bottom Thumbnail Strip (Floating Capsule at Bottom Center) -->
+    <div *ngIf="selectedAlbum.images.length > 1" 
+         class="absolute bottom-3 md:bottom-5 left-0 right-0 z-40 flex justify-center pointer-events-auto px-4">
+      <div class="flex gap-2 overflow-x-auto max-w-[90vw] p-2 bg-black/75 backdrop-blur-md rounded-2xl border border-white/15 shadow-2xl">
+        <button *ngFor="let thumb of selectedAlbum.images; let t = index"
+                (click)="$event.stopPropagation(); activeLightboxIndex = t"
+                class="w-14 h-11 md:w-16 md:h-12 rounded-lg overflow-hidden border-2 transition-all cursor-pointer p-0 shrink-0"
+                [ngClass]="activeLightboxIndex === t ? 'border-[var(--teal)] scale-105 shadow-lg' : 'border-white/20 opacity-50 hover:opacity-100'">
+          <img [src]="thumb" [alt]="'Thumb ' + t" class="w-full h-full object-cover">
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- General Bottom CTA -->
   <section class="py-20 px-5 bg-[var(--bg-dark)]">
     <div class="max-w-[700px] mx-auto text-center reveal" #reveal>
       <div class="text-[var(--teal)] text-[12px] font-bold uppercase tracking-[2px] mb-4">Get Started</div>
-      <h2 class="text-[clamp(28px, 4vw, 42px)] font-black text-white mb-5" style="font-family:'Outfit',sans-serif;">Let's Create Something Great.</h2>
+      <h2 class="text-[clamp(28px, 4vw, 42px)] font-black text-white mb-5 font-display">Let's Create Something Great.</h2>
       <p class="text-gray-400 text-[16px] leading-[1.7] mb-8">Contact us today and we'll design and print something that truly represents your business.</p>
       <div class="flex flex-wrap gap-4 justify-center">
         <a routerLink="/contact" class="btn-teal inline-flex items-center gap-2">Get a Free Quote</a>

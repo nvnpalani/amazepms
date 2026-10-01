@@ -3,92 +3,138 @@
   <!-- ============================================================
        HERO SECTION
   ============================================================ -->
-  <section class="relative min-h-[70vh] flex items-center overflow-hidden bg-[var(--bg-secondary)]">
-    <!-- Background Image Slider -->
-    <div class="absolute inset-0">
-      <div *ngFor="let slide of slides; let i = index"
-        class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
-        [style.backgroundImage]="'url(' + slide.image + ')'" [style.opacity]="i === currentSlide ? 1 : 0">
-      </div>
-      <!-- Gradient Overlay (Bright) -->
-      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
-      <!-- Teal accent line -->
-      <div
-        class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--teal)] via-[var(--primary)] to-transparent">
-      </div>
+  <!-- ============================================================
+       HERO SECTION - RESPONSIVE FOR ALL SCREENS
+       - Large Desktop (1920x1080 and above): assets/home/pc.png
+       - Laptop (1024px - 1439px / 1366x768):  assets/home/laptop.png
+       - Tablet (768px - 1023px / 768x1024):   assets/home/tablet.png
+       - Mobile (< 768px / 320x768 - 414x896):  assets/home/mobile.png
+  ============================================================ -->
+  <section
+    class="hero-section relative w-full overflow-hidden flex items-center min-h-[calc(100vh-68px)] sm:min-h-[calc(100vh-76px)] min-h-[600px] lg:min-h-[calc(100vh-76px)] lg:min-h-[640px] xl:min-h-[700px] 2xl:min-h-[820px]">
+
+    <!-- ============================================================
+         RESPONSIVE HERO BACKGROUND PICTURE
+         Automatically selects the exact image tailored for each screen:
+         1. >= 1440px: assets/home/pc.png (Large Desktop)
+         2. 1024px - 1439px: assets/home/laptop.png (Laptop)
+         3. 768px - 1023px: assets/home/tablet.png (Tablet)
+         4. < 768px: assets/home/mobile.png (Mobile)
+    ============================================================ -->
+    <picture class="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
+      <!-- Large Desktop (1920x1080 and above) -->
+      <source media="(min-width: 1440px)" srcset="assets/home/pc.png"> 
+      <!-- Laptop (1024px to 1439px / 1366x768) -->
+      <source media="(min-width: 1024px)" srcset="assets/home/laptop.png">
+      <!-- Tablet (768px to 1023px / 768x1024) -->
+      <source media="(min-width: 768px)" srcset="assets/home/tablet.png">
+      <!-- Mobile (< 768px / 320x768 - 414x896) -->
+      <img src="assets/home/mobile.png" alt="AK CREATION - Outdoor Advertising & LED Signage Trichy"
+        class="hero-bg-img w-full h-full object-cover" loading="eager" fetchpriority="high">
+    </picture>
+
+    <!-- Subtle gradient overlay to enhance readability and visual depth -->
+    <div class="hero-overlay absolute inset-0 pointer-events-none z-[1]">
     </div>
 
-    <!-- Hero Content -->
-    <div class="relative z-10 max-w-[1300px] mx-auto px-5 py-10 w-full">
-      <div class="max-w-[650px] min-h-[380px] flex flex-col justify-center">
+    <!-- Teal accent line at bottom of hero -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--teal)] via-[var(--primary)] to-transparent z-[3]">
+    </div>
 
-        <!-- Badge -->
-        <div
-          class="inline-flex self-start items-center gap-2 bg-[var(--teal)]/10 border border-[var(--teal)]/30 text-[var(--teal)] text-[12px] font-bold uppercase tracking-[1.5px] px-4 py-2 rounded-full mb-6 backdrop-blur-sm">
-          <span class="w-2 h-2 rounded-full bg-[var(--teal)] animate-pulse"></span>
-          {{ slides[currentSlide].badge }}
+    <!-- ============================================================
+         HERO CONTENT CONTAINER
+         - Mobile: Positioned centered/lower-middle with top breathing room for billboard
+         - Tablet & Laptop & Desktop: Docked cleanly to the left, unobstructed billboard on right
+    ============================================================ -->
+    <!-- ============================================================
+         HERO CONTENT CONTAINER
+         - Docked to the LEFT on ALL screens (Mobile, Tablet, Laptop, PC)
+         - Leaves the AK CREATION billboard completely visible on the right
+    ============================================================ -->
+    <div
+      class="relative z-10 w-full max-w-[1560px] mx-auto px-3 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-4 sm:py-6 md:py-10 lg:py-14 flex items-center justify-start">
+
+      <!-- FLOATING FROSTED GLASS CARD (ALWAYS ON THE LEFT) -->
+      <div
+        class="hero-content-card w-[65%] sm:w-[56%] md:w-[50%] lg:w-full max-w-[260px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[500px] xl:max-w-[560px] 2xl:max-w-[590px] mr-auto rounded-2xl sm:rounded-3xl p-3 sm:p-5 md:p-6 lg:p-9 xl:p-10 flex flex-col transition-all duration-300">
+
+        <!-- Top / Main Content -->
+        <div class="flex flex-col">
+          <!-- Badge -->
+          <div
+            class="inline-flex self-start items-center gap-1.5 sm:gap-2 bg-[var(--teal)]/10 border border-[var(--teal)]/25 text-[var(--teal)] text-[10px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-[1px] sm:tracking-[1.3px] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full mb-1.5 sm:mb-2.5 md:mb-3.5">
+            <lucide-icon [img]="icons.Megaphone" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[var(--teal)]"></lucide-icon>
+            <span>{{ slides[currentSlide].badge }}</span>
+          </div>
+
+          <!-- Headline -->
+          <div
+            class="min-h-0 sm:min-h-[50px] md:min-h-[60px] lg:min-h-[76px] xl:min-h-[92px] flex items-center mb-1.5 sm:mb-2 md:mb-3">
+            <h1
+              class="text-[17px] sm:text-[20px] md:text-[24px] lg:text-[32px] xl:text-[38px] 2xl:text-[42px] font-black leading-[1.15] sm:leading-[1.18] tracking-tight text-[var(--primary)]"
+              style="font-family:'Outfit',sans-serif;" [innerHTML]="slides[currentSlide].title">
+            </h1>
+          </div>
+
+          <!-- Description -->
+          <div
+            class="min-h-0 sm:min-h-[40px] md:min-h-[46px] lg:min-h-[52px] mb-1.5 sm:mb-2.5 md:mb-3 flex items-center">
+            <p
+              class="text-[10.5px] sm:text-[12px] md:text-[13px] lg:text-[14.5px] xl:text-[15.5px] text-gray-600 leading-[1.45] sm:leading-[1.55] max-w-[490px]">
+              {{ slides[currentSlide].desc }}
+            </p>
+          </div>
+
+          <!-- Trust Signal: Location -->
+          <div
+            class="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11.5px] md:text-[12.5px] lg:text-[13.5px] xl:text-[14px] text-[var(--primary)] font-bold mb-1.5 sm:mb-2 md:mb-3">
+            <lucide-icon [img]="icons.MapPin" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-red-500 shrink-0"></lucide-icon>
+            <span>Serving Trichy & Tamil Nadu</span>
+          </div>
+
+          <!-- Slide Quote Callout -->
+          <div *ngIf="slides[currentSlide].quote"
+            class="my-1.5 sm:my-2 p-2.5 sm:p-3 rounded-xl bg-gradient-to-r from-[var(--teal)]/10 via-[var(--teal)]/5 to-transparent border-l-[3px] border-[var(--teal)] flex items-start gap-2 transition-all duration-300">
+            <lucide-icon [img]="icons.Quote"
+              class="w-3.5 h-3.5 text-[var(--teal)] shrink-0 mt-0.5 rotate-180"></lucide-icon>
+            <p
+              class="text-[10.5px] sm:text-[11.5px] md:text-[12.5px] italic text-[var(--primary)] font-medium leading-[1.5] m-0">
+              "{{ slides[currentSlide].quote }}"
+            </p>
+          </div>
         </div>
 
-        <!-- Headline -->
-        <div class="min-h-[120px] md:min-h-[130px] lg:min-h-[150px] flex items-center mb-2">
-   <h1
-  class="text-[clamp(38px,5vw,68px)] font-black leading-[1.05] tracking-tight text-[var(--primary)] whitespace-nowrap"
-  style="font-family:'Outfit',sans-serif;"
-  [innerHTML]="slides[currentSlide].title">
-</h1>
-        </div>  
-
-        <!-- Sub -->
-        <div class="min-h-[70px] lg:min-h-[60px] mb-4">
-          <p class="text-[15px] md:text-[16px] text-gray-700 leading-[1.6] max-w-[540px]">
-            {{ slides[currentSlide].desc }}
-          </p>
-        </div>
-
-        <!-- Trust Signal -->
-        <div class="flex items-center gap-2 text-[14px] text-[var(--primary)] font-semibold mb-10">
-          <lucide-icon [img]="icons.MapPin" class="w-4 h-4 text-[var(--accent-red)]"></lucide-icon>
-          Serving Trichy & Tamil Nadu
-        </div>
-
-        <!-- CTAs -->
-        <div class="flex flex-wrap gap-4">
+        <!-- Action CTAs -->
+        <div class="flex flex-col sm:flex-row gap-2 sm:gap-2.5 w-full mt-1.5 sm:mt-2">
+          <!-- Primary CTA: Start Project -->
           <a routerLink="/contact"
-            class="inline-flex items-center gap-2 bg-[var(--teal)] text-white px-7 py-4 rounded-xl font-bold text-[15px] no-underline hover:bg-[#007a96] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,151,178,0.4)]">
-            Start a Project
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            class="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-[var(--teal)] text-white px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 rounded-xl font-bold text-[11.5px] sm:text-[12.5px] md:text-[13.5px] lg:text-[15px] no-underline hover:bg-[#007a96] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,151,178,0.35)] shadow-md">
+            <lucide-icon [img]="icons.FileText" class="w-3.5 h-3.5 shrink-0"></lucide-icon>
+            <span>Start Project</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              class="shrink-0">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
-          <a routerLink="/gallery"
-            class="inline-flex items-center gap-2 bg-white border border-[var(--border-color)] text-[var(--primary)] px-7 py-4 rounded-xl font-bold text-[15px] no-underline hover:bg-gray-50 transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
-            View Our Work
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-              <circle cx="12" cy="12" r="3" />
-            </svg>
+
+          <!-- Secondary CTA: Explore Services -->
+          <a routerLink="/services"
+            class="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-white/95 border border-slate-200 text-[var(--primary)] px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 rounded-xl font-bold text-[11.5px] sm:text-[12.5px] md:text-[13.5px] lg:text-[15px] no-underline hover:bg-white hover:border-[var(--teal)]/50 hover:text-[var(--teal)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md shadow-xs">
+            <lucide-icon [img]="icons.LayoutGrid" class="w-3.5 h-3.5 shrink-0 text-[var(--teal)]"></lucide-icon>
+            <span>Explore Services</span>
           </a>
         </div>
 
-        <!-- Slide Dots -->
-        <div class="flex items-center gap-3 mt-8">
-          <span *ngFor="let slide of slides; let i = index"
-            class="block rounded-full cursor-pointer transition-all duration-300"
-            [ngClass]="i === currentSlide ? 'w-8 h-2.5 bg-[var(--teal)]' : 'w-2.5 h-2.5 bg-[var(--primary)]/30 hover:bg-[var(--primary)]/60'"
-            (click)="goToSlide(i)">
-          </span>
+        <!-- Slide Dots / Circle Indicator -->
+        <div class="flex items-center justify-center gap-1.5 sm:gap-2 pt-2 sm:pt-3">
+          <button *ngFor="let slide of slides; let i = index" type="button"
+            class="block rounded-full cursor-pointer transition-all duration-300 border-0 p-0"
+            [ngClass]="i === currentSlide ? 'w-6 sm:w-8 h-1.5 sm:h-2 bg-[var(--teal)]' : 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-gray-300 hover:bg-gray-400'"
+            (click)="goToSlide(i)" [attr.aria-label]="'Go to slide ' + (i + 1)">
+          </button>
         </div>
-      </div>
 
-      <!-- Floating service chips (desktop) -->
-      <div class="absolute right-10 top-1/2 -translate-y-1/2 flex-col gap-3 hidden xl:flex">
-        <div *ngFor="let cat of serviceCategories"
-          class="flex items-center gap-3 bg-white/80 backdrop-blur-md border border-[var(--border-color)] rounded-xl px-5 py-3.5 text-[var(--primary)] hover:bg-white hover:border-[var(--teal)]/40 transition-all duration-300 cursor-pointer shadow-lg"
-          style="animation: float 4s ease-in-out infinite;"
-          [style.animationDelay]="(serviceCategories.indexOf(cat) * 0.8) + 's'">
-          <lucide-icon [img]="cat.icon" class="w-5 h-5 text-[var(--teal)]"></lucide-icon>
-          <span class="text-[13px] font-bold tracking-wide">{{ cat.title }}</span>
-        </div>
       </div>
     </div>
   </section>
@@ -96,51 +142,42 @@
   <!-- ============================================================
        TRUST BAR
   ============================================================ -->
- <section class="bg-[var(--primary)] py-4 overflow-hidden">
-  <div
-    class="flex w-max items-center gap-8 whitespace-nowrap
+  <section class="bg-[var(--primary)] py-4 overflow-hidden">
+    <div class="flex w-max items-center gap-8 whitespace-nowrap
            animate-[marquee-right-to-left_45s_linear_infinite]
            [will-change:transform]">
 
-    <ng-container *ngFor="let item of trustItems">
-      <span
-        class="inline-flex shrink-0 items-center gap-2
+      <ng-container *ngFor="let item of trustItems">
+        <span class="inline-flex shrink-0 items-center gap-2
                px-3 text-sm font-semibold text-white/95">
 
-        <lucide-icon
-          [img]="item.icon"
-          class="h-4 w-4 shrink-0 text-[var(--teal-light)]">
-        </lucide-icon>
+          <lucide-icon [img]="item.icon" class="h-4 w-4 shrink-0 text-[var(--teal-light)]">
+          </lucide-icon>
 
-        {{ item.label }}
+          {{ item.label }}
 
-        <span
-          class="ml-5 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30">
+          <span class="ml-5 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30">
+          </span>
         </span>
-      </span>
-    </ng-container>
+      </ng-container>
 
-    <!-- Duplicate -->
-    <ng-container *ngFor="let item of trustItems">
-      <span
-        class="inline-flex shrink-0 items-center gap-2
+      <!-- Duplicate -->
+      <ng-container *ngFor="let item of trustItems">
+        <span class="inline-flex shrink-0 items-center gap-2
                px-3 text-sm font-semibold text-white/95">
 
-        <lucide-icon
-          [img]="item.icon"
-          class="h-4 w-4 shrink-0 text-[var(--teal-light)]">
-        </lucide-icon>
+          <lucide-icon [img]="item.icon" class="h-4 w-4 shrink-0 text-[var(--teal-light)]">
+          </lucide-icon>
 
-        {{ item.label }}
+          {{ item.label }}
 
-        <span
-          class="ml-5 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30">
+          <span class="ml-5 h-1.5 w-1.5 shrink-0 rounded-full bg-white/30">
+          </span>
         </span>
-      </span>
-    </ng-container>
+      </ng-container>
 
-  </div>
-</section>
+    </div>
+  </section>
 
   <!-- ============================================================
        SERVICES OVERVIEW ΓÇö Categorized Bento Grid
@@ -165,8 +202,9 @@
           <!-- Content -->
           <div class="p-6 flex-1 flex flex-col h-full">
             <div class="flex items-start justify-between mb-5">
-              <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-color)] shadow-sm"
-                   [ngClass]="{
+              <div
+                class="w-14 h-14 rounded-2xl flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-color)] shadow-sm"
+                [ngClass]="{
                      'text-[var(--primary)]': cat.color === 'navy',
                      'text-[var(--teal)]': cat.color === 'teal',
                      'text-[var(--accent-red)]': cat.color === 'red',
@@ -187,14 +225,14 @@
 
             <!-- Service Tags -->
             <div class="flex flex-wrap gap-2 mb-6 mt-auto">
-              <span *ngFor="let svc of cat.services"
-                class="text-[12px] font-semibold px-3 py-1.5 rounded-lg bg-[var(--bg-secondary)] text-[var(--text-muted)] border border-[var(--border-color)] group-hover:border-[var(--teal)]/30 transition-colors duration-200">
+              <a *ngFor="let svc of cat.services" [routerLink]="['/services', getServiceSlug(svc)]"
+                class="text-[12px] font-semibold px-3 py-1.5 rounded-lg bg-[var(--bg-secondary)] text-[var(--text-muted)] border border-[var(--border-color)] group-hover:border-[var(--teal)]/30 hover:!border-[var(--teal)] hover:!text-[var(--teal)] transition-colors duration-200 no-underline cursor-pointer">
                 {{ svc }}
-              </span>
+              </a>
             </div>
 
             <!-- CTA -->
-            <a routerLink="/services"
+            <a [routerLink]="['/services']" [fragment]="cat.id"
               class="inline-flex items-center gap-1.5 text-[14px] font-bold no-underline service-cta transition-colors duration-300"
               [ngClass]="{
                  'text-[var(--primary)] hover:text-[var(--teal)]': cat.color === 'navy',
@@ -257,8 +295,7 @@
         <!-- Image -->
         <div class="reveal reveal-left relative" #reveal>
           <div class="relative rounded-3xl overflow-hidden h-[450px] shadow-2xl border border-[var(--border-color)]">
-            <img src="assets/home/ak_placeholder.png" alt="AK CREATION printing workspace"
-              class="w-full h-full object-cover">
+            <img src="assets/home/about.png" alt="AK CREATION printing workspace" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/20 to-transparent"></div>
           </div>
           <!-- Floating stat card -->
@@ -316,7 +353,7 @@
           class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-[var(--teal-light)] text-[12px] font-bold uppercase tracking-[1.5px] px-5 py-2.5 rounded-full mb-5 backdrop-blur-sm">
           Who We Serve
         </div>
-        <h2 class="text-[clamp(28px, 4vw, 42px)] font-black text-white mb-4" style="font-family:'Outfit',sans-serif;">
+        <h2 class="text-[30px] font-black text-white leading-[1.1] mb-6" style="font-family:'Outfit',sans-serif;">
           Built for Businesses of Every Size.</h2>
         <p class="text-gray-300 max-w-[540px] mx-auto text-[16px] leading-[1.7]">From small local shops to large
           companies, we serve every type of business in Trichy and beyond with dedicated printing solutions.</p>
@@ -342,13 +379,12 @@
   <section class="py-24 px-5 bg-[var(--bg-dark)] relative overflow-hidden">
     <div class="max-w-[900px] mx-auto text-center relative z-10 reveal" #reveal>
       <div class="text-[var(--teal)] text-[12px] font-bold uppercase tracking-[2px] mb-4">Ready to Print?</div>
-      <h2 class="text-[clamp(32px, 5vw, 54px)] font-black text-white leading-[1.1] mb-6"
-        style="font-family:'Outfit',sans-serif;">
+      <h2 class="text-[30px] font-black text-white leading-[1.1] mb-6" style="font-family:'Outfit',sans-serif;">
         Start Your Print Project Today.
       </h2>
       <p class="text-gray-400 text-[17px] leading-[1.8] mb-10 max-w-[560px] mx-auto">
-        Let's turn your idea into something people notice. From flex and ID cards to brochures ΓÇö we're here to help you
-        succeed.
+        Let's turn your idea into something people notice. From 3D LED signage and vehicle branding to custom acrylic
+        displays and marketing media, we're here to help you succeed.
       </p>
       <div class="flex flex-wrap gap-4 justify-center">
         <a routerLink="/contact"
@@ -386,6 +422,21 @@
 
         <!-- Contact Info -->
         <div class="lg:col-span-2 reveal reveal-left flex flex-col gap-5" #reveal>
+          <!-- Name -->
+          <div class="bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-color)] card-hover">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 bg-[var(--primary)]/10 rounded-xl flex items-center justify-center text-[var(--primary)]">
+                <lucide-icon [img]="icons.User" class="w-6 h-6 text-[var(--primary)]"></lucide-icon>
+              </div>
+              <div>
+                <div class="text-[12px] text-[var(--text-muted)] font-bold uppercase tracking-wider mb-1">Name</div>
+                <h4 class="text-[20px] font-black text-[var(--primary)] m-0" style="font-family:'Outfit',sans-serif;">
+                  Ajith Kumar</h4>
+              </div>
+            </div>
+          </div>
+
           <!-- Phone -->
           <div class="bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-color)] card-hover">
             <div class="flex items-center gap-4">

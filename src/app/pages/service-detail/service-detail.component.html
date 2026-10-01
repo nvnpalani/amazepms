@@ -1,0 +1,497 @@
+<main *ngIf="service" class="overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)] min-h-screen">
+
+  <!-- Top Hero Header & Breadcrumb -->
+  <section class="relative pt-24 pb-20 px-5 text-white overflow-hidden bg-[var(--primary)] border-b border-white/10">
+    <div
+      class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(0,151,178,0.25)_0%,transparent_65%)] pointer-events-none">
+    </div>
+    <div
+      class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--teal)] via-[var(--primary)] to-transparent">
+    </div>
+
+    <div class="relative max-w-[1300px] mx-auto z-10">
+
+      <!-- Back Button & Breadcrumbs Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <div class="flex items-center gap-3">
+        
+
+          <a routerLink="/services"
+            class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl transition-all no-underline border border-white/20 hover:-translate-x-1">
+            <lucide-icon [img]="icons.ArrowLeft" class="w-4 h-4"></lucide-icon>
+           
+          </a>
+        </div> 
+
+      
+      </div> 
+
+      <!-- Service Title and Overview -->
+      <div class="max-w-[850px]">
+        <div
+          class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[var(--teal-light)] mb-3">
+          <lucide-icon [img]="icons.Layers" class="w-3.5 h-3.5"></lucide-icon>
+          {{ service.categoryTitle }}
+        </div>
+        <h1 class="text-[clamp(32px,4vw,56px)] font-black leading-[1.1] tracking-tight mb-4 font-display">
+          {{ service.name }}
+        </h1>
+        <p class="text-gray-200 text-[15px] md:text-[17px] leading-[1.7]">
+          {{ service.desc }}
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Main Content Showcase -->
+  <section class="py-14 md:py-20 px-5 bg-[var(--bg-secondary)]">
+    <div class="max-w-[1300px] mx-auto">
+
+      <!-- Top Row: Interactive Photo Gallery (Left) + Quick Order Action Box (Right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">
+
+        <!-- Left: Image Gallery Showcase (7 Cols) -->
+        <div
+          class="lg:col-span-7 bg-[var(--bg-card)] rounded-3xl p-5 md:p-7 border border-[var(--border-color)] shadow-sm">
+
+          <!-- Main Active Image -->
+          <div
+            class="relative rounded-2xl overflow-hidden bg-slate-950 border border-[var(--border-color)] shadow-inner mb-5 flex items-center justify-center min-h-[320px] md:min-h-[460px] max-h-[520px]">
+
+            <!-- Prev Button -->
+            <button *ngIf="service.images.length > 1" (click)="prevImage($event)" aria-label="Previous Image"
+              class="absolute left-3 md:left-5 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-[var(--teal)] text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-lg">
+              <lucide-icon [img]="icons.ChevronLeft" class="w-6 h-6"></lucide-icon>
+            </button>
+
+            <!-- Active Photo (click to open Lightbox) -->
+            <div
+              class="relative w-full h-[320px] md:h-[460px] flex items-center justify-center p-2 cursor-pointer group"
+              (click)="openLightbox(activeImageIndex)">
+              <img [src]="service.images[activeImageIndex]"
+                [alt]="service.name + ' sample photo ' + (activeImageIndex + 1)"
+                class="max-h-full max-w-full object-contain rounded-xl transition-all duration-300 group-hover:scale-[1.02]">
+
+              <!-- Hover Enlarge Hint -->
+              <div
+                class="absolute bottom-4 right-4 bg-black/75 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
+                <lucide-icon [img]="icons.Eye" class="w-3.5 h-3.5 text-[var(--teal-light)]"></lucide-icon>
+                <span>Click to Fullscreen Zoom</span>
+              </div>
+
+              <!-- Top Counter Pill -->
+              <div
+                class="absolute top-4 left-4 bg-black/75 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
+                <lucide-icon [img]="icons.Images" class="w-3.5 h-3.5 text-[var(--teal-light)]"></lucide-icon>
+                <span>Photo {{ activeImageIndex + 1 }} of {{ service.images.length }}</span>
+              </div>
+            </div>
+
+            <!-- Next Button -->
+            <button *ngIf="service.images.length > 1" (click)="nextImage($event)" aria-label="Next Image"
+              class="absolute right-3 md:right-5 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-[var(--teal)] text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-lg">
+              <lucide-icon [img]="icons.ChevronRight" class="w-6 h-6"></lucide-icon>
+            </button>
+          </div>
+
+          <!-- Thumbnails Strip -->
+          <div *ngIf="service.images.length > 1">
+            <div
+              class="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] mb-2.5 flex items-center justify-between">
+              <span>All Portfolio Works ({{ service.images.length }} Photos)</span>
+              <span class="text-[var(--teal)] font-semibold">Click any image to select</span>
+            </div>
+            <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
+              <div *ngFor="let img of service.images; let idx = index" (click)="selectImage(idx)"
+                class="relative shrink-0 w-24 h-20 md:w-28 md:h-22 rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-200"
+                [ngClass]="activeImageIndex === idx ? 'border-[var(--teal)] ring-4 ring-[var(--teal)]/20 scale-105 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'">
+                <img [src]="img" [alt]="'Thumbnail ' + (idx + 1)" class="w-full h-full object-cover">
+                <span
+                  class="absolute bottom-1 right-1 text-[10px] font-bold bg-black/75 text-white px-1.5 py-0.5 rounded">
+                  #{{ idx + 1 }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Direct Order & Quote Card (5 Cols) -->
+        <div
+          class="lg:col-span-5 bg-[var(--bg-card)] rounded-3xl p-6 md:p-8 border border-[var(--border-color)] shadow-sm sticky top-28">
+
+          <span class="badge badge-teal mb-3 block w-max">Factory Direct Manufacturing</span>
+
+          <h2 class="text-2xl md:text-3xl font-black font-display text-[var(--text-main)] mb-3 leading-snug">
+            Need {{ service.name }} for your Business?
+          </h2>
+
+          <p class="text-[14px] text-[var(--text-muted)] leading-relaxed mb-6">
+            Get the highest precision fabrication, brilliant long-lasting colors, and direct factory pricing. Customized
+            to fit your exact storefront or campaign needs.
+          </p>
+
+          <!-- Direct Order Buttons -->
+          <div class="flex flex-col gap-3 mb-6">
+            <a [href]="'https://wa.me/919597440361?text=Hello%20AK%20Creation,%20I%20am%20interested%20in%20' + service.name + '.%20Please%20share%20pricing%20and%20details.'"
+              target="_blank"
+              class="inline-flex items-center justify-center gap-3 bg-[#25d366] hover:bg-[#1ebe5d] text-white px-6 py-4 rounded-2xl font-bold text-[15px] no-underline transition-all shadow-md hover:-translate-y-0.5">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              <span>WhatsApp Us for Instant Quote</span>
+            </a>
+
+            <a routerLink="/contact"
+              class="inline-flex items-center justify-center gap-2 bg-[var(--primary)] hover:bg-[var(--primary-light)] text-white px-4 py-3.5 rounded-xl font-bold text-[14px] no-underline transition-all">
+              <span>Get a Custom Quote</span>
+              <lucide-icon [img]="icons.ArrowRight" class="w-4 h-4"></lucide-icon>
+            </a>
+          </div>
+
+          <!-- Assured Benefits Checklist -->
+          <div class="pt-5 border-t border-[var(--border-color)] space-y-2.5">
+            <div class="flex items-center gap-2.5 text-xs text-[var(--text-muted)] font-medium">
+              <span
+                class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</span>
+              <span>100% Quality Guaranteed Materials</span>
+            </div>
+            <div class="flex items-center gap-2.5 text-xs text-[var(--text-muted)] font-medium">
+              <span
+                class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</span>
+              <span>Free Site Measurement & Consultation</span>
+            </div>
+            <div class="flex items-center gap-2.5 text-xs text-[var(--text-muted)] font-medium">
+              <span
+                class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</span>
+              <span>Direct Manufacturing & Fast Delivery across Tamil Nadu</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ============================================== -->
+      <!-- FULL TECHNICAL SPECIFICATIONS (6-CARD GRID) -->
+      <!-- ============================================== -->
+      <div *ngIf="service.specs" class="mb-16 reveal" #reveal>
+        <div class="flex items-center justify-between gap-4 mb-8 pb-4 border-b border-[var(--border-color)]">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[var(--teal)] block mb-1">
+              Engineering & Fabrication Standards
+            </span>
+            <h3 class="text-2xl md:text-3xl font-black font-display text-[var(--text-main)]">
+              Technical Specifications
+            </h3>
+          </div>
+          <span
+            class="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-[var(--teal)]/10 text-[var(--teal)]">
+            <lucide-icon [img]="icons.BadgeCheck" class="w-4 h-4"></lucide-icon>
+            Commercial Grade Quality
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Base Material -->
+          <div *ngIf="service.specs.baseMaterial"
+            class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm flex flex-col justify-between">
+            <div class="flex items-center gap-3 mb-3 text-[var(--primary)] font-bold text-xs uppercase tracking-wider">
+              <div class="w-8 h-8 rounded-lg bg-[var(--teal)]/10 text-[var(--teal)] flex items-center justify-center">
+                <lucide-icon [img]="icons.Shield" class="w-4 h-4"></lucide-icon>
+              </div>
+              <span>Base Material</span>
+            </div>
+            <p class="text-[14px] md:text-[15px] font-semibold text-[var(--text-main)] leading-relaxed">
+              {{ service.specs.baseMaterial }}
+            </p>
+          </div>
+
+          <!-- Letter Fabrication -->
+          <div *ngIf="service.specs.letterFabrication"
+            class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm flex flex-col justify-between">
+            <div class="flex items-center gap-3 mb-3 text-[var(--primary)] font-bold text-xs uppercase tracking-wider">
+              <div class="w-8 h-8 rounded-lg bg-[var(--teal)]/10 text-[var(--teal)] flex items-center justify-center">
+                <lucide-icon [img]="icons.Layers" class="w-4 h-4"></lucide-icon>
+              </div>
+              <span>Letter Fabrication</span>
+            </div>
+            <p class="text-[14px] md:text-[15px] font-semibold text-[var(--text-main)] leading-relaxed">
+              {{ service.specs.letterFabrication }}
+            </p>
+          </div>
+
+          <!-- LED Lighting -->
+          <div *ngIf="service.specs.lighting"
+            class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm flex flex-col justify-between">
+            <div class="flex items-center gap-3 mb-3 text-[var(--primary)] font-bold text-xs uppercase tracking-wider">
+              <div class="w-8 h-8 rounded-lg bg-[var(--teal)]/10 text-[var(--teal)] flex items-center justify-center">
+                <lucide-icon [img]="icons.Sparkles" class="w-4 h-4"></lucide-icon>
+              </div>
+              <span>Lighting Module</span>
+            </div>
+            <p class="text-[14px] md:text-[15px] font-semibold text-[var(--text-main)] leading-relaxed">
+              {{ service.specs.lighting }}
+            </p>
+          </div>
+
+          <!-- Power Supply -->
+          <div *ngIf="service.specs.powerSupply"
+            class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm flex flex-col justify-between">
+            <div class="flex items-center gap-3 mb-3 text-[var(--primary)] font-bold text-xs uppercase tracking-wider">
+              <div class="w-8 h-8 rounded-lg bg-[var(--teal)]/10 text-[var(--teal)] flex items-center justify-center">
+                <lucide-icon [img]="icons.Zap" class="w-4 h-4"></lucide-icon>
+              </div>
+              <span>Power & Adapter</span>
+            </div>
+            <p class="text-[14px] md:text-[15px] font-semibold text-[var(--text-main)] leading-relaxed">
+              {{ service.specs.powerSupply }}
+            </p>
+          </div>
+
+          <!-- Durability -->
+          <div *ngIf="service.specs.durability"
+            class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm flex flex-col justify-between">
+            <div class="flex items-center gap-3 mb-3 text-[var(--primary)] font-bold text-xs uppercase tracking-wider">
+              <div class="w-8 h-8 rounded-lg bg-[var(--teal)]/10 text-[var(--teal)] flex items-center justify-center">
+                <lucide-icon [img]="icons.Clock" class="w-4 h-4"></lucide-icon>
+              </div>
+              <span>Durability / Lifespan</span>
+            </div>
+            <p class="text-[14px] md:text-[15px] font-semibold text-[var(--text-main)] leading-relaxed">
+              {{ service.specs.durability }}
+            </p>
+          </div>
+
+          <!-- Warranty -->
+          <div *ngIf="service.specs.warranty"
+            class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm flex flex-col justify-between">
+            <div class="flex items-center gap-3 mb-3 text-[var(--primary)] font-bold text-xs uppercase tracking-wider">
+              <div class="w-8 h-8 rounded-lg bg-[var(--teal)]/10 text-[var(--teal)] flex items-center justify-center">
+                <lucide-icon [img]="icons.BadgeCheck" class="w-4 h-4"></lucide-icon>
+              </div>
+              <span>Warranty Assurance</span>
+            </div>
+            <p class="text-[14px] md:text-[15px] font-semibold text-[var(--text-main)] leading-relaxed">
+              {{ service.specs.warranty }}
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- KEY HIGHLIGHTS & APPLICATIONS (2-COLUMN) -->
+      <!-- ============================================== -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 reveal" #reveal>
+
+        <!-- Key Highlights -->
+        <div *ngIf="service.features && service.features.length > 0"
+          class="bg-[var(--bg-card)] p-7 md:p-9 rounded-3xl border border-[var(--border-color)] shadow-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-[var(--teal)]/10 text-[var(--teal)] flex items-center justify-center">
+              <lucide-icon [img]="icons.CheckCircle" class="w-5 h-5"></lucide-icon>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold font-display text-[var(--text-main)]">
+              Key Highlights & Advantages
+            </h3>
+          </div>
+
+          <ul class="space-y-4 p-0 m-0 list-none">
+            <li *ngFor="let feat of service.features" class="flex items-start gap-3.5">
+              <span
+                class="w-6 h-6 rounded-full bg-[var(--teal)]/15 text-[var(--teal)] flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span class="text-[14px] md:text-[15px] text-[var(--text-main)] leading-relaxed font-medium">{{ feat
+                }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Applications (Best Suited For) -->
+        <div *ngIf="service.applications && service.applications.length > 0"
+          class="bg-[var(--bg-card)] p-7 md:p-9 rounded-3xl border border-[var(--border-color)] shadow-sm flex flex-col">
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center">
+              <lucide-icon [img]="icons.Store" class="w-5 h-5"></lucide-icon>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold font-display text-[var(--text-main)]">
+              Ideal Applications & Use Cases
+            </h3>
+          </div>
+
+          <div class="flex flex-wrap gap-2.5 mb-8">
+            <span *ngFor="let app of service.applications"
+              class="px-4 py-2 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[13px] md:text-[14px] font-semibold text-[var(--text-main)] shadow-2xs">
+              {{ app }}
+            </span>
+          </div>
+
+          <!-- Dimensions & Delivery Note -->
+          <div *ngIf="service.specs?.customSizes || service.specs?.deliveryTime"
+            class="mt-auto pt-6 border-t border-[var(--border-color)] space-y-2 text-xs md:text-sm text-[var(--text-muted)]">
+            <div *ngIf="service.specs?.customSizes" class="flex items-start gap-2">
+              <strong class="text-[var(--text-main)] shrink-0">📏 Dimensions:</strong>
+              <span>{{ service.specs?.customSizes }}</span>
+            </div>
+            <div *ngIf="service.specs?.deliveryTime" class="flex items-start gap-2">
+              <strong class="text-[var(--text-main)] shrink-0">🚚 Delivery Time:</strong>
+              <span>{{ service.specs?.deliveryTime }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ============================================== -->
+      <!-- RELATED SERVICES IN SAME CATEGORY -->
+      <!-- ============================================== -->
+      <div *ngIf="relatedServices.length > 0" class="reveal" #reveal>
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-[var(--border-color)]">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[var(--teal)] block mb-1">
+              Explore More Options
+            </span>
+            <h3 class="text-2xl font-black font-display text-[var(--text-main)]">
+              Other Services in {{ service.categoryTitle }}
+            </h3>
+          </div>
+          <a routerLink="/services"
+            class="text-xs md:text-sm font-bold text-[var(--teal)] hover:underline no-underline">
+            View All 16 Services →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div *ngFor="let rel of relatedServices" [routerLink]="['/services', rel.id]"
+            class="group bg-[var(--bg-card)] rounded-2xl border border-[var(--border-color)] overflow-hidden cursor-pointer card-hover shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+            <div class="relative h-[200px] overflow-hidden bg-slate-900">
+              <img [src]="rel.image" [alt]="rel.name"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity">
+              </div>
+              <div
+                class="absolute top-3 right-3 bg-black/75 text-white text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                <lucide-icon [img]="icons.Images" class="w-3 h-3 text-[var(--teal-light)]"></lucide-icon>
+                <span>{{ rel.images.length }} Photos</span>
+              </div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h4
+                  class="font-bold text-[17px] text-[var(--text-main)] group-hover:text-[var(--teal)] transition-colors mb-2 font-display">
+                  {{ rel.name }}
+                </h4>
+                <p class="text-[13px] text-[var(--text-muted)] line-clamp-2 leading-relaxed">
+                  {{ rel.desc }}
+                </p>
+              </div>
+              <div
+                class="mt-4 pt-3 border-t border-[var(--border-color)]/70 flex items-center justify-between text-xs font-bold text-[var(--teal)]">
+                <span>View Full Details</span>
+                <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Bottom CTA Banner -->
+  <section class="py-20 px-5 bg-[var(--primary)] text-white relative overflow-hidden">
+    <div
+      class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,151,178,0.25)_0%,transparent_60%)] pointer-events-none">
+    </div>
+    <div class="max-w-[700px] mx-auto text-center relative z-10 reveal" #reveal>
+      <h2 class="text-[clamp(28px,4vw,42px)] font-black mb-4 font-display">
+        Ready to Transform Your Brand?
+      </h2>
+      <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-8 max-w-[520px] mx-auto">
+        Speak directly with our fabrication engineers for measurement, customized 3D design proof, and quote.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a [href]="'https://wa.me/919597440361?text=Hello%20AK%20Creation,%20I%20want%20to%20order%20' + service.name"
+          target="_blank"
+          class="inline-flex items-center gap-2 bg-[#25d366] text-white px-6 py-3.5 rounded-xl font-bold text-sm no-underline hover:bg-[#1ebe5d] transition-all shadow-lg hover:-translate-y-0.5">
+          <lucide-icon [img]="icons.MessageCircle" class="w-4 h-4"></lucide-icon>
+          WhatsApp Us Now
+        </a>
+        <a routerLink="/contact"
+          class="inline-flex items-center gap-2 bg-[var(--teal)] text-white px-6 py-3.5 rounded-xl font-bold text-sm no-underline hover:bg-[#007a96] transition-all shadow-lg hover:-translate-y-0.5">
+          Get a Free Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- ============================================== -->
+  <!-- FULLSCREEN LIGHTBOX PREVIEW (Evenly Centered) -->
+  <!-- ============================================== -->
+  <div *ngIf="isLightboxOpen"
+    class="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-md animate-fadeIn overflow-hidden select-none"
+    (click)="closeLightbox()">
+
+    <!-- Top Bar Overlay -->
+    <div class="absolute top-0 left-0 right-0 z-40 px-5 py-4 md:px-8 md:py-6 flex items-center justify-between text-white bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-auto">
+      <div>
+        <h4 class="font-bold text-base md:text-lg text-white m-0 drop-shadow">{{ service.name }}</h4>
+        <p class="text-gray-300 text-xs m-0">
+          Photo {{ activeImageIndex + 1 }} of {{ service.images.length }}
+        </p>
+      </div>
+      <button (click)="closeLightbox()" aria-label="Close Lightbox"
+        class="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-red-600 text-white flex items-center justify-center transition-all duration-200 cursor-pointer border-2 border-white/40 hover:border-red-600 hover:scale-110 shadow-2xl shrink-0">
+        <lucide-icon [img]="icons.X" class="w-6 h-6 text-white"></lucide-icon>
+      </button>
+    </div>
+
+    <!-- Centered Image Viewport (Even Spacing on Top, Bottom, Left, and Right) -->
+    <div class="absolute inset-0 flex items-center justify-center p-4 pt-20 pb-24 md:p-8 md:pt-22 md:pb-24 lg:px-24"
+         (click)="closeLightbox()">
+
+      <!-- The Image Card in Exact Center -->
+      <div class="relative flex items-center justify-center" (click)="$event.stopPropagation()">
+        <img [src]="service.images[activeImageIndex]" [alt]="service.name"
+          class="max-h-[72vh] md:max-h-[76vh] max-w-[88vw] md:max-w-[78vw] object-contain rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] border border-white/10 transition-all duration-300">
+      </div>
+
+    </div>
+
+    <!-- Prev Button (Vertically Centered on Left) -->
+    <button *ngIf="service.images.length > 1" 
+            (click)="$event.stopPropagation(); prevImage($event)"
+            aria-label="Previous Photo"
+            class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-[var(--teal)] text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 hover:scale-110 shadow-2xl">
+      <lucide-icon [img]="icons.ChevronLeft" class="w-6 h-6"></lucide-icon>
+    </button>
+
+    <!-- Next Button (Vertically Centered on Right) -->
+    <button *ngIf="service.images.length > 1" 
+            (click)="$event.stopPropagation(); nextImage($event)"
+            aria-label="Next Photo"
+            class="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-[var(--teal)] text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 hover:scale-110 shadow-2xl">
+      <lucide-icon [img]="icons.ChevronRight" class="w-6 h-6"></lucide-icon>
+    </button>
+
+    <!-- Bottom Thumbnail Strip (Floating Capsule at Bottom Center) -->
+    <div *ngIf="service.images.length > 1" 
+         class="absolute bottom-3 md:bottom-5 left-0 right-0 z-40 flex justify-center pointer-events-auto px-4">
+      <div class="flex gap-2 overflow-x-auto max-w-[90vw] p-2 bg-black/75 backdrop-blur-md rounded-2xl border border-white/15 shadow-2xl">
+        <button *ngFor="let thumb of service.images; let t = index" 
+                (click)="$event.stopPropagation(); selectImage(t)"
+                class="w-14 h-11 md:w-16 md:h-12 rounded-lg overflow-hidden border-2 transition-all cursor-pointer p-0 shrink-0"
+                [ngClass]="activeImageIndex === t ? 'border-[var(--teal)] scale-105 shadow-lg' : 'border-white/20 opacity-50 hover:opacity-100'">
+          <img [src]="thumb" [alt]="'Thumb ' + t" class="w-full h-full object-cover">
+        </button>
+      </div>
+    </div>
+  </div>
+
+</main>

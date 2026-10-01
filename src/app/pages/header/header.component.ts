@@ -14,11 +14,10 @@ export class HeaderComponent implements OnInit {
   isScrolled = false;
 
   navLinks = [
-    { label: 'Home',     path: '/',        exact: true },
-    { label: 'About',    path: '/about',   exact: false },
-    { label: 'Services', path: '/services',exact: false },
-    { label: 'Our Work', path: '/gallery', exact: false },
-    { label: 'Contact',  path: '/contact', exact: false },
+    { label: 'Home', path: '/', exact: true },
+    { label: 'About', path: '/about', exact: false },
+    { label: 'Services', path: '/services', exact: false },
+    { label: 'Contact', path: '/contact', exact: false },
   ];
 
   ngOnInit() {

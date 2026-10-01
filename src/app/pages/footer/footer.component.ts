@@ -14,15 +14,30 @@ export class FooterComponent {
 
   quickLinks = [
     { label: 'Home',        path: '/',         exact: true  },
-    { label: 'About',       path: '/about',    exact: false },
+    { label: 'About Us',    path: '/about',    exact: false },
     { label: 'Services',    path: '/services', exact: false },
-    { label: 'Our Work',    path: '/gallery',  exact: false },
-    { label: 'Contact',     path: '/contact',  exact: false },
+    { label: 'Contact Us',  path: '/contact',  exact: false },
   ];
 
-  serviceLinks = [
-    'Flex Printing', 'Banner Printing', 'Advertisement Boards',
-    'ID Card Printing', 'Brochure Printing', 'Flyer Printing',
-    'Store Boards', 'Social Media Designs'
+  servicesCol1 = [
+    'LED Sign Board & Elevation',
+    'UV Fabric Backlight Board',
+    'UV Flex Backlight Board',
+    'LED Video Wall Display',
+    'Acrylic Board',
+    'Reflective Board',
+    'Foam Sheet',
+    'Sunpack Sheet'
+  ];
+
+  servicesCol2 = [
+    'Bus Backside Ads',
+    'Auto Backside Ads',
+    'Look Walker Ads',
+    'Road Show Ads',
+    'Vinyl Sticker Printing',
+    'Roll Up Standee',
+    'Wall Poster & Flayer',
+    'Wallpaper & Floor Mat'
   ];
 }

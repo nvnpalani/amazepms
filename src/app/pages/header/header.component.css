@@ -10,8 +10,8 @@
   display: block;
   position: absolute;
   bottom: 4px;
-  left: 16px;
-  right: 16px;
+  left: 12px;
+  right: 12px;
   height: 2px;
   background: var(--teal);
   border-radius: 2px;

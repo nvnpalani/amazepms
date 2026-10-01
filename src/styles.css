@@ -218,6 +218,7 @@ body {
   color: var(--text-main);
 }
 
+
 .section-subheading {
   font-size: 16px;
   line-height: 1.7;
@@ -432,4 +433,4 @@ body {
 .badge-navy  { background: rgba(10,61,98,0.12);  color: var(--primary); }
 .badge-teal  { background: rgba(0,151,178,0.12); color: var(--teal); }
 .badge-red   { background: rgba(230,57,70,0.12); color: var(--accent-red); }
-.badge-yellow{ background: rgba(255,209,102,0.2);color: #b7791f; }
+.badge-yellow{ background: rgba(255,209,102,0.2);color: #b7791f; }

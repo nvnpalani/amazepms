@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
+import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AdminLayoutComponent } from './pages/admin-layout/admin-layout.component';
@@ -15,7 +16,8 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'services', component: ServicesComponent },
-  { path: 'gallery', component: GalleryComponent },
+  { path: 'services/:id', component: ServiceDetailComponent },
+  { path: 'gallery', redirectTo: 'services', pathMatch: 'full' },
   { path: 'contact', component: ContactComponent },
   { path: 'admin-login', component: AdminLoginComponent },
   {
