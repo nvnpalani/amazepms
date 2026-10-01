@@ -13,40 +13,33 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: radial-gradient(circle at 85% 15%, rgba(0, 151, 178, 0.16) 0%, transparent 55%),
-              radial-gradient(circle at 15% 85%, rgba(0, 92, 143, 0.14) 0%, transparent 50%),
-              #0b1f33;
+  background: radial-gradient(circle at 85% 15%, rgba(0, 180, 216, 0.25) 0%, transparent 55%),
+    radial-gradient(circle at 15% 85%, rgba(0, 151, 178, 0.22) 0%, transparent 50%),
+    linear-gradient(145deg, #072b47 0%, #0a3d62 55%, #0e4c77 100%);
 }
 
 /* ============================================================
-   MOBILE HERO EXACT FULL SCREEN VIEWPORT (COHESIVE & BALANCED)
+   MOBILE HERO COMPACT & CLEAN (NO OVER GAP SPACE)
    ============================================================ */
 @media (max-width: 639px) {
   .hero-section {
-    min-height: calc(100vh - 60px) !important;
-    min-height: calc(100dvh - 60px) !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    overflow: hidden !important;
+    min-height: auto !important;
+    height: auto !important;
+    display: block !important;
   }
 
   .hero-section .hero-container {
     min-height: auto !important;
     height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    padding-top: 2.5rem !important;
-    padding-bottom: 1.5rem !important;
+    display: block !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
   }
 
   .hero-content-card {
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
+    display: block !important;
     width: 100% !important;
+    height: auto !important;
   }
 }
 

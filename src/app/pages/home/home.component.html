@@ -57,43 +57,42 @@
         <div class="flex flex-col">
           <!-- Badge -->
           <div
-            class="inline-flex self-start items-center gap-2 bg-[var(--teal)]/15 sm:bg-[var(--teal)]/10 border border-[var(--teal)]/30 sm:border-[var(--teal)]/25 text-[var(--teal)] text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-[1.2px] sm:tracking-[1.3px] px-3 sm:px-3 py-1.5 sm:py-1.5 rounded-full mb-3 sm:mb-2.5 md:mb-3.5">
-            <lucide-icon [img]="icons.Megaphone" class="w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 text-[var(--teal)]"></lucide-icon>
+            class="inline-flex self-start items-center gap-2 bg-[var(--teal)]/20 sm:bg-[var(--teal)]/10 border border-[var(--teal)]/35 sm:border-[var(--teal)]/25 text-[var(--teal-light)] sm:text-[var(--teal)] text-[12px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-[1.3px] px-3.5 sm:px-3 py-1.5 rounded-full mb-3 sm:mb-2.5 md:mb-3.5 shadow-xs">
+            <lucide-icon [img]="icons.Megaphone" class="w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 text-[var(--teal-light)]"></lucide-icon>
             <span>{{ slides[currentSlide].badge }}</span>
           </div>
 
           <!-- Headline -->
           <div
-            class="min-h-[88px] sm:min-h-[50px] md:min-h-[60px] lg:min-h-[76px] xl:min-h-[92px] flex items-center mb-2.5 sm:mb-2 md:mb-3">
+            class="min-h-0 sm:min-h-[50px] md:min-h-[60px] lg:min-h-[76px] xl:min-h-[92px] flex items-center mb-2.5 sm:mb-2 md:mb-3">
             <h1
-              class="text-[25px] sm:text-[20px] md:text-[24px] lg:text-[32px] xl:text-[38px] 2xl:text-[42px] font-black leading-[1.22] sm:leading-[1.18] tracking-tight text-white sm:text-[var(--primary)]"
+              class="text-[28px] sm:text-[20px] md:text-[24px] lg:text-[32px] xl:text-[38px] 2xl:text-[42px] font-black leading-[1.2] sm:leading-[1.18] tracking-tight text-white sm:text-[var(--primary)]"
               style="font-family:'Outfit',sans-serif;" [innerHTML]="slides[currentSlide].title">
             </h1>
           </div>
 
           <!-- Description -->
-          <div
-            class="min-h-[78px] sm:min-h-[40px] md:min-h-[46px] lg:min-h-[52px] mb-3 sm:mb-2.5 md:mb-3 flex items-center">
+          <div class="min-h-0 sm:min-h-[40px] md:min-h-[46px] lg:min-h-[52px] mb-3 sm:mb-2.5 md:mb-3 flex items-center">
             <p
-              class="text-[13px] sm:text-[12px] md:text-[13px] lg:text-[14.5px] xl:text-[15.5px] text-slate-300 sm:text-gray-600 leading-[1.6] sm:leading-[1.55] max-w-[490px]">
+              class="text-[14.5px] sm:text-[12px] md:text-[13px] lg:text-[14.5px] xl:text-[15.5px] text-slate-200 sm:text-gray-600 leading-[1.65] sm:leading-[1.55] max-w-[490px]">
               {{ slides[currentSlide].desc }}
             </p>
           </div>
 
           <!-- Trust Signal: Location -->
           <div
-            class="flex items-center gap-2 text-[12px] sm:text-[11.5px] md:text-[12.5px] lg:text-[13.5px] xl:text-[14px] text-slate-200 sm:text-[var(--primary)] font-bold mb-3 sm:mb-2 md:mb-3">
-            <lucide-icon [img]="icons.MapPin" class="w-3.5 h-3.5 text-red-500 shrink-0"></lucide-icon>
+            class="flex items-center gap-2 text-[13px] sm:text-[11.5px] md:text-[12.5px] lg:text-[13.5px] xl:text-[14px] text-white sm:text-[var(--primary)] font-bold mb-3 sm:mb-2 md:mb-3">
+            <lucide-icon [img]="icons.MapPin" class="w-4 h-4 text-red-400 shrink-0"></lucide-icon>
             <span>Serving Trichy & Tamil Nadu</span>
           </div>
 
           <!-- Slide Quote Callout -->
           <div *ngIf="slides[currentSlide].quote"
-            class="min-h-[72px] my-2 sm:my-2 p-3 sm:p-3 rounded-xl bg-white/5 sm:bg-gradient-to-r sm:from-[var(--teal)]/10 sm:via-[var(--teal)]/5 sm:to-transparent border-l-[3px] border-[var(--teal)] flex items-center gap-2.5 transition-all duration-300">
+            class="my-2 sm:my-2 p-3.5 sm:p-3 rounded-xl bg-white/10 sm:bg-gradient-to-r sm:from-[var(--teal)]/10 sm:via-[var(--teal)]/5 sm:to-transparent border-l-4 border-[var(--teal)] flex items-start gap-2.5 transition-all duration-300">
             <lucide-icon [img]="icons.Quote"
-              class="w-3.5 h-3.5 text-[var(--teal)] shrink-0 mt-0.5 rotate-180"></lucide-icon>
+              class="w-4 h-4 text-[var(--teal-light)] shrink-0 mt-0.5 rotate-180"></lucide-icon>
             <p
-              class="text-[12px] sm:text-[11.5px] md:text-[12.5px] italic text-slate-200 sm:text-[var(--primary)] font-medium leading-[1.55] m-0">
+              class="text-[13px] sm:text-[11.5px] md:text-[12.5px] italic text-white sm:text-[var(--primary)] font-medium leading-[1.55] m-0">
               "{{ slides[currentSlide].quote }}"
             </p>
           </div>
@@ -102,27 +101,27 @@
         <!-- Bottom Controls: Action CTAs & Slide Dots -->
         <div class="flex flex-col gap-3.5 sm:gap-2 mt-4 sm:mt-2">
           <!-- Action CTAs -->
-          <div class="grid grid-cols-2 gap-2.5 sm:flex sm:flex-row sm:gap-2.5 w-full">
+          <div class="grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:gap-2.5 w-full">
             <!-- Primary CTA: Start Project -->
             <a routerLink="/contact"
-              class="inline-flex items-center justify-center gap-2 bg-[var(--teal)] text-white px-3 sm:px-4 md:px-5 py-3 sm:py-2.5 md:py-3 rounded-xl font-bold text-[12.5px] sm:text-[12.5px] md:text-[13.5px] lg:text-[15px] no-underline hover:bg-[#007a96] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,151,178,0.35)] shadow-md text-center">
+              class="inline-flex items-center justify-center gap-2 bg-[var(--teal)] text-white px-4 sm:px-4 md:px-5 py-3.5 sm:py-2.5 md:py-3 rounded-xl font-bold text-[13.5px] sm:text-[12.5px] md:text-[13.5px] lg:text-[15px] no-underline hover:bg-[#007a96] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,151,178,0.35)] shadow-md text-center">
               <lucide-icon [img]="icons.FileText" class="w-4 h-4 shrink-0"></lucide-icon>
               <span>Start Project</span>
             </a>
 
             <!-- Secondary CTA: Explore Services -->
             <a routerLink="/services"
-              class="inline-flex items-center justify-center gap-2 bg-white/10 sm:bg-white/95 border border-white/20 sm:border-slate-200 text-white sm:text-[var(--primary)] px-3 sm:px-4 md:px-5 py-3 sm:py-2.5 md:py-3 rounded-xl font-bold text-[12.5px] sm:text-[12.5px] md:text-[13.5px] lg:text-[15px] no-underline hover:bg-white/20 sm:hover:bg-white hover:text-white sm:hover:text-[var(--teal)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md shadow-xs text-center">
-              <lucide-icon [img]="icons.LayoutGrid" class="w-4 h-4 shrink-0 text-[var(--teal)]"></lucide-icon>
+              class="inline-flex items-center justify-center gap-2 bg-white/15 sm:bg-white/95 border border-white/25 sm:border-slate-200 text-white sm:text-[var(--primary)] px-4 sm:px-4 md:px-5 py-3.5 sm:py-2.5 md:py-3 rounded-xl font-bold text-[13.5px] sm:text-[12.5px] md:text-[13.5px] lg:text-[15px] no-underline hover:bg-white/25 sm:hover:bg-white hover:text-white sm:hover:text-[var(--teal)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md shadow-xs text-center">
+              <lucide-icon [img]="icons.LayoutGrid" class="w-4 h-4 shrink-0 text-[var(--teal-light)]"></lucide-icon>
               <span>Services</span>
             </a>
           </div>
 
           <!-- Slide Dots / Circle Indicator -->
-          <div class="flex items-center justify-center gap-2 pt-1 pb-1 sm:pt-3">
+          <div class="flex items-center justify-center gap-2.5 pt-2 pb-1 sm:pt-3">
             <button *ngFor="let slide of slides; let i = index" type="button"
               class="block rounded-full cursor-pointer transition-all duration-300 border-0 p-0"
-              [ngClass]="i === currentSlide ? 'w-7 sm:w-8 h-2 sm:h-2 bg-[var(--teal)]' : 'w-2 sm:w-2 h-2 sm:h-2 bg-white/30 sm:bg-gray-300 hover:bg-white/50 sm:hover:bg-gray-400'"
+              [ngClass]="i === currentSlide ? 'w-8 sm:w-8 h-2.5 sm:h-2 bg-[var(--teal-light)]' : 'w-2.5 sm:w-2 h-2.5 sm:h-2 bg-white/35 sm:bg-gray-300 hover:bg-white/60 sm:hover:bg-gray-400'"
               (click)="goToSlide(i)" [attr.aria-label]="'Go to slide ' + (i + 1)">
             </button>
           </div>
