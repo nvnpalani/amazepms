@@ -16,10 +16,11 @@
           <div class="flex items-center gap-3">
         
 
-          <a routerLink="/services"
-            class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl transition-all no-underline border border-white/20 hover:-translate-x-1">
+          <a [routerLink]="['/services']" [fragment]="service.categoryId"
+            class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl transition-all no-underline border border-white/20 hover:-translate-x-1"
+            [title]="'Back to ' + service.categoryTitle">
             <lucide-icon [img]="icons.ArrowLeft" class="w-4 h-4"></lucide-icon>
-           
+            <span>Back</span>
           </a>
         </div> 
 

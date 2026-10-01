@@ -76,6 +76,12 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.route.fragment.subscribe(fragment => {
+      if (fragment) {
+        this.scrollToCategory(fragment);
+      }
+    });
+
     this.route.queryParams.subscribe(params => {
       const serviceParam = params['service'];
       if (serviceParam) {
@@ -92,6 +98,23 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     });
+  }
+
+  scrollToCategory(categoryId: string) {
+    const doScroll = () => {
+      const element = document.getElementById(categoryId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return true;
+      }
+      return false;
+    };
+
+    setTimeout(() => {
+      if (!doScroll()) {
+        setTimeout(() => doScroll(), 150);
+      }
+    }, 80);
   }
 
   getCategoryIcon(id: string) {
