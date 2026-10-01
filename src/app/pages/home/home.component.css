@@ -23,7 +23,7 @@
    ============================================================ */
 @media (max-width: 639px) {
   .hero-section {
-    min-height: auto !important;
+    min-height: 65vh !important;
     height: auto !important;
     display: block !important;
   }
