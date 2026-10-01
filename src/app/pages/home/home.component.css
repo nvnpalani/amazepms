@@ -18,6 +18,31 @@
               #0b1f33;
 }
 
+/* ============================================================
+   MOBILE HERO COMPACT & CLEAN (NO UNWANTED GAPS)
+   ============================================================ */
+@media (max-width: 639px) {
+  .hero-section {
+    min-height: auto !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  .hero-section .hero-container {
+    min-height: auto !important;
+    height: auto !important;
+    display: block !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  .hero-content-card {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
 /* Responsive background image alignment */
 .hero-bg-img {
   width: 100%;

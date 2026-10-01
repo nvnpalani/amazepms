@@ -11,7 +11,7 @@
        - Mobile (< 768px / 320x768 - 414x896):  assets/home/mobile.png
   ============================================================ -->
   <section
-    class="hero-section relative w-full overflow-hidden flex items-center min-h-[calc(100vh-68px)] sm:min-h-[calc(100vh-76px)] min-h-[600px] lg:min-h-[calc(100vh-76px)] lg:min-h-[640px] xl:min-h-[700px] 2xl:min-h-[820px]">
+    class="hero-section relative w-full overflow-hidden flex items-center sm:min-h-[calc(100vh-76px)] lg:min-h-[calc(100vh-76px)] lg:min-h-[640px] xl:min-h-[700px] 2xl:min-h-[820px]">
 
     <!-- ============================================================
          RESPONSIVE HERO BACKGROUND PICTURE
@@ -28,8 +28,7 @@
       <source media="(min-width: 1024px)" srcset="assets/home/laptop.png">
       <!-- Tablet (768px to 1023px / 768x1024) -->
       <source media="(min-width: 768px)" srcset="assets/home/tablet.png">
-      <!-- Mobile (< 768px / 320x768 - 414x896) -->
-      <img src="assets/home/mobile.png" alt="AK CREATION - Outdoor Advertising & LED Signage Trichy"
+      <img src="assets/home/tablet.png" alt="AK CREATION - Outdoor Advertising & LED Signage Trichy"
         class="hero-bg-img w-full h-full object-cover" loading="eager" fetchpriority="high">
     </picture>
 
@@ -48,7 +47,7 @@
          - Tablet & Laptop & Desktop: Docked cleanly to the left in frosted glass card
     ============================================================ -->
     <div
-      class="relative z-10 w-full max-w-[1560px] mx-auto px-5 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-8 sm:py-6 md:py-10 lg:py-14 flex items-center justify-start min-h-[calc(100vh-68px)] sm:min-h-0">
+      class="hero-container relative z-10 w-full max-w-[1560px] mx-auto px-5 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-5 sm:py-6 md:py-10 lg:py-14 flex items-center justify-start">
 
       <!-- FLOATING CONTENT (ON MOBILE: SEAMLESS NO-BOX; ON TABLET/PC: FROSTED GLASS CARD ON LEFT) -->
       <div
@@ -58,14 +57,14 @@
         <div class="flex flex-col">
           <!-- Badge -->
           <div
-            class="inline-flex self-start items-center gap-2 bg-[var(--teal)]/15 sm:bg-[var(--teal)]/10 border border-[var(--teal)]/30 sm:border-[var(--teal)]/25 text-[var(--teal)] text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-[1.2px] sm:tracking-[1.3px] px-3 sm:px-3 py-1.5 sm:py-1.5 rounded-full mb-3.5 sm:mb-2.5 md:mb-3.5">
+            class="inline-flex self-start items-center gap-2 bg-[var(--teal)]/15 sm:bg-[var(--teal)]/10 border border-[var(--teal)]/30 sm:border-[var(--teal)]/25 text-[var(--teal)] text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-[1.2px] sm:tracking-[1.3px] px-3 sm:px-3 py-1.5 sm:py-1.5 rounded-full mb-3 sm:mb-2.5 md:mb-3.5">
             <lucide-icon [img]="icons.Megaphone" class="w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 text-[var(--teal)]"></lucide-icon>
             <span>{{ slides[currentSlide].badge }}</span>
           </div>
 
           <!-- Headline -->
           <div
-            class="min-h-0 sm:min-h-[50px] md:min-h-[60px] lg:min-h-[76px] xl:min-h-[92px] flex items-center mb-3 sm:mb-2 md:mb-3">
+            class="min-h-0 sm:min-h-[50px] md:min-h-[60px] lg:min-h-[76px] xl:min-h-[92px] flex items-center mb-2.5 sm:mb-2 md:mb-3">
             <h1
               class="text-[25px] sm:text-[20px] md:text-[24px] lg:text-[32px] xl:text-[38px] 2xl:text-[42px] font-black leading-[1.22] sm:leading-[1.18] tracking-tight text-white sm:text-[var(--primary)]"
               style="font-family:'Outfit',sans-serif;" [innerHTML]="slides[currentSlide].title">
@@ -74,7 +73,7 @@
 
           <!-- Description -->
           <div
-            class="min-h-0 sm:min-h-[40px] md:min-h-[46px] lg:min-h-[52px] mb-3.5 sm:mb-2.5 md:mb-3 flex items-center">
+            class="min-h-0 sm:min-h-[40px] md:min-h-[46px] lg:min-h-[52px] mb-3 sm:mb-2.5 md:mb-3 flex items-center">
             <p
               class="text-[13px] sm:text-[12px] md:text-[13px] lg:text-[14.5px] xl:text-[15.5px] text-slate-300 sm:text-gray-600 leading-[1.6] sm:leading-[1.55] max-w-[490px]">
               {{ slides[currentSlide].desc }}
@@ -83,7 +82,7 @@
 
           <!-- Trust Signal: Location -->
           <div
-            class="flex items-center gap-2 text-[12px] sm:text-[11.5px] md:text-[12.5px] lg:text-[13.5px] xl:text-[14px] text-slate-200 sm:text-[var(--primary)] font-bold mb-3.5 sm:mb-2 md:mb-3">
+            class="flex items-center gap-2 text-[12px] sm:text-[11.5px] md:text-[12.5px] lg:text-[13.5px] xl:text-[14px] text-slate-200 sm:text-[var(--primary)] font-bold mb-3 sm:mb-2 md:mb-3">
             <lucide-icon [img]="icons.MapPin" class="w-3.5 h-3.5 text-red-500 shrink-0"></lucide-icon>
             <span>Serving Trichy & Tamil Nadu</span>
           </div>
@@ -100,30 +99,33 @@
           </div>
         </div>
 
-        <!-- Action CTAs -->
-        <div class="grid grid-cols-2 gap-2.5 sm:flex sm:flex-row sm:gap-2.5 w-full mt-4 sm:mt-2">
-          <!-- Primary CTA: Start Project -->
-          <a routerLink="/contact"
-            class="inline-flex items-center justify-center gap-2 bg-[var(--teal)] text-white px-3 sm:px-4 md:px-5 py-3 sm:py-2.5 md:py-3 rounded-xl font-bold text-[12.5px] sm:text-[12.5px] md:text-[13.5px] lg:text-[15px] no-underline hover:bg-[#007a96] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,151,178,0.35)] shadow-md text-center">
-            <lucide-icon [img]="icons.FileText" class="w-4 h-4 shrink-0"></lucide-icon>
-            <span>Start Project</span>
-          </a>
+        <!-- Bottom Controls: Action CTAs & Slide Dots -->
+        <div class="flex flex-col gap-3.5 sm:gap-2 mt-4 sm:mt-2">
+          <!-- Action CTAs -->
+          <div class="grid grid-cols-2 gap-2.5 sm:flex sm:flex-row sm:gap-2.5 w-full">
+            <!-- Primary CTA: Start Project -->
+            <a routerLink="/contact"
+              class="inline-flex items-center justify-center gap-2 bg-[var(--teal)] text-white px-3 sm:px-4 md:px-5 py-3 sm:py-2.5 md:py-3 rounded-xl font-bold text-[12.5px] sm:text-[12.5px] md:text-[13.5px] lg:text-[15px] no-underline hover:bg-[#007a96] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,151,178,0.35)] shadow-md text-center">
+              <lucide-icon [img]="icons.FileText" class="w-4 h-4 shrink-0"></lucide-icon>
+              <span>Start Project</span>
+            </a>
 
-          <!-- Secondary CTA: Explore Services -->
-          <a routerLink="/services"
-            class="inline-flex items-center justify-center gap-2 bg-white/10 sm:bg-white/95 border border-white/20 sm:border-slate-200 text-white sm:text-[var(--primary)] px-3 sm:px-4 md:px-5 py-3 sm:py-2.5 md:py-3 rounded-xl font-bold text-[12.5px] sm:text-[12.5px] md:text-[13.5px] lg:text-[15px] no-underline hover:bg-white/20 sm:hover:bg-white hover:text-white sm:hover:text-[var(--teal)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md shadow-xs text-center">
-            <lucide-icon [img]="icons.LayoutGrid" class="w-4 h-4 shrink-0 text-[var(--teal)]"></lucide-icon>
-            <span>Services</span>
-          </a>
-        </div>
+            <!-- Secondary CTA: Explore Services -->
+            <a routerLink="/services"
+              class="inline-flex items-center justify-center gap-2 bg-white/10 sm:bg-white/95 border border-white/20 sm:border-slate-200 text-white sm:text-[var(--primary)] px-3 sm:px-4 md:px-5 py-3 sm:py-2.5 md:py-3 rounded-xl font-bold text-[12.5px] sm:text-[12.5px] md:text-[13.5px] lg:text-[15px] no-underline hover:bg-white/20 sm:hover:bg-white hover:text-white sm:hover:text-[var(--teal)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md shadow-xs text-center">
+              <lucide-icon [img]="icons.LayoutGrid" class="w-4 h-4 shrink-0 text-[var(--teal)]"></lucide-icon>
+              <span>Services</span>
+            </a>
+          </div>
 
-        <!-- Slide Dots / Circle Indicator -->
-        <div class="flex items-center justify-center gap-2 pt-5 sm:pt-3">
-          <button *ngFor="let slide of slides; let i = index" type="button"
-            class="block rounded-full cursor-pointer transition-all duration-300 border-0 p-0"
-            [ngClass]="i === currentSlide ? 'w-7 sm:w-8 h-2 sm:h-2 bg-[var(--teal)]' : 'w-2 sm:w-2 h-2 sm:h-2 bg-white/30 sm:bg-gray-300 hover:bg-white/50 sm:hover:bg-gray-400'"
-            (click)="goToSlide(i)" [attr.aria-label]="'Go to slide ' + (i + 1)">
-          </button>
+          <!-- Slide Dots / Circle Indicator -->
+          <div class="flex items-center justify-center gap-2 pt-1 pb-1 sm:pt-3">
+            <button *ngFor="let slide of slides; let i = index" type="button"
+              class="block rounded-full cursor-pointer transition-all duration-300 border-0 p-0"
+              [ngClass]="i === currentSlide ? 'w-7 sm:w-8 h-2 sm:h-2 bg-[var(--teal)]' : 'w-2 sm:w-2 h-2 sm:h-2 bg-white/30 sm:bg-gray-300 hover:bg-white/50 sm:hover:bg-gray-400'"
+              (click)="goToSlide(i)" [attr.aria-label]="'Go to slide ' + (i + 1)">
+            </button>
+          </div>
         </div>
 
       </div>
