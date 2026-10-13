@@ -18,6 +18,9 @@ export class AppComponent {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.isAdmin = this.router.url.startsWith('/admin');
+        if (!this.router.url.includes('#')) {
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        }
       }
     });
   }

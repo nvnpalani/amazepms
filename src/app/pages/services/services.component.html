@@ -1,39 +1,69 @@
 <main class="overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)] min-h-screen">
 
   <!-- Hero Banner -->
-  <section class="relative pt-24 pb-32 px-5 text-white overflow-hidden bg-[var(--primary)]">
+  <section class="relative py-12 md:py-16 px-5 text-white overflow-hidden bg-[var(--primary)]">
     <div class="absolute inset-0 bg-cover bg-center opacity-25" style="background-image: url('assets/home/ak_cat_print.png');"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/95 via-[var(--primary)]/85 to-transparent"></div>
     <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--teal)] via-[var(--primary)] to-transparent"></div>
     
-    <div class="relative max-w-[1300px] mx-auto z-10">
-      
-      <h1 class="text-[clamp(36px,5vw,64px)] font-black leading-[1.05] tracking-tight mb-5 font-display">
-        Professional Services<br><span class="text-[var(--teal)]">for Your Brand.</span>
-      </h1>
-      <p class="text-gray-300 text-[15px] md:text-[16px] leading-[1.7] max-w-[580px]">
-        Explore our 16 specialized signage, rigid boards, vehicle branding, and high-precision printing services. Click any service card to view complete technical specifications, dimensions, features, and high-resolution project photos.
-      </p>
+    <div class="relative max-w-[1300px] mx-auto z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+      <div class="max-w-[660px]">
+        <h1 class="text-[clamp(32px,4.5vw,56px)] font-black leading-[1.1] tracking-tight mb-4 font-display">
+          Professional Services<br><span class="text-[var(--teal)]">for Your Brand.</span>
+        </h1>
+        <p class="text-gray-300 text-[14px] md:text-[16px] leading-[1.7]">
+          Explore our 16 specialized signage, rigid boards, vehicle branding, and high-precision printing services. Click any service card to view complete technical specifications, dimensions, features, and high-resolution project photos.
+        </p>
+      </div>
+
+      <!-- Quick Feature Highlights (Shown only on Desktop, hidden on Mobile & Tablet) -->
+      <div class="hidden lg:grid grid-cols-2 gap-4 shrink-0 lg:w-auto lg:min-w-[340px]">
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[var(--teal)]/20 flex items-center justify-center text-[var(--teal-light)] font-black text-lg">16+</div>
+          <div>
+            <div class="text-white font-bold text-sm">Services</div>
+            <div class="text-gray-300 text-xs">Signage & Print</div>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[var(--teal)]/20 flex items-center justify-center text-[var(--teal-light)]">
+            <lucide-icon [img]="icons.BadgeCheck" class="w-5 h-5"></lucide-icon>
+          </div>
+          <div>
+            <div class="text-white font-bold text-sm">Trichy Local</div>
+            <div class="text-gray-300 text-xs">Direct Workshop</div>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[var(--teal)]/20 flex items-center justify-center text-[var(--teal-light)]">
+            <lucide-icon [img]="icons.Zap" class="w-5 h-5"></lucide-icon>
+          </div>
+          <div>
+            <div class="text-white font-bold text-sm">Fast Turnaround</div>
+            <div class="text-gray-300 text-xs">On-time Delivery</div>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[var(--teal)]/20 flex items-center justify-center text-[var(--teal-light)]">
+            <lucide-icon [img]="icons.Sparkles" class="w-5 h-5"></lucide-icon>
+          </div>
+          <div>
+            <div class="text-white font-bold text-sm">Custom Sizes</div>
+            <div class="text-gray-300 text-xs">Tailored to Fit</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Services by Category -->
-  <ng-container *ngFor="let cat of categories; let catIndex = index">
-    <section [id]="cat.id" class="py-20 md:py-24 px-5 border-b border-[var(--border-color)] scroll-mt-24"
+  <ng-container *ngFor="let cat of categories; let catIndex = index; trackBy: trackByCat">
+    <section [id]="cat.id" class="py-10 md:py-14 px-5 border-b border-[var(--border-color)] scroll-mt-24"
              [ngClass]="catIndex % 2 === 0 ? 'bg-[var(--bg-secondary)]' : 'bg-[var(--bg-card)]'">
       <div class="max-w-[1300px] mx-auto">
 
         <!-- Category Header -->
-        <div class="flex items-start gap-5 mb-12 reveal" #reveal>
-          <!-- <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shrink-0 border shadow-sm bg-white"
-               [ngClass]="{
-                 'text-[var(--primary)] border-[var(--primary)]/20': cat.color === 'navy',
-                 'text-[var(--teal)] border-[var(--teal)]/20': cat.color === 'teal',
-                 'text-[var(--accent-red)] border-[var(--accent-red)]/20': cat.color === 'red',
-                 'text-[#b7791f] border-[#b7791f]/20': cat.color === 'yellow'
-               }">
-            <lucide-icon [img]="getCategoryIcon(cat.id)" class="w-8 h-8"></lucide-icon>
-          </div> -->
+        <div class="flex items-start gap-5 mb-7">
           <div>
             <span class="badge mb-3 block w-max"
                   [ngClass]="{
@@ -49,10 +79,10 @@
 
         <!-- 4-Column Grid with direct link to individual service page -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <a *ngFor="let svc of cat.services; let i = index"
+          <a *ngFor="let svc of cat.services; let i = index; trackBy: trackBySvc"
              [routerLink]="['/services', svc.id]"
-             class="reveal bg-[var(--bg-card)] rounded-2xl border border-[var(--border-color)] card-hover group overflow-hidden flex flex-col shadow-sm hover:shadow-2xl hover:border-[var(--teal)]/40 transition-all duration-300 cursor-pointer no-underline text-inherit" #reveal
-             [style.transitionDelay]="(i * 0.07) + 's'">
+             (click)="onServiceClick(cat.id)"
+             class="bg-[var(--bg-card)] rounded-2xl border border-[var(--border-color)] card-hover group overflow-hidden flex flex-col shadow-sm hover:shadow-2xl hover:border-[var(--teal)]/40 transition-all duration-300 cursor-pointer no-underline text-inherit">
             
             <!-- Card Image Box -->
             <div class="relative h-[210px] overflow-hidden bg-slate-900 border-b border-[var(--border-color)] block">
@@ -61,8 +91,6 @@
                    class="w-full h-full object-cover service-card-img transition-transform duration-500 group-hover:scale-108" 
                    loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-60 group-hover:opacity-85 transition-opacity"></div>
-     
-            
 
               <!-- Hover Hint Overlay -->
               <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-black/35 backdrop-blur-[2px]">
@@ -71,8 +99,6 @@
                   View Details & Photos
                 </span>
               </div>
-
-
             </div>
 
             <!-- Card Content -->
@@ -91,7 +117,6 @@
                   <span>Explore Details</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="transform group-hover:translate-x-1.5 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
-                
               </div>
             </div>
 

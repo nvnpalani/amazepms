@@ -29,6 +29,7 @@ export interface ServiceCategory {
   title: string;
   subtitle: string;
   color: string;
+  imageUrl?: string;
   services: ServiceItem[];
 }
 
@@ -290,7 +291,7 @@ export const SERVICES_CATEGORIES: ServiceCategory[] = [
         images: [
           'assets/our_work/reflective-board/d(1).jpeg',
           'assets/our_work/reflective-board/d(2).jpeg',
-          'assets/our_work/reflective-board/d(3).jpeg',
+          'assets/our_work/reflective-board/d(3).jpeg', 
         ],
         categoryId: 'boards-sheets',
         categoryTitle: 'Boards & Rigid Sheet Works',

@@ -1,0 +1,260 @@
+<div class="services-mgmt-page">
+  <!-- Toast Notification -->
+  <div *ngIf="toastMessage" class="toast-notification" [ngClass]="toastType">
+    <i class="fa-solid" [ngClass]="toastType === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'"></i>
+    <span>{{ toastMessage }}</span>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Manage Services &amp; Project Images</h1>
+      <p class="page-subtitle">Upload client project photos, manage service categories, and showcase your best work.</p>
+    </div>
+    <div class="header-buttons">
+      <button class="btn btn-secondary" (click)="openAddServiceModal()">
+        <i class="fa-solid fa-plus"></i>
+        <span>Add Service</span>
+      </button>
+      <button class="btn btn-primary" (click)="openUploadModal()">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <span>Add New Image</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Filter & Search Toolbar -->
+  <div class="toolbar-card">
+    <div class="filter-group">
+      <label><i class="fa-solid fa-filter"></i> Category Filter:</label>
+      <select [(ngModel)]="selectedCategoryFilter" (change)="onCategoryFilterChange()" class="form-select">
+        <option value="">All Categories ({{ categories.length }})</option>
+        <option *ngFor="let cat of categories" [value]="cat._id">{{ cat.name }}</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label><i class="fa-solid fa-cube"></i> Service Filter:</label>
+      <select [(ngModel)]="selectedServiceFilter" (change)="onServiceFilterChange()" class="form-select">
+        <option value="">All Services ({{ filteredServices.length }})</option>
+        <option *ngFor="let svc of filteredServices" [value]="svc._id">{{ svc.name }}</option>
+      </select>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" [(ngModel)]="searchQuery" placeholder="Search project name, client...">
+      <button *ngIf="searchQuery" (click)="searchQuery = ''" class="clear-search">&times;</button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner-large"></div>
+    <p>Loading project gallery images...</p>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading && displayedImages.length === 0" class="empty-state">
+    <i class="fa-regular fa-images empty-icon"></i>
+    <h3>No Project Images Found</h3>
+    <p>Upload your completed client project photos by clicking <strong>Add New Image</strong> above.</p>
+    <button class="btn btn-primary mt-4" (click)="openUploadModal()">
+      <i class="fa-solid fa-cloud-arrow-up"></i>
+      <span>Upload First Project Image</span>
+    </button>
+  </div>
+
+  <!-- Project Images Gallery Grid -->
+  <div *ngIf="!isLoading && displayedImages.length > 0" class="gallery-grid">
+    <div *ngFor="let img of displayedImages" class="gallery-card">
+      <div class="image-wrapper">
+        <img [src]="img.imageUrl" [alt]="img.projectName || 'Project work'" class="project-img" loading="lazy">
+        <div class="image-overlay">
+          <button class="btn-delete-img" (click)="deleteProjectImage(img)" title="Delete image">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div class="badges-row">
+          <span class="badge-service" [title]="getServiceName(img.serviceId)">
+            {{ getServiceName(img.serviceId) || 'General Service' }}
+          </span>
+        </div>
+
+        <h4 class="project-name">{{ img.projectName || 'Client Project Work' }}</h4>
+        <p *ngIf="img.description" class="project-desc">{{ img.description }}</p>
+
+        <div class="meta-footer">
+          <span class="meta-date">
+            <i class="fa-regular fa-calendar"></i>
+            {{ img.createdAt ? (img.createdAt | date:'mediumDate') : 'Recently Added' }}
+          </span>
+          <button class="btn-inline-delete" (click)="deleteProjectImage(img)">
+            <i class="fa-solid fa-trash"></i> Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- UPLOAD PROJECT IMAGE MODAL -->
+  <!-- ============================================== -->
+  <div *ngIf="showUploadModal" class="modal-backdrop" (click)="closeUploadModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <i class="fa-solid fa-cloud-arrow-up text-primary"></i>
+          <h3>Upload Client Project Image</h3>
+        </div>
+        <button class="modal-close" (click)="closeUploadModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="uploadError" class="alert-error">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>{{ uploadError }}</span>
+        </div>
+
+        <form (ngSubmit)="uploadProjectImage()">
+          <!-- Category Selection -->
+          <div class="form-group">
+            <label for="uploadCategory">Category <span class="required">*</span></label>
+            <select id="uploadCategory" [(ngModel)]="uploadCategoryId" (change)="onUploadCategoryChange()" name="uploadCategory" class="form-select" required>
+              <option value="" disabled>Select Category</option>
+              <option *ngFor="let cat of categories" [value]="cat._id">{{ cat.name }}</option>
+            </select>
+          </div>
+
+          <!-- Service Selection -->
+          <div class="form-group">
+            <label for="uploadService">Service <span class="required">*</span></label>
+            <select id="uploadService" [(ngModel)]="uploadServiceId" name="uploadService" class="form-select" required>
+              <option value="" disabled>Select Service</option>
+              <option *ngFor="let svc of servicesForUpload" [value]="svc._id">{{ svc.name }}</option>
+            </select>
+            <span *ngIf="servicesForUpload.length === 0" class="field-hint text-warning">
+              No services found for this category. Please add a service first.
+            </span>
+          </div>
+
+          <!-- Project / Client Name -->
+          <div class="form-group">
+            <label for="uploadProjectName">Project / Client Name (Optional)</label>
+            <input type="text" id="uploadProjectName" [(ngModel)]="uploadProjectName" name="uploadProjectName" placeholder="e.g. ABC Textiles, Metro Mall, City Hospital" class="form-input">
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="uploadDescription">Description (Optional)</label>
+            <textarea id="uploadDescription" [(ngModel)]="uploadDescription" name="uploadDescription" rows="2" placeholder="e.g. 3D Acrylic LED letters with warm white illumination" class="form-input"></textarea>
+          </div>
+
+          <!-- Drag and Drop Image Box -->
+          <div class="form-group">
+            <label>Project Image <span class="required">*</span></label>
+            
+            <div *ngIf="!imagePreview" 
+                 class="drop-zone" 
+                 (dragover)="onDragOver($event)" 
+                 (drop)="onFileDropped($event)">
+              <i class="fa-solid fa-image drop-icon"></i>
+              <p class="drop-text">Drag &amp; Drop project image here, or <span class="browse-link" (click)="fileInput.click()">Choose File</span></p>
+              <p class="drop-hint">Allowed: JPG, PNG, WEBP (Max: 5MB)</p>
+              <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/jpg, image/webp" class="hidden-input">
+            </div>
+
+            <!-- Preview Selected Image -->
+            <div *ngIf="imagePreview" class="preview-box">
+              <img [src]="imagePreview" alt="Project Preview" class="preview-img">
+              <div class="preview-info">
+                <span class="preview-filename">{{ selectedFile?.name }}</span>
+                <span class="preview-size">{{ ((selectedFile?.size || 0) / (1024 * 1024)) | number:'1.2-2' }} MB</span>
+                <button type="button" class="btn-remove-preview" (click)="removeSelectedFile()">
+                  <i class="fa-solid fa-trash-can"></i> Remove
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeUploadModal()" [disabled]="isUploading">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" [disabled]="isUploading">
+              <span *ngIf="isUploading" class="spinner"></span>
+              <i *ngIf="!isUploading" class="fa-solid fa-cloud-arrow-up"></i>
+              <span>{{ isUploading ? 'Uploading to Cloudinary...' : 'Upload Image' }}</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- ADD NEW SERVICE MODAL -->
+  <!-- ============================================== -->
+  <div *ngIf="showAddServiceModal" class="modal-backdrop" (click)="closeAddServiceModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <i class="fa-solid fa-cube text-primary"></i>
+          <h3>Add New Service</h3>
+        </div>
+        <button class="modal-close" (click)="closeAddServiceModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="newServiceError" class="alert-error">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>{{ newServiceError }}</span>
+        </div>
+
+        <form (ngSubmit)="saveNewService()">
+          <div class="form-group">
+            <label>Category <span class="required">*</span></label>
+            <select [(ngModel)]="newServiceCategoryId" name="newServiceCategoryId" class="form-select" required>
+              <option value="" disabled>Select Category</option>
+              <option *ngFor="let cat of categories" [value]="cat._id">{{ cat.name }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Service Name <span class="required">*</span></label>
+            <input type="text" [(ngModel)]="newServiceName" name="newServiceName" placeholder="e.g. Backlit Glow Sign Board" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea [(ngModel)]="newServiceDesc" name="newServiceDesc" rows="3" placeholder="Brief service details..." class="form-input"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Primary Service Image (Optional)</label>
+            <input type="file" (change)="onNewServiceFile($event)" accept="image/png, image/jpeg, image/jpg, image/webp" class="form-input">
+            <div *ngIf="newServicePreview" class="preview-box mt-2">
+              <img [src]="newServicePreview" alt="Service Preview" class="preview-img">
+              <span>{{ newServiceFile?.name }}</span>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeAddServiceModal()" [disabled]="isSavingService">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" [disabled]="isSavingService">
+              <span *ngIf="isSavingService" class="spinner"></span>
+              <span>{{ isSavingService ? 'Saving Service...' : 'Create Service' }}</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

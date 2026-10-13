@@ -34,6 +34,7 @@ import {
   Check
 } from 'lucide-angular';
 import { ServiceItem, getServiceById, getRelatedServices } from '../../data/services.data';
+import { ServicesApiService, ProjectImageData } from '../../services/services-api.service';
 
 @Component({
   selector: 'app-service-detail',
@@ -62,7 +63,7 @@ export class ServiceDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     Printer, 
     RectangleHorizontal, 
     FileText, 
-    Palette,
+    Palette, 
     Eye,
     X,
     ChevronLeft,
@@ -80,6 +81,7 @@ export class ServiceDetailComponent implements OnInit, AfterViewInit, OnDestroy 
 
   service: ServiceItem | null = null;
   relatedServices: ServiceItem[] = [];
+  uploadedProjectImages: ProjectImageData[] = [];
   activeImageIndex: number = 0;
   isLightboxOpen: boolean = false;
   copiedUrl: boolean = false;
@@ -92,7 +94,8 @@ export class ServiceDetailComponent implements OnInit, AfterViewInit, OnDestroy 
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private api: ServicesApiService
   ) {}
 
   ngOnInit() {
@@ -105,27 +108,85 @@ export class ServiceDetailComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   loadService(id: string) {
-    const found = getServiceById(id);
-    if (found) {
-      this.service = found;
+    const staticFound = getServiceById(id);
+    if (staticFound) {
+      this.service = { ...staticFound, images: [...staticFound.images] };
       this.activeImageIndex = 0;
       this.isLightboxOpen = false;
-      this.relatedServices = getRelatedServices(found.categoryId, found.id);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      this.relatedServices = getRelatedServices(staticFound.categoryId, staticFound.id);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+
+    // Now query backend API for live service and uploaded project gallery photos
+    this.api.getServiceByIdOrSlug(id).subscribe({
+      next: (res) => {
+        if (res && res.service) {
+          const apiSvc = res.service;
+          this.uploadedProjectImages = res.projectImages || [];
+
+          if (!this.service) {
+            // If static service did not exist, construct from API
+            const catName = typeof apiSvc.categoryId === 'object' ? apiSvc.categoryId?.name : 'Services';
+            const catSlug = typeof apiSvc.categoryId === 'object' ? apiSvc.categoryId?.slug : 'signage-led';
+            this.service = {
+              id: apiSvc.slug || apiSvc._id,
+              name: apiSvc.name,
+              desc: apiSvc.description || '',
+              image: apiSvc.image || 'assets/service/led-sign-board.png',
+              images: this.uploadedProjectImages.map(p => p.imageUrl),
+              categoryId: catSlug,
+              categoryTitle: catName,
+              categoryColor: 'navy',
+              features: apiSvc.features || [],
+              applications: apiSvc.applications || [],
+              specs: apiSvc.specs || {}
+            };
+            if (this.service.images.length === 0 && apiSvc.image) {
+              this.service.images = [apiSvc.image];
+            }
+            this.relatedServices = getRelatedServices(catSlug, this.service.id);
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          } else {
+            // Append newly uploaded project photos to the service images array so slider/lightbox includes them
+            if (this.uploadedProjectImages.length > 0) {
+              const uploadedUrls = this.uploadedProjectImages.map(p => p.imageUrl);
+              const combined = Array.from(new Set([...uploadedUrls, ...this.service.images]));
+              this.service.images = combined;
+            }
+          }
+        } else if (!staticFound) {
+          this.router.navigate(['/services']);
+        }
+      },
+      error: () => {
+        if (!staticFound) {
+          this.router.navigate(['/services']);
+        }
+      }
+    });
+  }
+
+  openProjectImageLightbox(imageUrl: string) {
+    if (!this.service) return;
+    const index = this.service.images.indexOf(imageUrl);
+    if (index >= 0) {
+      this.openLightbox(index);
     } else {
-      // Fallback redirect to services list if service id not found
-      this.router.navigate(['/services']);
+      this.service.images.push(imageUrl);
+      this.openLightbox(this.service.images.length - 1);
     }
   }
 
   selectImage(index: number) {
     this.activeImageIndex = index;
+    this.scrollActiveThumbnail(index);
   }
 
   nextImage(event?: MouseEvent) {
     if (event) event.stopPropagation();
     if (this.service && this.service.images.length > 0) {
       this.activeImageIndex = (this.activeImageIndex + 1) % this.service.images.length;
+      this.scrollActiveThumbnail(this.activeImageIndex);
     }
   }
 
@@ -133,6 +194,7 @@ export class ServiceDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     if (event) event.stopPropagation();
     if (this.service && this.service.images.length > 0) {
       this.activeImageIndex = (this.activeImageIndex - 1 + this.service.images.length) % this.service.images.length;
+      this.scrollActiveThumbnail(this.activeImageIndex);
     }
   }
 
@@ -167,10 +229,33 @@ export class ServiceDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     }
   }
 
+  scrollActiveThumbnail(index: number) {
+    setTimeout(() => {
+      const thumb = document.getElementById(`thumb-${index}`);
+      if (thumb) {
+        thumb.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+
+      const lightboxThumb = document.getElementById(`lightbox-thumb-${index}`);
+      if (lightboxThumb) {
+        lightboxThumb.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+    }, 60);
+  }
+
   openLightbox(index: number = 0) {
     this.activeImageIndex = index;
     this.isLightboxOpen = true;
     document.body.style.overflow = 'hidden';
+    this.scrollActiveThumbnail(index);
   }
 
   closeLightbox() {

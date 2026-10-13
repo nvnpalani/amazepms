@@ -1,0 +1,578 @@
+<div class="mgmt-page">
+  <!-- Toast Feedback -->
+  <div *ngIf="toastMessage" class="toast-notification" [ngClass]="toastType">
+    <i class="fa-solid" [ngClass]="toastType === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'"></i>
+    <span>{{ toastMessage }}</span>
+  </div>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Manage Categories &amp; Service Cards</h1>
+      <p class="page-subtitle">
+        Select Category 1, 2, 3, 4 &rarr; Click any of the 4 cards to see and manage its Front Image and Inside Gallery Photos.
+      </p>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner-large"></div>
+    <p>Loading categories, cards, and images...</p>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="!isLoading">
+
+    <!-- ======================================================== -->
+    <!-- VIEW 1: SERVICES PAGE VISUAL LIST VIEW -->
+    <!-- ======================================================== -->
+    <div *ngIf="viewMode === 'list'">
+
+      <!-- 1. Category Quick Filter Bar -->
+      <div class="category-filter-toolbar">
+        <div class="toolbar-title-wrap">
+          <i class="fa-solid fa-layer-group text-primary"></i>
+          <span>Categories View:</span>
+        </div>
+
+        <div class="filter-pills-row">
+          <button class="filter-pill-btn" 
+                  [class.active]="filterCategoryIndex === -1"
+                  (click)="setFilterCategory(-1)">
+            <span>All Categories ({{ services.length }} Cards)</span>
+          </button>
+
+          <button *ngFor="let cat of categories; let cIdx = index"
+                  class="filter-pill-btn"
+                  [class.active]="filterCategoryIndex === cIdx"
+                  (click)="setFilterCategory(cIdx)">
+            <span class="pill-dot" [ngClass]="'dot-' + cat.color"></span>
+            <span>Category {{ cIdx + 1 }}: {{ cat.name }} ({{ getServicesForCategory(cat).length }})</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. Services Page Visual Sections (Exact Website Design) -->
+      <div class="services-sections-container">
+        <div *ngFor="let cat of getDisplayedCategories(); let cIdx = index" 
+             class="service-category-section"
+             [ngClass]="getCategoryIndex(cat) % 2 === 0 ? 'section-alt-bg' : 'section-default-bg'">
+          
+          <div class="section-content-wrapper">
+            <!-- Category Header (Clean like website - Right side add button removed) -->
+            <div class="category-header-banner">
+              <div class="cat-header-info">
+                <span class="badge mb-2" [ngClass]="{
+                  'badge-navy': cat.color === 'navy',
+                  'badge-teal': cat.color === 'teal',
+                  'badge-red':  cat.color === 'red',
+                  'badge-yellow': cat.color === 'yellow'
+                }">Category {{ getCategoryIndex(cat) + 1 }}</span>
+                <h2 class="cat-headline">{{ cat.name }}</h2>
+                <p class="cat-subheadline">{{ cat.subtitle }}</p>
+              </div>
+            </div>
+
+            <!-- 4-Column Responsive Grid (Exact Website Cards with Admin Tools) -->
+            <div class="services-cards-grid">
+              <div *ngFor="let svc of getServicesForCategory(cat); let sIdx = index"
+                   class="service-card-item group"
+                   (click)="openCardDetailPage(svc, cat, $event)">
+
+              <!-- Card Image Box (210px height like website) -->
+              <div class="card-media-box">
+                <img [src]="svc.image || 'assets/service/led-sign-board.png'" 
+                     [alt]="svc.name" 
+                     class="card-img-cover" 
+                     loading="lazy">
+                
+                <div class="card-img-dark-overlay"></div>
+
+                <!-- Floating Admin Action Buttons (Top-Right) -->
+                <div class="card-floating-actions" (click)="$event.stopPropagation()">
+                  <button type="button" class="mini-action-btn camera-act" (click)="openChangeFrontImageForService(svc, cat, $event)" title="Change Front Image">
+                    <i class="fa-solid fa-camera"></i>
+                  </button>
+                  <button type="button" class="mini-action-btn edit-act" (click)="openEditServiceForService(svc, cat, $event)" title="Edit Card Details">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button type="button" class="mini-action-btn delete-act" (click)="deleteCardService(svc, $event)" title="Delete This Card">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+
+                <!-- Photos Count Badge (Bottom-Left) -->
+                <div class="photos-count-badge">
+                  <i class="fa-solid fa-images"></i>
+                  <span>{{ getInsideImagesForService(svc).length }} Photos</span>
+                </div>
+
+                <!-- Hover Center Hint -->
+                <div class="card-hover-hint">
+                  <span class="hint-badge">
+                    <i class="fa-solid fa-eye"></i>
+                    <span>Click to Manage Front &amp; Inside Images</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Card Content (Exact Website Layout) -->
+              <div class="card-text-body">
+                <div>
+                  <h3 class="card-title-text">{{ svc.name }}</h3>
+                  <p class="card-description-text">{{ svc.description }}</p>
+                </div>
+
+                <!-- Card Footer with Manage Images Link -->
+                <div class="card-footer-row">
+                  <span class="btn-manage-link">
+                    <span>Manage All Images</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Empty Category State -->
+          <div *ngIf="getServicesForCategory(cat).length === 0" class="empty-category-card">
+            <i class="fa-solid fa-layer-group text-muted"></i>
+            <h4>No cards in this category yet</h4>
+            <p>Click "Add New Card" above to add your first service card.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- End View 1: list view -->
+
+  <!-- ======================================================== -->
+  <!-- VIEW 2: INDIVIDUAL CARD PAGE (NO POPUP - FULL PAGE VIEW!) -->
+  <!-- ======================================================== -->
+  <div *ngIf="viewMode === 'detail' && selectedService" class="individual-card-page">
+    
+    <!-- Top Navigation & Back Bar -->
+    <div class="individual-page-topbar">
+      <button type="button" class="btn-back-nav" (click)="goBackToList()">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to All Categories &amp; Cards</span>
+      </button>
+
+      <div class="topbar-actions">
+        <button class="btn btn-secondary btn-sm" (click)="openEditServiceModal()">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <span>Edit Card Details</span>
+        </button>
+        <button class="btn btn-danger-outline btn-sm" (click)="deleteSelectedCard()">
+          <i class="fa-solid fa-trash-can"></i>
+          <span>Delete Card</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dedicated Card Header Banner -->
+    <div class="individual-card-hero">
+      <div class="hero-left">
+        <span class="badge mb-2" [ngClass]="{
+          'badge-navy': activeCategory?.color === 'navy',
+          'badge-teal': activeCategory?.color === 'teal',
+          'badge-red':  activeCategory?.color === 'red',
+          'badge-yellow': activeCategory?.color === 'yellow'
+        }">Category {{ activeCategoryIndex + 1 }}: {{ activeCategory?.name }}</span>
+        <h1 class="individual-card-title">{{ selectedService.name }}</h1>
+        <p class="individual-card-desc">{{ selectedService.description }}</p>
+      </div>
+    </div>
+
+    <!-- Media Management Stack (Full-Width Front Image + 2-Column Inside Gallery Grid) -->
+    <div class="individual-media-stack">
+
+      <!-- SECTION A: FRONT COVER IMAGE (FULL WIDTH) -->
+      <div class="media-box front-cover-box fullwidth-front-box">
+        <div class="media-box-header">
+          <div class="header-left">
+            <i class="fa-regular fa-image text-primary"></i>
+            <div>
+              <h3>Front Cover Image (Full Width)</h3>
+              <span class="hint-text">Shown on the main Services page card &bull; High Definition Display</span>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <button class="btn btn-primary btn-sm" (click)="openChangeFrontImageModal()">
+              <i class="fa-solid fa-camera"></i>
+              <span>{{ selectedService.image ? 'Change Front Image' : 'Upload Front Image' }}</span>
+            </button>
+            <button *ngIf="selectedService.image" class="btn btn-danger-outline btn-sm" (click)="deleteFrontImage()">
+              <i class="fa-solid fa-trash"></i>
+              <span>Remove</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Big Front Image Frame (Full Width) -->
+        <div class="front-cover-display">
+          <div *ngIf="selectedService.image" class="large-front-frame-fullwidth group" (click)="openLightbox(selectedService.image)">
+            <img [src]="selectedService.image" [alt]="selectedService.name" class="large-front-img">
+            <div class="front-hover-badge">
+              <i class="fa-solid fa-magnifying-glass-plus"></i> Click to Zoom Fullscreen
+            </div>
+          </div>
+
+          <div *ngIf="!selectedService.image" class="empty-front-frame" (click)="openChangeFrontImageModal()">
+            <i class="fa-regular fa-image empty-front-icon"></i>
+            <h4>No Front Image Uploaded</h4>
+            <p>Click here or "Upload Front Image" above to add a cover photo for this card.</p>
+            <button class="btn btn-primary btn-sm mt-3">+ Choose Image</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION B: INSIDE GALLERY IMAGES (FULL WIDTH - 2 PER ROW) -->
+      <div class="media-box inside-gallery-box fullwidth-inside-box">
+        <div class="media-box-header">
+          <div class="header-left">
+            <i class="fa-solid fa-images text-primary"></i>
+            <div>
+              <h3>Inside Gallery Images (Full Show &bull; 2 Photos per Row)</h3>
+              <span class="hint-text">
+                Shown inside the client project page &bull; {{ selectedCardInsideImages.length }} photos uploaded
+              </span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-sm" (click)="openAddInsideImageModal()">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>+ Add Inside Image</span>
+          </button>
+        </div>
+
+        <!-- Inside Gallery 2-Column Grid (1 2, 1 2, 1 2) -->
+        <div *ngIf="selectedCardInsideImages.length > 0" class="inside-grid-2col">
+          <div *ngFor="let img of selectedCardInsideImages; let idx = index" class="gallery-photo-card-lg group">
+            <div class="photo-img-wrap" (click)="openLightbox(img.imageUrl)">
+              <img [src]="img.imageUrl" [alt]="img.projectName || selectedService.name" class="gallery-photo-img" loading="lazy">
+              
+              <!-- Hover Action Overlay -->
+              <div class="photo-overlay">
+                <span class="zoom-btn" title="Zoom photo">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                </span>
+                <button class="delete-photo-btn" (click)="$event.stopPropagation(); deleteInsideImage(img)" title="Delete this image">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="photo-footer">
+              <span class="photo-title" [title]="img.projectName || 'Photo ' + (idx + 1)">
+                {{ img.projectName || 'Photo ' + (idx + 1) }}
+              </span>
+              <button class="btn-del-link" (click)="deleteInsideImage(img)" title="Delete image">
+                <i class="fa-solid fa-trash"></i> Delete Photo
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State for Inside Gallery -->
+        <div *ngIf="selectedCardInsideImages.length === 0" class="empty-inside-full" (click)="openAddInsideImageModal()">
+          <i class="fa-regular fa-images empty-inside-icon"></i>
+          <h4>No Inside Photos Added Yet</h4>
+          <p>Upload client project photos for this service to showcase in the website gallery.</p>
+          <button class="btn btn-primary btn-sm mt-3">+ Add First Inside Photo</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: CHANGE FRONT IMAGE -->
+  <!-- ============================================== -->
+  <div *ngIf="showFrontImageModal" class="modal-backdrop" (click)="closeFrontImageModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <i class="fa-solid fa-camera text-primary"></i>
+          <h3>Change Front Cover Image</h3>
+        </div>
+        <button class="modal-close" (click)="closeFrontImageModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-subtitle">
+          Updating front cover image for: <strong>{{ selectedService?.name }}</strong>
+        </p>
+
+        <div *ngIf="uploadError" class="alert-error">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>{{ uploadError }}</span>
+        </div>
+
+        <!-- Drag & Drop -->
+        <div *ngIf="!imagePreview" 
+             class="drop-zone" 
+             (dragover)="onDragOver($event)" 
+             (drop)="onFileDropped($event)">
+          <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+          <p class="drop-text">Drag &amp; Drop new front image, or <span class="browse-link" (click)="fileInput.click()">Choose File</span></p>
+          <p class="drop-hint">Allowed: JPG, PNG, WEBP (Max 5MB)</p>
+          <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/jpg, image/webp" class="hidden-input">
+        </div>
+
+        <!-- Preview -->
+        <div *ngIf="imagePreview" class="preview-box">
+          <img [src]="imagePreview" alt="Preview" class="preview-img">
+          <div class="preview-info">
+            <span class="preview-filename">{{ selectedFile?.name }}</span>
+            <span class="preview-size">{{ ((selectedFile?.size || 0) / (1024 * 1024)) | number:'1.2-2' }} MB</span>
+            <button type="button" class="btn-remove-preview" (click)="removeSelectedFile()">
+              <i class="fa-solid fa-trash-can"></i> Remove
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeFrontImageModal()" [disabled]="isProcessing">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" (click)="saveFrontImage()" [disabled]="isProcessing || !selectedFile">
+            <span *ngIf="isProcessing" class="spinner"></span>
+            <span>{{ isProcessing ? 'Uploading...' : 'Save Front Image' }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ADD INSIDE GALLERY PHOTO -->
+  <!-- ============================================== -->
+  <div *ngIf="showInsideImageModal" class="modal-backdrop" (click)="closeInsideImageModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <i class="fa-solid fa-cloud-arrow-up text-primary"></i>
+          <h3>Add Inside Gallery Photo</h3>
+        </div>
+        <button class="modal-close" (click)="closeInsideImageModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-subtitle">
+          Adding inside photo to: <strong>{{ selectedService?.name }}</strong>
+        </p>
+
+        <div *ngIf="uploadError" class="alert-error">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>{{ uploadError }}</span>
+        </div>
+
+        <div class="form-group">
+          <label>Project / Client Label (Optional)</label>
+          <input type="text" [(ngModel)]="projectNameInput" placeholder="e.g. City Textile Showroom" class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label>Description / Note (Optional)</label>
+          <input type="text" [(ngModel)]="projectDescInput" placeholder="e.g. 3D acrylic backlit signage" class="form-input">
+        </div>
+
+        <!-- Drag & Drop -->
+        <div *ngIf="!imagePreview" 
+             class="drop-zone" 
+             (dragover)="onDragOver($event)" 
+             (drop)="onFileDropped($event)">
+          <i class="fa-solid fa-image drop-icon"></i>
+          <p class="drop-text">Drag &amp; Drop inside photo, or <span class="browse-link" (click)="fileInput2.click()">Choose File</span></p>
+          <p class="drop-hint">Allowed: JPG, PNG, WEBP (Max 5MB)</p>
+          <input #fileInput2 type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/jpg, image/webp" class="hidden-input">
+        </div>
+
+        <!-- Preview -->
+        <div *ngIf="imagePreview" class="preview-box">
+          <img [src]="imagePreview" alt="Preview" class="preview-img">
+          <div class="preview-info">
+            <span class="preview-filename">{{ selectedFile?.name }}</span>
+            <span class="preview-size">{{ ((selectedFile?.size || 0) / (1024 * 1024)) | number:'1.2-2' }} MB</span>
+            <button type="button" class="btn-remove-preview" (click)="removeSelectedFile()">
+              <i class="fa-solid fa-trash-can"></i> Remove
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeInsideImageModal()" [disabled]="isProcessing">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" (click)="saveInsideImage()" [disabled]="isProcessing || !selectedFile">
+            <span *ngIf="isProcessing" class="spinner"></span>
+            <span>{{ isProcessing ? 'Uploading...' : 'Upload Inside Photo' }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: EDIT SERVICE CARD DETAILS -->
+  <!-- ============================================== -->
+  <div *ngIf="showEditServiceModal" class="modal-backdrop" (click)="closeEditServiceModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <i class="fa-solid fa-pen-to-square text-primary"></i>
+          <h3>Edit Service Card</h3>
+        </div>
+        <button class="modal-close" (click)="closeEditServiceModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Service Title <span class="required">*</span></label>
+          <input type="text" [(ngModel)]="serviceNameInput" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea [(ngModel)]="serviceDescInput" rows="3" class="form-input"></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeEditServiceModal()" [disabled]="isProcessing">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" (click)="saveEditService()" [disabled]="isProcessing">
+            <span *ngIf="isProcessing" class="spinner"></span>
+            <span>{{ isProcessing ? 'Saving...' : 'Save Changes' }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ADD NEW SERVICE CARD -->
+  <!-- ============================================== -->
+  <div *ngIf="showAddServiceModal" class="modal-backdrop" (click)="closeAddServiceModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <i class="fa-solid fa-plus text-primary"></i>
+          <h3>Add New Card to {{ activeCategory?.name }}</h3>
+        </div>
+        <button class="modal-close" (click)="closeAddServiceModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="uploadError" class="alert-error">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>{{ uploadError }}</span>
+        </div>
+
+        <div class="form-group">
+          <label>Service Card Name <span class="required">*</span></label>
+          <input type="text" [(ngModel)]="serviceNameInput" placeholder="e.g. Backlit Neon Board" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea [(ngModel)]="serviceDescInput" rows="2" placeholder="Brief service description..." class="form-input"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Front Cover Image (Optional)</label>
+          <input type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/jpg, image/webp" class="form-input">
+          <div *ngIf="imagePreview" class="preview-box mt-2">
+            <img [src]="imagePreview" alt="Preview" class="preview-img">
+            <span>{{ selectedFile?.name }}</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeAddServiceModal()" [disabled]="isProcessing">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" (click)="saveNewServiceCard()" [disabled]="isProcessing">
+            <span *ngIf="isProcessing" class="spinner"></span>
+            <span>{{ isProcessing ? 'Creating...' : 'Create Card' }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- FULLSCREEN LIGHTBOX PREVIEW -->
+  <!-- ============================================== -->
+  <div *ngIf="lightboxImageUrl" class="lightbox-backdrop" (click)="closeLightbox()">
+    <button class="lightbox-close" (click)="closeLightbox()">&times;</button>
+    <div class="lightbox-img-frame" (click)="$event.stopPropagation()">
+      <img [src]="lightboxImageUrl" alt="Full view" class="lightbox-full-img">
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- CENTER CONFIRMATION MODAL (BLURRED BACKGROUND) -->
+  <!-- ============================================== -->
+  <div *ngIf="showConfirmModal" class="confirm-modal-backdrop" (click)="closeConfirmModal()">
+    <div class="confirm-modal-card" (click)="$event.stopPropagation()">
+      
+      <!-- Close X Button -->
+      <button type="button" 
+              class="confirm-modal-close" 
+              (click)="closeConfirmModal()" 
+              [disabled]="isConfirmDeleting" 
+              title="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Warning / Danger Trash Icon Badge -->
+      <div class="confirm-icon-wrapper">
+        <div class="confirm-icon-ring">
+          <i class="fa-solid fa-trash-can"></i>
+        </div>
+      </div>
+
+      <!-- Text Content -->
+      <div class="confirm-content-center">
+        <h3 class="confirm-title">{{ confirmTitle }}</h3>
+        <p class="confirm-desc">{{ confirmMessage }}</p>
+
+        <!-- Optional Item Thumbnail Preview -->
+        <div *ngIf="pendingDeletePreviewUrl" class="confirm-preview-thumb">
+          <img [src]="pendingDeletePreviewUrl" alt="Preview" class="confirm-thumb-img">
+          <span *ngIf="pendingDeleteItemName" class="confirm-thumb-name">{{ pendingDeleteItemName }}</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="confirm-actions-row">
+        <button type="button" 
+                class="btn-confirm-cancel" 
+                (click)="closeConfirmModal()" 
+                [disabled]="isConfirmDeleting">
+          Cancel
+        </button>
+        <button type="button" 
+                class="btn-confirm-delete" 
+                (click)="onConfirmDelete()" 
+                [disabled]="isConfirmDeleting">
+          <span *ngIf="isConfirmDeleting" class="spinner-small"></span>
+          <i *ngIf="!isConfirmDeleting" class="fa-solid fa-trash-can"></i>
+          <span>{{ isConfirmDeleting ? 'Deleting...' : 'Yes, Delete' }}</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+

@@ -12,11 +12,11 @@
       <tr>
         <th>#</th>
         <th>Name</th>
-        <th>Email</th>
+        <th>Phone</th>
         <th>Service</th>
         <th>Message</th>
         <th>Date</th>
-        <th>Action</th>
+        <!-- <th>Action</th> -->
       </tr>
     </thead>
     <tbody>
@@ -28,11 +28,11 @@
           <td>{{ msg.service }}</td>
           <td class="truncate">{{ msg.message }}</td>
           <td>{{ (msg.createdAt | date:'mediumDate') || 'Recently' }}</td>
-          <td>
+          <!-- <td>   
             <button class="view-btn">
               <i class="fa-regular fa-eye"></i> View
             </button>
-          </td>
+          </td> -->
         </tr>
       }
       @empty {

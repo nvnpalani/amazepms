@@ -12,6 +12,10 @@ import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminNotificationsComponent } from './pages/admin-notifications/admin-notifications.component';
 
+import { AdminCategoriesComponent } from './pages/admin-categories/admin-categories.component';
+import { AdminServicesComponent } from './pages/admin-services/admin-services.component';
+import { AdminSettingsComponent } from './pages/admin-settings/admin-settings.component';
+
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -27,8 +31,11 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
+      { path: 'categories', component: AdminCategoriesComponent },
+      { path: 'services', redirectTo: 'categories', pathMatch: 'full' },
       { path: 'messages', component: AdminMessagesComponent },
-      { path: 'notifications', component: AdminNotificationsComponent }
+      { path: 'notifications', component: AdminNotificationsComponent },
+      { path: 'settings', component: AdminSettingsComponent }
     ]
   },
   { path: '**', redirectTo: '' }

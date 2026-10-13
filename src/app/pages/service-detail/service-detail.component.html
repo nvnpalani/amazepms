@@ -1,7 +1,7 @@
 <main *ngIf="service" class="overflow-x-hidden bg-[var(--bg-main)] text-[var(--text-main)] min-h-screen">
 
   <!-- Top Hero Header & Breadcrumb -->
-  <section class="relative pt-24 pb-20 px-5 text-white overflow-hidden bg-[var(--primary)] border-b border-white/10">
+  <section class="relative py-10 md:py-14 px-5 text-white overflow-hidden bg-[var(--primary)] border-b border-white/10">
     <div
       class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(0,151,178,0.25)_0%,transparent_65%)] pointer-events-none">
     </div>
@@ -12,45 +12,45 @@
     <div class="relative max-w-[1300px] mx-auto z-10">
 
       <!-- Back Button & Breadcrumbs Bar -->
-      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-          <div class="flex items-center gap-3">
-        
-
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+        <div class="flex items-center gap-3">
           <a [routerLink]="['/services']" [fragment]="service.categoryId"
             class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl transition-all no-underline border border-white/20 hover:-translate-x-1"
             [title]="'Back to ' + service.categoryTitle">
             <lucide-icon [img]="icons.ArrowLeft" class="w-4 h-4"></lucide-icon>
             <span>Back</span>
           </a>
-        </div> 
-
-      
+        </div>
       </div> 
 
-      <!-- Service Title and Overview -->
-      <div class="max-w-[850px]">
-        <div
-          class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[var(--teal-light)] mb-3">
-          <lucide-icon [img]="icons.Layers" class="w-3.5 h-3.5"></lucide-icon>
-          {{ service.categoryTitle }}
+      <!-- Service Title and Overview (Balanced Flex) -->
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div class="max-w-[800px]">
+          <div
+            class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[var(--teal-light)] mb-3">
+            <lucide-icon [img]="icons.Layers" class="w-3.5 h-3.5"></lucide-icon>
+            {{ service.categoryTitle }}
+          </div>
+          <h1 class="text-[clamp(28px,3.8vw,48px)] font-black leading-[1.1] tracking-tight mb-3 font-display">
+            {{ service.name }}
+          </h1>
+          <p class="text-gray-200 text-[14px] md:text-[16px] leading-[1.65] m-0">
+            {{ service.desc }}
+          </p>
         </div>
-        <h1 class="text-[clamp(32px,4vw,56px)] font-black leading-[1.1] tracking-tight mb-4 font-display">
-          {{ service.name }}
-        </h1>
-        <p class="text-gray-200 text-[15px] md:text-[17px] leading-[1.7]">
-          {{ service.desc }}
-        </p>
+
+       
       </div>
 
     </div>
   </section>
 
   <!-- Main Content Showcase -->
-  <section class="py-14 md:py-20 px-5 bg-[var(--bg-secondary)]">
+  <section class="py-10 md:py-14 px-5 bg-[var(--bg-secondary)]">
     <div class="max-w-[1300px] mx-auto">
 
       <!-- Top Row: Interactive Photo Gallery (Left) + Quick Order Action Box (Right) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 md:gap-8 mb-10 md:mb-12 items-start">
 
         <!-- Left: Image Gallery Showcase (7 Cols) -->
         <div
@@ -88,7 +88,10 @@
                 class="absolute top-4 left-4 bg-black/75 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
                 <lucide-icon [img]="icons.Images" class="w-3.5 h-3.5 text-[var(--teal-light)]"></lucide-icon>
                 <span>Photo {{ activeImageIndex + 1 }} of {{ service.images.length }}</span>
-                <span *ngIf="service.images.length > 1" class="lg:hidden text-[10px] text-gray-300 font-normal ml-1">· Swipe ↔</span>
+                <span *ngIf="service.images.length > 1" 
+                  class="lg:hidden swipe-glow text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-400/50 ml-1 inline-flex items-center gap-1">
+                  Swipe ↔
+                </span>
               </div>
             </div>
 
@@ -106,8 +109,10 @@
               <span>All Portfolio Works ({{ service.images.length }} Photos)</span>
               <span class="text-[var(--teal)] font-semibold">Click any image to select</span>
             </div>
-            <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
-              <div *ngFor="let img of service.images; let idx = index" (click)="selectImage(idx)"
+            <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-thin scroll-smooth">
+              <div *ngFor="let img of service.images; let idx = index" 
+                [id]="'thumb-' + idx"
+                (click)="selectImage(idx)"
                 class="relative shrink-0 w-24 h-20 md:w-28 md:h-22 rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-200"
                 [ngClass]="activeImageIndex === idx ? 'border-[var(--teal)] ring-4 ring-[var(--teal)]/20 scale-105 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'">
                 <img [src]="img" [alt]="'Thumbnail ' + (idx + 1)" class="w-full h-full object-cover">
@@ -181,8 +186,8 @@
       <!-- ============================================== -->
       <!-- FULL TECHNICAL SPECIFICATIONS (6-CARD GRID) -->
       <!-- ============================================== -->
-      <div *ngIf="service.specs" class="mb-16 reveal" #reveal>
-        <div class="flex items-center justify-between gap-4 mb-8 pb-4 border-b border-[var(--border-color)]">
+      <div *ngIf="service.specs" class="mb-10 md:mb-12 reveal" #reveal>
+        <div class="flex items-center justify-between gap-4 mb-6 pb-3 border-b border-[var(--border-color)]">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-[var(--teal)] block mb-1">
               Engineering & Fabrication Standards
@@ -290,21 +295,21 @@
       <!-- ============================================== -->
       <!-- KEY HIGHLIGHTS & APPLICATIONS (2-COLUMN) -->
       <!-- ============================================== -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 reveal" #reveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-12 reveal" #reveal>
 
         <!-- Key Highlights -->
         <div *ngIf="service.features && service.features.length > 0"
-          class="bg-[var(--bg-card)] p-7 md:p-9 rounded-3xl border border-[var(--border-color)] shadow-sm">
-          <div class="flex items-center gap-3 mb-6">
+          class="bg-[var(--bg-card)] p-6 md:p-8 rounded-3xl border border-[var(--border-color)] shadow-sm">
+          <div class="flex items-center gap-3 mb-5">
             <div class="w-10 h-10 rounded-xl bg-[var(--teal)]/10 text-[var(--teal)] flex items-center justify-center">
               <lucide-icon [img]="icons.CheckCircle" class="w-5 h-5"></lucide-icon>
             </div>
             <h3 class="text-xl md:text-2xl font-bold font-display text-[var(--text-main)]">
-              Key Highlights & Advantages
+              Key Highlights &amp; Advantages
             </h3>
           </div>
 
-          <ul class="space-y-4 p-0 m-0 list-none">
+          <ul class="space-y-3.5 p-0 m-0 list-none">
             <li *ngFor="let feat of service.features" class="flex items-start gap-3.5">
               <span
                 class="w-6 h-6 rounded-full bg-[var(--teal)]/15 text-[var(--teal)] flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
@@ -316,27 +321,27 @@
 
         <!-- Applications (Best Suited For) -->
         <div *ngIf="service.applications && service.applications.length > 0"
-          class="bg-[var(--bg-card)] p-7 md:p-9 rounded-3xl border border-[var(--border-color)] shadow-sm flex flex-col">
-          <div class="flex items-center gap-3 mb-6">
+          class="bg-[var(--bg-card)] p-6 md:p-8 rounded-3xl border border-[var(--border-color)] shadow-sm flex flex-col">
+          <div class="flex items-center gap-3 mb-5">
             <div
               class="w-10 h-10 rounded-xl bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center">
               <lucide-icon [img]="icons.Store" class="w-5 h-5"></lucide-icon>
             </div>
             <h3 class="text-xl md:text-2xl font-bold font-display text-[var(--text-main)]">
-              Ideal Applications & Use Cases
+              Ideal Applications &amp; Use Cases
             </h3>
           </div>
 
-          <div class="flex flex-wrap gap-2.5 mb-8">
+          <div class="flex flex-wrap gap-2 mb-6">
             <span *ngFor="let app of service.applications"
-              class="px-4 py-2 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[13px] md:text-[14px] font-semibold text-[var(--text-main)] shadow-2xs">
+              class="px-3.5 py-1.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[13px] md:text-[14px] font-semibold text-[var(--text-main)] shadow-2xs">
               {{ app }}
             </span>
           </div>
 
           <!-- Dimensions & Delivery Note -->
           <div *ngIf="service.specs?.customSizes || service.specs?.deliveryTime"
-            class="mt-auto pt-6 border-t border-[var(--border-color)] space-y-2 text-xs md:text-sm text-[var(--text-muted)]">
+            class="mt-auto pt-5 border-t border-[var(--border-color)] space-y-2 text-xs md:text-sm text-[var(--text-muted)]">
             <div *ngIf="service.specs?.customSizes" class="flex items-start gap-2">
               <strong class="text-[var(--text-main)] shrink-0">📏 Dimensions:</strong>
               <span>{{ service.specs?.customSizes }}</span>
@@ -350,11 +355,12 @@
 
       </div>
 
+
       <!-- ============================================== -->
       <!-- RELATED SERVICES IN SAME CATEGORY -->
       <!-- ============================================== -->
       <div *ngIf="relatedServices.length > 0" class="reveal" #reveal>
-        <div class="flex items-center justify-between mb-8 pb-4 border-b border-[var(--border-color)]">
+        <div class="flex items-center justify-between mb-6 pb-3 border-b border-[var(--border-color)]">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-[var(--teal)] block mb-1">
               Explore More Options
@@ -408,15 +414,15 @@
   </section>
 
   <!-- Bottom CTA Banner -->
-  <section class="py-20 px-5 bg-[var(--primary)] text-white relative overflow-hidden">
+  <section class="py-12 md:py-14 px-5 bg-[var(--primary)] text-white relative overflow-hidden">
     <div
       class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,151,178,0.25)_0%,transparent_60%)] pointer-events-none">
     </div>
     <div class="max-w-[700px] mx-auto text-center relative z-10 reveal" #reveal>
-      <h2 class="text-[clamp(28px,4vw,42px)] font-black mb-4 font-display">
+      <h2 class="text-[clamp(28px,4vw,40px)] font-black mb-3 font-display">
         Ready to Transform Your Brand?
       </h2>
-      <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-8 max-w-[520px] mx-auto">
+      <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6 max-w-[520px] mx-auto">
         Speak directly with our fabrication engineers for measurement, customized 3D design proof, and quote.
       </p>
       <div class="flex flex-wrap gap-4 justify-center">
@@ -446,9 +452,15 @@
     <div class="absolute top-0 left-0 right-0 z-40 px-5 py-4 md:px-8 md:py-6 flex items-center justify-between text-white bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-auto">
       <div>
         <h4 class="font-bold text-base md:text-lg text-white m-0 drop-shadow">{{ service.name }}</h4>
-        <p class="text-gray-300 text-xs m-0">
-          Photo {{ activeImageIndex + 1 }} of {{ service.images.length }}
-        </p>
+        <div class="flex items-center gap-2 mt-0.5">
+          <p class="text-gray-300 text-xs m-0">
+            Photo {{ activeImageIndex + 1 }} of {{ service.images.length }}
+          </p>
+          <span *ngIf="service.images.length > 1" 
+                class="lg:hidden swipe-glow text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-400/50 inline-flex items-center gap-1">
+            Swipe ↔
+          </span>
+        </div>
       </div>
       <button (click)="closeLightbox()" aria-label="Close Lightbox"
         class="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-red-600 text-white flex items-center justify-center transition-all duration-200 cursor-pointer border-2 border-white/40 hover:border-red-600 hover:scale-110 shadow-2xl shrink-0">
@@ -489,8 +501,9 @@
     <!-- Bottom Thumbnail Strip (Floating Capsule at Bottom Center) -->
     <div *ngIf="service.images.length > 1" 
          class="absolute bottom-3 md:bottom-5 left-0 right-0 z-40 flex justify-center pointer-events-auto px-4">
-      <div class="flex gap-2 overflow-x-auto max-w-[90vw] p-2 bg-black/75 backdrop-blur-md rounded-2xl border border-white/15 shadow-2xl">
+      <div class="flex gap-2 overflow-x-auto max-w-[90vw] p-2 bg-black/75 backdrop-blur-md rounded-2xl border border-white/15 shadow-2xl scroll-smooth">
         <button *ngFor="let thumb of service.images; let t = index" 
+                [id]="'lightbox-thumb-' + t"
                 (click)="$event.stopPropagation(); selectImage(t)"
                 class="w-14 h-11 md:w-16 md:h-12 rounded-lg overflow-hidden border-2 transition-all cursor-pointer p-0 shrink-0"
                 [ngClass]="activeImageIndex === t ? 'border-[var(--teal)] scale-105 shadow-lg' : 'border-white/20 opacity-50 hover:opacity-100'">

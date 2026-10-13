@@ -16,14 +16,24 @@
         </a>
       </li>
       <li>
+        <a routerLink="/admin/categories" routerLinkActive="active" (click)="closeSidebar()">
+          <i class="fa-solid fa-layer-group"></i> Manage Categories
+        </a>
+      </li>
+      <li>
         <a routerLink="/admin/messages" routerLinkActive="active" (click)="closeSidebar()">
-          <i class="fa-regular fa-envelope"></i> Contact Messages
+          <i class="fa-regular fa-envelope"></i> Enquiries
         </a>
       </li>
       <li>
         <a routerLink="/admin/notifications" routerLinkActive="active" (click)="onNotificationClick(); closeSidebar()">
           <i class="fa-regular fa-bell"></i> Notifications
           <span class="sidebar-badge" *ngIf="newMessagesCount > 0">{{ newMessagesCount }}</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/settings" routerLinkActive="active" (click)="closeSidebar()">
+          <i class="fa-solid fa-gear"></i> Settings
         </a>
       </li>
     </ul>
